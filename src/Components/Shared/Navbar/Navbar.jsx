@@ -52,6 +52,8 @@ const Navbar = () => {
     // console.log(user);
   };
 
+  //https://i.postimg.cc/66LCsndF/light.png
+  //https://i.postimg.cc/RFxv43cD/dark.png
   const themeButton = (
     <>
       <label className="cursor-pointer grid place-items-center">
@@ -109,6 +111,76 @@ const Navbar = () => {
           }
         >
           Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/all-jobs"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              : isPending
+              ? 'pending'
+              : ''
+          }
+        >
+          All Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/applied-jobs"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              : isPending
+              ? 'pending'
+              : ''
+          }
+        >
+          Applied Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/add-jobs"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              : isPending
+              ? 'pending'
+              : ''
+          }
+        >
+          Add A Job
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-jobs"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              : isPending
+              ? 'pending'
+              : ''
+          }
+        >
+          My Jobs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/blogs"
+          className={({ isActive, isPending }) =>
+            isActive
+              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              : isPending
+              ? 'pending'
+              : ''
+          }
+        >
+          Blogs
         </NavLink>
       </li>
     </div>

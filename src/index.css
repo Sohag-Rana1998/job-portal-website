@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .gadgetContainer {
+    @apply max-w-[1920px] px-5 md:px-[50px] lg:px-[80px] xl:px-[120px] 2xl:px-[150px] mx-auto
+  }
+}
+
+.btn-bg {
+  background-color: #0766AD;
+}
+
+nav ul li ul.dropDown {
+  display: none;
+  background-color: #e9edf1;
+  position: absolute;
+  width: 200px;
+  right: 0px;
+  border-radius: 15px;
+}
+
+nav ul li:hover ul.dropDown {
+  display: block;
+  cursor: pointer;
+}
