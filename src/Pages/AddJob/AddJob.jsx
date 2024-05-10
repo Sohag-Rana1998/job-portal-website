@@ -58,14 +58,14 @@ const AddJob = () => {
     }
   };
   return (
-    <div className="flex w-full px-5 md:px-20 justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <section className=" p-2 w-full md:p-6 mx-auto bg-white rounded-md shadow-md ">
+    <div className="flex w-full px-5  justify-center items-center min-h-[calc(100vh-306px)] my-12">
+      <section className=" p-2 w-full md:p-16 mx-auto bg-orange-50 rounded-md shadow-lg ">
         <h2 className="text-2xl underline mb-5  text-center  font-bold text-gray-700 capitalize ">
           Post a Job
         </h2>
 
         <form onSubmit={handleFormSubmit}>
-          <div className="grid grid-cols-1 w-full gap-6 mt-4 md:grid-cols-2">
+          <div className="grid grid-cols-1 w-full gap-6 mt-4 md:grid-cols-2 ">
             <div>
               <label className="text-gray-700 " htmlFor="job_banner">
                 Picture URL of the Job Banner
@@ -119,7 +119,7 @@ const AddJob = () => {
                 <option value="On Site">On Site</option>
                 <option value="Remote">Remote</option>
                 <option value="Part-Time">Part-Time</option>
-                <option value="Part-Time">Hybrid</option>
+                <option value="Hybrid">Hybrid</option>
               </select>
             </div>
             <div>
@@ -154,7 +154,7 @@ const AddJob = () => {
 
               {/* Date Picker Input Field */}
               <DatePicker
-                className="border p-2 rounded-md"
+                className="border p-2 rounded-md w-full"
                 selected={postingDate}
                 onChange={date => setPostingDate(date)}
               />
@@ -164,7 +164,7 @@ const AddJob = () => {
 
               {/* Date Picker Input Field */}
               <DatePicker
-                className="border p-2 rounded-md"
+                className="border p-2 rounded-md w-full"
                 selected={startDate}
                 onChange={date => setStartDate(date)}
               />
@@ -184,7 +184,7 @@ const AddJob = () => {
             ></textarea>
           </div>
           <div className="flex justify-end mt-6">
-            <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transhtmlForm bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
+            <button className="btn text-white w-full bg-blue-500 hover:bg-blue-gray-500 ">
               Add Job
             </button>
           </div>
