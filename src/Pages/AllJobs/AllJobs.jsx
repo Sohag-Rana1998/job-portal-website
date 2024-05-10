@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 import { Helmet } from 'react-helmet-async';
-import { ScrollRestoration } from 'react-router-dom';
+import { Link, ScrollRestoration } from 'react-router-dom';
 import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 
@@ -23,10 +23,10 @@ const AllJobs = () => {
   const handleSearch = async e => {
     e.preventDefault();
     const searchText = e.target.search.value;
-
+    console.log(searchText);
     try {
-      const { data } = await axiosSecure.get(`/all-jobs?search=${searchText}`);
-      console.log(data);
+      const { data } = await axiosSecure.get(`/jobs?search=${searchText}`);
+      setJobs(data);
     } catch (error) {
       console.log(error);
     }
@@ -100,9 +100,12 @@ const AllJobs = () => {
                       </td>
 
                       <td>
-                        <button className="btn text-white bg-blue-gray-600">
-                          View Details
-                        </button>
+                        <Link to={`/job-details/${job._id}`}>
+                          {' '}
+                          <button className="btn text-white bg-blue-gray-600">
+                            View Details
+                          </button>
+                        </Link>
                       </td>
                     </tr>
                   ))}
