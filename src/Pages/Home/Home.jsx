@@ -1,11 +1,9 @@
-import DateHandler from './DateHandler';
-import JobByCategory from './JobByCategory';
+import JobByCategory from '../../Components/JobByCategory/JobByCategory';
 
 const Home = () => {
   return (
     <div className="text-xl text-primary">
       <JobByCategory />
-      <DateHandler />
     </div>
   );
 };

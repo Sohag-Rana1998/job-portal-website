@@ -1,5 +1,4 @@
-import Swal from 'sweetalert2';
-import DatePicker from 'react-datepicker';
+import { IoIosArrowDropdown } from 'react-icons/io';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ScrollRestoration } from 'react-router-dom';
 
@@ -11,27 +10,30 @@ import { Helmet } from 'react-helmet-async';
 const AppliedJobs = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const email = user?.email;
+
   const userName = user?.displayName;
   const [mylist, setMylist] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    myJobsData();
-  }, []);
-
-  const myJobsData = async () => {
-    try {
+    setLoading(true);
+    const JobsData = async () => {
       const { data } = await axiosSecure.get(
-        `/my-application-list?email=${user?.email}`
+        `/my-application-list?email=${user?.email}&filter=${filter}`
       );
-      console.log(data);
-      setMylist(data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
+      if (data) {
+        console.log(data);
+        setMylist(data);
+        setLoading(false);
+      }
+    };
+    if (user?.email) {
+      JobsData();
     }
-  };
+  }, [filter, user?.email, axiosSecure]);
+
+  console.log(filter);
 
   return loading ? (
     <div className="w-full min-h-screen flex justify-center items-center">
@@ -60,18 +62,53 @@ const AppliedJobs = () => {
               <div className=" text-left">
                 <h4 className="text xl font-bold">
                   {' '}
-                  Applicants Name: {userName}
+                  Applicants Name: {user?.displayName}
                 </h4>
                 <h4 className="text xl font-bold">
                   {' '}
-                  Applicants Email: {email}
+                  Applicants Email: {user?.email}
                 </h4>
                 <h4 className="text xl font-bold">
-                  Job Applied : {mylist?.length}
+                  Total Job Applied : {mylist?.length}
                 </h4>
               </div>
             </div>
           </div>
+
+          <div className="w-full flex justify-end mb-5">
+            <div className="mr-4 w-52 md:mr-10">
+              <div className="dropdown dropdown-bottom">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn m-1 text-white flex border-2 border-blue-500 bg-blue-500 items-center font-bold gap-3 "
+                >
+                  Filter By Category <IoIosArrowDropdown className="text-xl" />
+                </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                >
+                  <li onClick={() => setFilter('')}>
+                    <a>All Job</a>
+                  </li>
+                  <li onClick={() => setFilter('On Site')}>
+                    <a>On Site Job</a>
+                  </li>
+                  <li onClick={() => setFilter('Remote')}>
+                    <a>Remote Job</a>
+                  </li>
+                  <li onClick={() => setFilter('Part-Time')}>
+                    <a>Part-Time Job</a>
+                  </li>
+                  <li onClick={() => setFilter('Hybrid')}>
+                    <a>Hybrid Job</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
           <div className="divider w-full mb-10 px-0 md:px-32 "></div>
 
           <div className="  ">

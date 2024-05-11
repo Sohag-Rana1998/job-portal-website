@@ -15,12 +15,8 @@ import app from '../../../public/Firebase/firebase.config';
 
 const Register = () => {
   const [type, setType] = useState(false);
-  const {
-    emailVerify,
-    createUserByEmailAndPassword,
-    signInWithGithub,
-    signInWithGoogle,
-  } = useAuth();
+  const { createUserByEmailAndPassword, signInWithGithub, signInWithGoogle } =
+    useAuth();
   const auth = getAuth(app);
   const handleSubmit = e => {
     e.preventDefault();
@@ -45,7 +41,6 @@ const Register = () => {
 
     createUserByEmailAndPassword(email, password)
       .then(() => {
-        emailVerify();
         updateProfile(auth.currentUser, {
           displayName: name,
           photoURL: photo,

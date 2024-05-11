@@ -52,8 +52,10 @@ const JobDetails = () => {
 
     if (present > lastDate)
       return toast.success('Sorry! Application deadline is over for this job.');
-    // if (employer.email == user?.email)
-    //   return toast.success('You are not eligible to apply this job');
+    if (employer.email == user?.email) {
+      return toast.success('You are not eligible to apply this job');
+    }
+
     const form = e.target;
     const resume = form.resume_link.value;
     const email = form.email.value;
@@ -81,8 +83,12 @@ const JobDetails = () => {
     try {
       const { data } = await axiosSecure.post(`/apply-now`, applicantData);
       console.log(data);
-      console.log(data);
+      if (data?.message) {
+        return toast.error(data.message);
+      }
+
       toast.success('Application Successfully Submitted!');
+
       getData();
     } catch (error) {
       console.log(error);

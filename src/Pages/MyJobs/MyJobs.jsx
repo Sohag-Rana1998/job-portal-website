@@ -11,8 +11,7 @@ import { Helmet } from 'react-helmet-async';
 const MyJobs = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const email = user?.email;
-  const userName = user?.displayName;
+
   const [mylist, setMylist] = useState([]);
   const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState({});
@@ -21,17 +20,19 @@ const MyJobs = () => {
   const [modalLoading, setModalLoading] = useState(true);
 
   useEffect(() => {
-    axiosSecure.get(`/my-job-list?email=${user?.email}`).then(data => {
-      setMylist(data.data);
-      setLoading(false);
-    });
-  }, [user, axiosSecure]);
+    if (user?.email) {
+      myJobsData();
+    }
+  }, [user?.email]);
 
   const myJobsData = async () => {
     try {
-      const { data } = await axiosSecure.get(`/my-job-list?email=${email}`);
+      const { data } = await axiosSecure.get(
+        `/my-job-list?email=${user?.email}`
+      );
       console.log(data);
       setMylist(data);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -77,7 +78,6 @@ const MyJobs = () => {
     const applicant_count = modalData.applicant_count;
     const job_banner = form.job_banner.value;
     const job_title = form.job_title.value;
-    const email = form.email.value;
     const category = form.category.value;
     const min_salary = parseFloat(form.min_salary.value);
     const max_salary = parseFloat(form.max_salary.value);
@@ -98,7 +98,7 @@ const MyJobs = () => {
       description,
       applicant_count,
       employer: {
-        email,
+        email: user?.email,
         name: user?.displayName,
         photo: user?.photoURL,
       },
@@ -156,8 +156,11 @@ const MyJobs = () => {
                 Your Job List
               </h4>
               <div className=" text-left">
-                <h4 className="text xl font-bold"> User Name: {userName}</h4>
-                <h4 className="text xl font-bold"> User Email: {email}</h4>
+                <h4 className="text xl font-bold">
+                  {' '}
+                  User Name: {user?.displayName}
+                </h4>
+                <h4 className="text xl font-bold">User Email: {user?.email}</h4>
                 <h4 className="text xl font-bold">
                   Total Job : {mylist?.length}
                 </h4>
