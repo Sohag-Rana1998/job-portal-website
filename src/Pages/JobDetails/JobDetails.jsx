@@ -60,7 +60,7 @@ const JobDetails = () => {
       <div className="h-auto">
         <div className="flex flex-col lg:flex-row justify-between gap-5 items-start">
           <div color="transparent" className="m-0 w-full p-0 rounded-none">
-            <div className="relative overflow-hidden  h-[450px]">
+            <div className="relative overflow-hidden  h-[500px]">
               <img
                 src={job_banner}
                 className="w-full rounded-2xl  h-full hover:scale-[110%] duration-700"
@@ -110,7 +110,7 @@ const JobDetails = () => {
                 </Typography>
 
                 <Typography variant="lead" className="text-lg mt-2">
-                  <span className="font-bold">Details About The Spot: </span>
+                  <span className="font-bold">Details About The Job: </span>
                   {description}
                 </Typography>
               </div>
