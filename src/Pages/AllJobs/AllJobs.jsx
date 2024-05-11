@@ -9,7 +9,7 @@ const AllJobs = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemPerPage] = useState(4);
   const [search, setSearch] = useState('');
   const [count, setCount] = useState(0);
@@ -45,7 +45,7 @@ const AllJobs = () => {
   }, [search, axiosSecure]);
 
   const totalPage = Math.ceil(parseInt(count) / itemsPerPage);
-  const pageArray = [...Array(totalPage).keys()];
+  const pageArray = [...Array(totalPage).keys()].map(element => element + 1);
 
   console.log(totalPage);
   const handleSearch = async e => {
@@ -141,7 +141,7 @@ const AllJobs = () => {
                     <a
                       onClick={() => setCurrentPage(currentPage - 1)}
                       className={
-                        currentPage == 0
+                        currentPage == 1
                           ? ' hidden'
                           : 'px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md  dark:bg-gray-80 cursor-pointer dark:text-gray-600'
                       }
@@ -182,7 +182,7 @@ const AllJobs = () => {
 
                     <a
                       className={
-                        currentPage + 1 == pageArray.length
+                        currentPage == pageArray.length
                           ? 'hidden'
                           : 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
                       }

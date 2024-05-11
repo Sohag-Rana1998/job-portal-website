@@ -31,13 +31,13 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       if (currentUser) {
         axios
-          .post('http://localhost:5000/jwt', userEmail, {
+          .post(`${import.meta.env.VITE_API_URL}/jwt`, userEmail, {
             withCredentials: true,
           })
           .then(res => console.log(res.data));
       } else {
         axios
-          .post('http://localhost:5000/logout', userEmail, {
+          .post(`${import.meta.env.VITE_API_URL}/logout`, userEmail, {
             withCredentials: true,
           })
           .then(res => console.log(res.data));

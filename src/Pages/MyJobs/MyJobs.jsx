@@ -21,12 +21,10 @@ const MyJobs = () => {
   const [modalLoading, setModalLoading] = useState(true);
 
   useEffect(() => {
-    if (user?.email) {
-      axiosSecure.get(`/my-job-list?email=${user?.email}`).then(data => {
-        setMylist(data.data);
-        setLoading(false);
-      });
-    }
+    axiosSecure.get(`/my-job-list?email=${user?.email}`).then(data => {
+      setMylist(data.data);
+      setLoading(false);
+    });
   }, [user, axiosSecure]);
 
   const myJobsData = async () => {
