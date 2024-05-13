@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import { Link } from 'react-router-dom';
-
+import { GrLinkNext } from 'react-icons/gr';
 const JobCard = ({ job }) => {
   const {
     _id,
@@ -18,37 +18,49 @@ const JobCard = ({ job }) => {
   } = job || {};
 
   return (
-    <Link
-      to={`/job-details/${_id}`}
-      className="w-full max-w-sm px-4 py-3 bg-white rounded-md shadow-md hover:scale-[1.05] duration-500 transition-all"
-    >
-      <div>
+    <div className="flex items-start flex-col rounded-t-xl lg:flex-row hover:scale-[1.03] duration-500 shadow-md">
+      <div className="w-full h-52 lg:h-64">
+        <img src={job_banner} alt="" className="w-full h-full" />
+      </div>
+      <div className="w-full lg:h-64  px-4 py-3 bg-white    transition-all">
         <div className="flex items-center justify-between">
           <span className="text-xs font-light text-gray-800 ">
-            Deadline: {new Date(deadline).toLocaleDateString()}
+            Posting Date: {new Date(dateOfPosting).toLocaleDateString()}
           </span>
-          <span className="px-3 py-1 text-[8px] font-bold text-blue-800 uppercase bg-blue-200 rounded-full ">
+          <span className="px-3  text-[12px] font-bold text-blue-800 uppercase bg-blue-200 rounded-xl ">
             {category}
           </span>
         </div>
 
         <div>
-          <h1 className="mt-2 text-lg font-semibold text-gray-800 ">
-            {job_title}
-          </h1>
-
-          <p title={description} className="mt-2 text-sm text-gray-600 ">
+          <h1 className=" text-lg font-semibold text-gray-800 ">{job_title}</h1>
+          <h3 className="font-bold text-sm text-gray-600 ">
+            Employer:{employer?.name}
+          </h3>
+          <p title={description} className="mt-1 text-sm text-gray-600 ">
             {description.substring(0, 70)}...
           </p>
           <p className="mt-2 text-sm font-bold text-gray-600 ">
-            Range: ${min_salary} - ${max_salary}
+            Salary Range: ${min_salary} - ${max_salary}
           </p>
-          <p className="mt-2 text-sm font-bold text-gray-600 ">
+          <p className=" text-sm font-bold text-gray-600 ">
             Application Placed: {applicant_count}
           </p>
+          <div className="flex justify-between items-center">
+            <span className="text-xs font-light text-gray-800 ">
+              Deadline: {new Date(deadline).toLocaleDateString()}
+            </span>
+            <Link to={`/job-details/${_id}`}>
+              <span className="flex gap-2 items-center">
+                <button className="flex text-sm text-gray-800 hover:bg-gray-100 gap-2 bg-blue-200 p-2 rounded-3xl font-extrabold items-center">
+                  View Details <GrLinkNext />
+                </button>
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

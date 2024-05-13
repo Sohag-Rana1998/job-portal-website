@@ -13,6 +13,7 @@ import JobDetails from '../Pages/JobDetails/JobDetails';
 import PrivateRoute from './PrivateRoute';
 import CreatePDF from '../Pages/AppliedJobs/CreatePDF';
 import BlogDetails from '../Pages/BlogDetails/BlogDetails';
+import AllJobsCard from '../Pages/AllJobsCard/AllJobsCard';
 
 const router = createBrowserRouter([
   {
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
       {
         path: '/applicationData/:id',
         element: <CreatePDF></CreatePDF>,
+      },
+      {
+        path: '/all-jobs-card',
+        element: <AllJobsCard></AllJobsCard>,
       },
     ],
   },

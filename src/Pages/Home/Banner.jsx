@@ -1,5 +1,6 @@
 import { CardHeader } from '@material-tailwind/react';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
   return (
@@ -20,7 +21,12 @@ const Banner = () => {
           <div>
             <div>
               <div className=" mb-10 ">
-                <form className="flex flex-col lg:flex-row gap-5 items-center">
+                <Link to={'/all-jobs-card'}>
+                  <button className="btn  mx-auto  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]">
+                    Explore Now
+                  </button>
+                </Link>
+                {/* <form className="flex flex-col lg:flex-row gap-5 items-center">
                   <div className="relative w-full">
                     <label htmlFor="search"></label>
                     <input
@@ -35,7 +41,7 @@ const Banner = () => {
                   <button className="btn w-[95%] mx-auto  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]">
                     Search
                   </button>
-                </form>
+                </form> */}
               </div>
             </div>
           </div>
@@ -86,12 +92,3 @@ const Banner = () => {
 };
 
 export default Banner;
-
-// background-image: url('../images/home/first-banner.png');
-//   background-position: center;
-//   background-size: cover;
-// background-repeat: no-repeat;
-//   height: auto;
-// width: 100%;
-// border-bottom: 20px solid #ff4153;
-//   border-bottom-left-radius: 500px;
