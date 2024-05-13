@@ -1,15 +1,11 @@
-// import JobByCategory from '../../Components/JobByCategory/JobByCategory';
-
-import Banner from './Banner';
+import JobByCategory from '../../Components/JobByCategory/JobByCategory';
 
 const Home = () => {
   return (
     <div className="text-xl text-primary">
-      <div>
-        <Banner></Banner>
-      </div>
+      <div></div>
 
-      {/* <JobByCategory /> */}
+      <JobByCategory />
     </div>
   );
 };
