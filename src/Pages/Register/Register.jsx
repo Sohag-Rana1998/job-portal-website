@@ -1,22 +1,17 @@
 import { Link, ScrollRestoration, useNavigate } from 'react-router-dom';
-
 import { Button } from '@material-tailwind/react';
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
-
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-import { FaGithub } from 'react-icons/fa6';
 import Swal from 'sweetalert2';
 import { getAuth, updateProfile } from 'firebase/auth';
-
 import toast from 'react-hot-toast';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 import app from '../../../public/Firebase/firebase.config';
 
 const Register = () => {
   const [type, setType] = useState(false);
-  const { createUserByEmailAndPassword, signInWithGithub, signInWithGoogle } =
-    useAuth();
+  const { createUserByEmailAndPassword, signInWithGoogle } = useAuth();
   const auth = getAuth(app);
   const handleSubmit = e => {
     e.preventDefault();
@@ -76,28 +71,6 @@ const Register = () => {
       .then(() => {
         // console.log(result.user);
         navigate('/');
-        Swal.fire({
-          icon: 'success',
-          title: 'Log In successful',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        Swal.fire({
-          icon: 'error',
-          title: 'Something went wrong. Please try again.',
-          showConfirmButton: true,
-        });
-      });
-  };
-  const handleGithubLogin = () => {
-    signInWithGithub()
-      .then(() => {
-        // console.log(result.user);
-        navigate('/');
-
         Swal.fire({
           icon: 'success',
           title: 'Log In successful',
@@ -246,18 +219,6 @@ const Register = () => {
               className="h-6 w-6"
             />
             Continue with Google
-          </Button>
-          <Button
-            onClick={handleGithubLogin}
-            size="lg"
-            variant="gradient"
-            color="light-blue"
-            className="group relative flex w-full py-4 items-center gap-3 overflow-hidden pr-[72px]"
-          >
-            CONTINUE with Github
-            <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
-              <FaGithub className="text-4xl" />
-            </span>
           </Button>
         </div>
       </div>

@@ -104,7 +104,7 @@ const Navbar = () => {
           to="/"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? 'border-2 font-bold text-black  border-[#ff4153]'
               : isPending
               ? 'pending'
               : ''
@@ -118,7 +118,7 @@ const Navbar = () => {
           to="/all-jobs"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? 'border-2 font-bold  text-black  border-[#ff4153]'
               : isPending
               ? 'pending'
               : ''
@@ -127,54 +127,61 @@ const Navbar = () => {
           All Jobs
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          to="/applied-jobs"
-          className={({ isActive, isPending }) =>
-            isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
-              : isPending
-              ? 'pending'
-              : ''
-          }
-        >
-          Applied Jobs
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/add-jobs"
-          className={({ isActive, isPending }) =>
-            isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
-              : isPending
-              ? 'pending'
-              : ''
-          }
-        >
-          Add A Job
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/my-jobs"
-          className={({ isActive, isPending }) =>
-            isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
-              : isPending
-              ? 'pending'
-              : ''
-          }
-        >
-          My Jobs
-        </NavLink>
-      </li>
+      {user ? (
+        <>
+          {' '}
+          <li>
+            <NavLink
+              to="/applied-jobs"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? 'border-2 font-bold text-black  border-[#ff4153]'
+                  : isPending
+                  ? 'pending'
+                  : ''
+              }
+            >
+              Applied Jobs
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/add-jobs"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? 'border-2 font-bold text-black  border-[#ff4153]'
+                  : isPending
+                  ? 'pending'
+                  : ''
+              }
+            >
+              Add A Job
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-jobs"
+              className={({ isActive, isPending }) =>
+                isActive
+                  ? 'border-2 font-bold text-black  border-[#ff4153]'
+                  : isPending
+                  ? 'pending'
+                  : ''
+              }
+            >
+              My Jobs
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        <></>
+      )}
       <li>
         <NavLink
           to="/blogs"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-[#d7816e] border-[#FF9843]'
+              ? 'border-2 font-bold text-black  border-[#ff4153]'
               : isPending
               ? 'pending'
               : ''
@@ -189,7 +196,7 @@ const Navbar = () => {
   return loading ? (
     <div className="w-full"></div>
   ) : (
-    <div className="navbar fixed z-30 container pt-2 mx-auto  bg-[#F1F1F2]">
+    <div className="navbar fixed z-30 text-black container pt-2 mx-auto  bg-[#F1F1F2]">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

@@ -2,7 +2,11 @@
 
 import { Link } from 'react-router-dom';
 import { GrLinkNext } from 'react-icons/gr';
+import toast from 'react-hot-toast';
 const JobCard = ({ job }) => {
+  const handleAlert = () => {
+    toast.success('You have to log in first to view details');
+  };
   const {
     _id,
     job_banner,
@@ -51,7 +55,7 @@ const JobCard = ({ job }) => {
               Deadline: {new Date(deadline).toLocaleDateString()}
             </span>
             <Link to={`/job-details/${_id}`}>
-              <span className="flex gap-2 items-center">
+              <span onClick={handleAlert} className="flex gap-2 items-center">
                 <button className="flex text-sm text-gray-800 hover:bg-gray-100 gap-2 bg-blue-200 p-2 rounded-3xl font-extrabold items-center">
                   View Details <GrLinkNext />
                 </button>

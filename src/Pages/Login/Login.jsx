@@ -11,12 +11,12 @@ import { useEffect, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 
 import Swal from 'sweetalert2';
-import { FaGithub } from 'react-icons/fa6';
+
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 
 const Login = () => {
   const [type, setType] = useState(false);
-  const { signInWithEmail, signInWithGoogle, signInWithGithub } = useAuth();
+  const { signInWithEmail, signInWithGoogle } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -74,29 +74,6 @@ const Login = () => {
         });
       });
   };
-  const handleGithubLogin = () => {
-    signInWithGithub()
-      .then(() => {
-        // console.log(result.user);
-
-        navigate(location?.state || '/');
-        Swal.fire({
-          icon: 'success',
-          title: 'Log In successful',
-          showConfirmButton: false,
-          timer: 1500,
-        });
-      })
-      .catch(error => {
-        console.error(error);
-        Swal.fire({
-          icon: 'error',
-          title:
-            'Something went wrong. Please provide a registered email and password.',
-          showConfirmButton: true,
-        });
-      });
-  };
 
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -109,7 +86,7 @@ const Login = () => {
   ) : (
     <div className="flex flex-col  justify-between items-center ">
       <Helmet>
-        <title>Adventure Travel || Login</title>
+        <title>Jop Portal || Login</title>
       </Helmet>
       <div className="flex flex-col max-w-lg container p-5 md:p-20 rounded-md   bg-slate-100 border-2 mb-5 shadow-xl border-purple-200 text-gray-800">
         <div className="mb-4 text-center">
@@ -215,18 +192,6 @@ const Login = () => {
               className="h-6 w-6"
             />
             Continue with Google
-          </Button>
-          <Button
-            onClick={handleGithubLogin}
-            size="lg"
-            variant="gradient"
-            color="light-blue"
-            className="group relative flex w-full py-4 items-center gap-3 overflow-hidden pr-[72px]"
-          >
-            CONTINUE with Github
-            <span className="absolute right-0 grid h-full w-12 place-items-center bg-light-blue-600 transition-colors group-hover:bg-light-blue-700">
-              <FaGithub className="text-4xl" />
-            </span>
           </Button>
         </div>
       </div>

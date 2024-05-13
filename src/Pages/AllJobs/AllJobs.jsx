@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, ScrollRestoration } from 'react-router-dom';
 
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
+import toast from 'react-hot-toast';
 
 const AllJobs = () => {
   const axiosSecure = useAxiosSecure();
@@ -30,6 +31,10 @@ const AllJobs = () => {
     };
     JobsData();
   }, [currentPage, itemsPerPage, axiosSecure, search]);
+
+  const handleAlert = () => {
+    toast.success('You have to log in first to view details');
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -126,7 +131,10 @@ const AllJobs = () => {
                         <td>
                           <Link to={`/job-details/${job._id}`}>
                             {' '}
-                            <button className="btn text-white bg-blue-gray-600">
+                            <button
+                              onClick={handleAlert}
+                              className="btn text-white bg-blue-gray-600"
+                            >
                               View Details
                             </button>
                           </Link>

@@ -66,12 +66,12 @@ const JobProcess = () => {
               <FaMagnifyingGlass />
             </div>
             <div className="text-[#ff4153] font-bold text-xl mb-3">
-              Create Account
+              Search Job
             </div>
             <div className="text-black">
-              Ready to embark on a journey towards endless possibilities and
-              career growth? Look no further than JobPortal the ultimate
-              destination for ambitious professionals like you...
+              Experience lightning-fast search results as you type. Our
+              intuitive search bar provides real-time suggestions, making your
+              search seamless and efficient....
             </div>
             <button
               className={
@@ -100,12 +100,12 @@ const JobProcess = () => {
               <AiOutlineFilePdf />
             </div>
             <div className="text-[#ff4153] font-bold text-xl mb-3">
-              Create Account
+              Upload Resume
             </div>
             <div className="text-black">
-              Ready to embark on a journey towards endless possibilities and
-              career growth? Look no further than JobPortal the ultimate
-              destination for ambitious professionals like you...
+              Ready to take the next step in your career? Our seamless resume
+              upload feature makes it easier than ever to get noticed by top
+              employers.
             </div>
             <button
               className={
