@@ -11,6 +11,8 @@ import MyJobs from '../Pages/MyJobs/MyJobs';
 import Blog from '../Pages/Blogs/Blog';
 import JobDetails from '../Pages/JobDetails/JobDetails';
 import PrivateRoute from './PrivateRoute';
+import CreatePDF from '../Pages/AppliedJobs/CreatePDF';
+import BlogDetails from '../Pages/BlogDetails/BlogDetails';
 
 const router = createBrowserRouter([
   {
@@ -63,12 +65,20 @@ const router = createBrowserRouter([
         element: <Blog></Blog>,
       },
       {
+        path: '/blog/:id',
+        element: <BlogDetails />,
+      },
+      {
         path: '/job-details/:id',
         element: (
           <PrivateRoute>
             <JobDetails />
           </PrivateRoute>
         ),
+      },
+      {
+        path: '/applicationData/:id',
+        element: <CreatePDF></CreatePDF>,
       },
     ],
   },

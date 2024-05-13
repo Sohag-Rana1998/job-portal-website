@@ -1,6 +1,6 @@
 import { IoIosArrowDropdown } from 'react-icons/io';
 import 'react-datepicker/dist/react-datepicker.css';
-import { ScrollRestoration } from 'react-router-dom';
+import { Link, ScrollRestoration } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
@@ -11,7 +11,6 @@ const AppliedJobs = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const userName = user?.displayName;
   const [mylist, setMylist] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('');
@@ -143,9 +142,11 @@ const AppliedJobs = () => {
                           </td>
 
                           <td>
-                            <button className="btn">
-                              Download Job Summery
-                            </button>
+                            <Link to={`/applicationData/${job._id}`}>
+                              <button className="btn">
+                                Download Job Summery
+                              </button>
+                            </Link>
                           </td>
                         </tr>
                       ))}

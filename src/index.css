@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
 @layer components {
   .gadgetContainer {
@@ -24,4 +25,11 @@ nav ul li ul.dropDown {
 nav ul li:hover ul.dropDown {
   display: block;
   cursor: pointer;
+}
+
+
+
+
+.font-raleway {
+  font-family: "Raleway", sans-serif;
 }

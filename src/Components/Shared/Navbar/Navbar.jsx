@@ -189,7 +189,7 @@ const Navbar = () => {
   return loading ? (
     <div className="w-full"></div>
   ) : (
-    <div className="navbar max-w-7xl fixed z-30 container pt-2 mx-auto  bg-base-100">
+    <div className="navbar fixed z-30 container pt-2 mx-auto  bg-[#F1F1F2]">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

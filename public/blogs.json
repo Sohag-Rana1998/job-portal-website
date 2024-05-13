@@ -1,0 +1,49 @@
+[
+  {
+    "image": "https://stytch.com/blog/wp-content/uploads/2022/01/How-a-refresh-token-is-generated-and-used-1-1536x809.png",
+    "question1": "What is an access token? and What is a refresh token?",
+    "answer1": "Access Token: An access token is a credential used to access protected resources on behalf of a user. It contains user information and permissions, proving authentication and authorization. Access tokens are typically issued by an authentication server upon successful user authentication. They are short-lived and have an expiration time, usually ranging from minutes to hours, to enhance security. Access tokens are commonly used in OAuth 2.0 and OpenID Connect protocols for securing web APIs and single sign-on (SSO) systems.\n\nRefresh Token:A refresh token is a credential used to obtain a new access token after the current one expires. Unlike access tokens, refresh tokens are long-lived and securely stored on the client side. Refresh tokens are issued alongside access tokens during the authentication process. When the access token expires, the client can use the refresh token to request a new access token without requiring the user to re-authenticate. Refresh tokens help maintain user sessions and provide seamless access to resources without interruption.",
+
+    "question2": "How do access and refresh tokens work together? and Where should we store tokens on the client side?",
+    "answer2": "Access tokens and refresh tokens work together in an authentication system to provide secure access to resources while maintaining user sessions. Upon successful authentication, the authentication server issues both access and refresh tokens to the client. The client uses the access token to access protected resources. When the access token expires, the client can use the refresh token to request a new access token without re-authenticating. This process, known as token refreshing, allows for continuous access to resources without requiring the user to repeatedly log in.\n\nWhere Should be used:Tokens can be stored on the client side using various mechanisms. One common approach is to store them as HTTP-only cookies. HTTP-only cookies are not accessible via client-side JavaScript, which  enhances security by protecting tokens from certain types of attacks, such as cross-site scripting (XSS). Another option is to store tokens in secure storage mechanisms like browser local storage or session storage. While these mechanisms offer more flexibility, they also introduce security risks, such as vulnerability to XSS attacks. It's important to encrypt and properly manage tokens stored on the client side to mitigate these risks and ensure the security of user authentication.",
+
+    "author": "John Doe",
+    "date": "2024-05-13"
+  },
+  {
+    "image": "https://cdn.sanity.io/images/ay6gmb6r/production/62448459577c97af6b9493a5dfd2008d262c4410-2240x1260.png?w=795&fm=webp&fit=max&auto=format",
+    "question1": "What is Express.js?",
+    "answer1": "Express.js is a minimalist web framework for Node.js that simplifies the process of building web applications and APIs. It provides a robust set of features for routing, middleware, and handling HTTP requests and responses. Express.js is designed to be flexible and un opinionated, allowing developers to create applications with minimal boilerplate code. It is widely used in the Node.js community for its simplicity, performance, and extensive ecosystem of middleware and plugins. Express.js is well-suited for building both small, single-page applications and large-scale, enterprise-grade systems.",
+    "question2": "What is Nest.js?",
+    "answer2": "Nest.js is a progressive Node.js framework for building efficient, reliable, and scalable server-side applications. It uses TypeScript as its primary language and is heavily inspired by Angular's architecture and concepts. Nest.js leverages the power of Express.js under the hood but adds additional features such as dependency injection, modular architecture, and built-in support for GraphQL and WebSockets. With Nest.js, developers can create well-structured and maintainable server-side applications while leveraging the capabilities of modern JavaScript and TypeScript.",
+    "author": "Jane Smith",
+    "date": "2024-05-14"
+  },
+  {
+    "image": "https://i.stack.imgur.com/Rpdkx.png",
+    "question1": "What is JWT?",
+    "answer1": "JWT, or JSON Web Token, is a compact, URL-safe means of representing claims to be transferred between two parties. The claims in a JWT are encoded as a JSON object and can be digitally signed and optionally encrypted for integrity and confidentiality. JWTs are commonly used for authentication and authorization in web applications.",
+    "question2": "What is CSRF?",
+    "answer2": "CSRF, or Cross-Site Request Forgery, is an attack that tricks the victim into submitting a malicious request. It exploits the victim's authenticated session on a trusted site to perform unauthorized actions without their knowledge. CSRF attacks can lead to actions such as changing email addresses, transferring funds, or altering account settings without the user's consent.",
+    "author": "Alice Johnson",
+    "date": "2024-05-15"
+  },
+  {
+    "image": "https://tcm-sec.com/wp-content/uploads/2023/02/cors-cross-origin-resource-sharing-1080x675.webp",
+    "question1": "What is CORS?",
+    "answer1": "CORS, or Cross-Origin Resource Sharing, is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. It is a security feature implemented by browsers to prevent unauthorized access to resources. CORS defines a set of headers that a server can use to control which origins have access to its resources.",
+    "question2": "What is SQL injection?",
+    "answer2": "SQL injection is a type of attack that exploits vulnerabilities in a web application's input validation mechanisms. It occurs when an attacker injects malicious SQL code into input fields, such as login forms or search queries, to manipulate the application's database. SQL injection can lead to unauthorized access to sensitive data, data loss, or even complete system compromise if not properly mitigated.",
+    "author": "Bob Smith",
+    "date": "2024-05-16"
+  },
+  {
+    "image": "https://devforum-uploads.s3.dualstack.us-east-2.amazonaws.com/uploads/original/5X/e/b/f/f/ebff61049a867e7461b2665dca4c94fe03e7e045.png",
+    "question1": "What is HTTPS?",
+    "answer1": "HTTPS, or Hypertext Transfer Protocol Secure, is an extension of HTTP that is used for secure communication over a computer network. It encrypts the data exchanged between the client and server, providing confidentiality and integrity. HTTPS is widely used for secure communication on the internet, especially for sensitive transactions such as online banking, e-commerce, and login pages.",
+    "question2": "What is Two-Factor Authentication (2FA)?",
+    "answer2": "Two-Factor Authentication (2FA) is a security process that requires users to provide two different authentication factors to verify their identity. These factors typically include something the user knows (e.g., a password) and something the user possesses (e.g., a mobile device or security token). 2FA adds an extra layer of security to user accounts, making them less susceptible to unauthorized access even if one factor is compromised.",
+    "author": "Charlie Brown",
+    "date": "2024-05-17"
+  }
+]

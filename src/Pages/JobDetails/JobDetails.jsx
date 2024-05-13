@@ -77,7 +77,7 @@ const JobDetails = () => {
       applicantEmail: email,
       applicantName: name,
       applicantResume: resume,
-      totalApplicant: applicant_count,
+      totalApplicant: parseInt(applicant_count) + 1,
     };
 
     try {
