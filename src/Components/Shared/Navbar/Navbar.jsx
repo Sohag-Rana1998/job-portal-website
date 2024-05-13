@@ -253,9 +253,13 @@ const Navbar = () => {
         </div>
         <div className="flex w-full justify-between items-center ">
           <Link to={'/'}>
-            <button className=" py-2 rounded-xl w-auto text-xl font-bold text-blue-600">
-              Job Portal
-            </button>
+            <div className="self-center cursor-pointer hover:scale-[105%] duration-700 w-28 h-8 font-semibold">
+              <img
+                className="w-full h-full"
+                src="https://i.postimg.cc/jSxrQLVG/Logo.png"
+                alt=""
+              />
+            </div>
           </Link>
         </div>
       </div>

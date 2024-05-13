@@ -48,7 +48,7 @@ const BlogDetails = () => {
             <div className="relative overflow-hidden  h-[450px] mb-2">
               <img
                 src={image}
-                className="w-full rounded-2xl  h-full hover:scale-[110%] duration-700"
+                className="w-full rounded-2xl  h-full hover:scale-[105%] duration-700"
                 alt="ui/ux review check"
               />
             </div>
@@ -62,7 +62,7 @@ const BlogDetails = () => {
                     <h3 className="text-xl font-bold">Author: {author}</h3>
                   </div>
                   <div>
-                    <div>Publish Date:{date}</div>
+                    <div className="text-xl font-bold">Publish Date:{date}</div>
                   </div>
                 </div>
 
