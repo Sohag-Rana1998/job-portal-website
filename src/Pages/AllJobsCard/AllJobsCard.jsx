@@ -4,7 +4,7 @@ import { Helmet } from 'react-helmet-async';
 import { Link, ScrollRestoration } from 'react-router-dom';
 
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
-import JobCard from '../../Components/JobByCategory/JobCard';
+import JobCard from '../JobByCategory/JobCard';
 
 const AllJobsCard = () => {
   const axiosSecure = useAxiosSecure();

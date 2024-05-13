@@ -33,3 +33,13 @@ nav ul li:hover ul.dropDown {
 .font-raleway {
   font-family: "Raleway", sans-serif;
 }
+
+.box {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 75%, 33% 76%, 11% 100%, 14% 76%, 0% 75%);
+}
+
+.main-box :hover {
+  box-shadow: wheat;
+  background-color: #0766AD;
+  cursor: pointer;
+}

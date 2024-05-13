@@ -1,7 +1,7 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 
-import useAllJobsData from '../Hooks/useAllJobsData/useAllJobsData';
+import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
 import JobCard from './JobCard';
 import { Link } from 'react-router-dom';
 const JobByCategory = () => {
@@ -14,12 +14,12 @@ const JobByCategory = () => {
           Browse Jobs By <span className="text-[#ff4153]">Categories</span>
         </h1>
 
-        <p className="max-w-2xl mx-auto mt-2 mb-6 text-center text-gray-500 ">
+        <p className="max-w-2xl mx-auto mt-2 mb-3 text-center text-gray-500 ">
           Four categories available for the time being. They are On Site Job,
           Remote Job, Part-Time Job and Hybrid Job. Browse them by clicking on
           the tabs below.
         </p>
-        <div className="flex text-black items-center justify-center bg-white py-5 rounded-t-3xl">
+        <div className="flex text-black items-center justify-center bg-white rounded-t-3xl">
           <TabList>
             <Tab>All Jobs</Tab>
             <Tab>On Site</Tab>
@@ -30,7 +30,7 @@ const JobByCategory = () => {
         </div>
         <TabPanel>
           <div>
-            <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 ">
+            <div className="grid grid-cols-1 gap-10 mt-8 md:grid-cols-2 ">
               {data &&
                 data
                   .slice(0, 6)
@@ -47,7 +47,7 @@ const JobByCategory = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 ">
+          <div className="grid grid-cols-1 gap-10 mt-8  md:grid-cols-2 ">
             {data &&
               data
                 .filter(j => j.category === 'On Site')
@@ -56,7 +56,7 @@ const JobByCategory = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 ">
+          <div className="grid grid-cols-1 gap-8 mt-8  md:grid-cols-2 ">
             {data &&
               data
                 .filter(j => j.category === 'Remote')
@@ -65,7 +65,7 @@ const JobByCategory = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2">
             {data &&
               data
                 .filter(j => j.category === 'Part-Time')
@@ -73,7 +73,7 @@ const JobByCategory = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 ">
+          <div className="grid grid-cols-1 gap-8 mt-8  md:grid-cols-2 ">
             {data &&
               data
                 .filter(j => j.category === 'Hybrid')
