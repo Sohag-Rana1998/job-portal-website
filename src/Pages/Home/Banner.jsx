@@ -1,12 +1,29 @@
-import { CardHeader } from '@material-tailwind/react';
-import { FaMagnifyingGlass } from 'react-icons/fa6';
+// import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Banner = () => {
   return (
     <div className="container mx-auto font-raleway ">
       <div className="w-full border-b-0 md:border-b-[20px] md:border-[#ff4153] md:rounded-bl-[500px] bg-[#EFEFEF] md:bg-[url(https://i.postimg.cc/JzzCKjLj/first-banner.png)] bg-no-repeat bg-cover  bg-center h-[460px] md:h-[850px]">
-        <div className="ml-2 md:ml-14 pt-10 md:pt-28 w-full text-center md:text-left md:w-[60%] lg:w-[45%]">
+        <motion.div
+          initial={{
+            y: -200,
+            opacity: 0,
+          }}
+          animate={{
+            y: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1,
+            y: { type: 'spring' },
+            opacity: { duration: 1 },
+            ease: 'easeIn',
+            duration: 1,
+          }}
+          className="ml-2 md:ml-14 pt-10 md:pt-28 w-full text-center md:text-left md:w-[60%] lg:w-[45%]"
+        >
           <div className="text-5xl font-bold text-black mb-3 md:mb-5">
             Find Your Favourite{' '}
           </div>
@@ -45,7 +62,7 @@ const Banner = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className="lg:flex  hidden mt-16 lg:flex-col xl:flex-row justify-center pr-5 xl:pr-40 items-center w-[80%] gap-5">
           <div className="w-full md:w-[180px] h-[70px]">
             <img
@@ -64,14 +81,48 @@ const Banner = () => {
         </div>
       </div>
       <div className="mt-20 md:mt-40 flex flex-col md:flex-row justify-between items-center gap-10">
-        <CardHeader className="w-full lg:w-[30%] h-[290px] !rounded-none ">
+        <motion.div
+          initial={{
+            x: -100,
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1,
+            x: { type: 'spring' },
+            opacity: { duration: 1 },
+            ease: 'easeIn',
+            duration: 1,
+          }}
+          className="w-full lg:w-[30%] overflow-hidden h-[290px] !rounded-none "
+        >
           <img
             src="https://i.postimg.cc/76t4jkvP/women.png"
             className="w-full h-full hover:scale-[107%] duration-700"
             alt=""
           />
-        </CardHeader>
-        <div className="w-full lg:w-[65%] ">
+        </motion.div>
+        <motion.div
+          initial={{
+            x: 100,
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 1,
+            x: { type: 'spring' },
+            opacity: { duration: 1 },
+            ease: 'easeIn',
+            duration: 1,
+          }}
+          className="w-full lg:w-[65%] "
+        >
           <div className="text-3xl lg:text-5xl xl:text-6xl  font-bold text-black mb-3 md:mb-5">
             Find Million Of Jobs And
           </div>
@@ -85,7 +136,7 @@ const Banner = () => {
             your next career move is just a click away. Start your journey to
             success with us today!
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

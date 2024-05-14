@@ -1,5 +1,4 @@
-/* eslint-disable react/prop-types */
-
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GrLinkNext } from 'react-icons/gr';
 import toast from 'react-hot-toast';
@@ -66,6 +65,10 @@ const JobCard = ({ job }) => {
       </div>
     </div>
   );
+};
+
+JobCard.propTypes = {
+  job: PropTypes.object,
 };
 
 export default JobCard;

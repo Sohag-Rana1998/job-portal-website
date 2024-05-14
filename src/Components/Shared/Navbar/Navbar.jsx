@@ -10,10 +10,7 @@ const Navbar = () => {
   const { user, logOut } = useAuth();
   const [theme, setTheme] = useState(localTheme);
   const [type, setType] = useState(false);
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(setLoading, 500, false);
-  }, []);
+
   useEffect(() => {
     localStorage.setItem('theme', theme);
     const localTheme = localStorage.getItem('theme');
@@ -56,6 +53,13 @@ const Navbar = () => {
   //https://i.postimg.cc/RFxv43cD/dark.png
   const themeButton = (
     <>
+      {/* <a className=" h-12  w-12 bg-black rounded-full">
+        <img
+          className="w-full h-full p-1"
+          src="https://i.postimg.cc/66LCsndF/light.png"
+          alt=""
+        />
+      </a> */}
       <label className="cursor-pointer grid place-items-center">
         <input
           onChange={handleToggle}
@@ -193,9 +197,7 @@ const Navbar = () => {
     </div>
   );
 
-  return loading ? (
-    <div className="w-full"></div>
-  ) : (
+  return (
     <div
       className={
         type
@@ -239,6 +241,11 @@ const Navbar = () => {
                       className="mr-4 mb-2 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
                     />
 
+                    <Link to={'/user-profile'}>
+                      <button className="btn w-32  bg-blue-600 hover:bg-blue-gray-900   text-white">
+                        User Profile
+                      </button>
+                    </Link>
                     <button
                       onClick={handleLogout}
                       className="btn w-32  bg-blue-600 hover:bg-blue-gray-900   text-white"
@@ -300,14 +307,19 @@ const Navbar = () => {
                       className="mr-4 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
                     />
                     <ul className="dropDown">
-                      <div className="w-auto dropdownMenu duration-500   z-10  py-3 px-5   ">
-                        <div>
-                          <h2 className="w-full hover:bg-blue-500 bg-gray-500 text-white font-bold text-xl p-2 rounded-md mb-2">
+                      <div className="w-auto bg-[#006740] bg-opacity-50 dropdownMenu duration-500   z-10   rounded-xl p-3   ">
+                        <div className="flex flex-col  items-end">
+                          <h2 className="w-full hover:bg-blue-500 bg-gray-500 text-white font-bold  p-2 rounded-md mb-2">
                             {user?.displayName || ''}
                           </h2>
+                          <Link to={'/user-profile'}>
+                            <button className="btn  hover:bg-blue-500 mb-2 bg-gray-500    text-white">
+                              User Profile
+                            </button>
+                          </Link>
                           <button
                             onClick={handleLogout}
-                            className="btn hover:bg-blue-500 bg-gray-500   mr-3 text-white"
+                            className="btn hover:bg-blue-500 bg-gray-500 text-white"
                           >
                             Log Out
                           </button>

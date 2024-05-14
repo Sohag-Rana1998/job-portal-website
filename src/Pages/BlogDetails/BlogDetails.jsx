@@ -1,10 +1,9 @@
 import { Typography } from '@material-tailwind/react';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-
 import { ScrollRestoration, useParams } from 'react-router-dom';
-
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 
 const BlogDetails = () => {
@@ -24,8 +23,16 @@ const BlogDetails = () => {
   const { image, question1, question2, answer1, answer2, date, author } = blog;
 
   return loading ? (
-    <div className="w-full min-h-screen flex justify-center items-center">
-      <span className="loading loading-spinner loading-lg"></span>
+    <div className="w-[80%] mx-auto min-h-screen ">
+      <SkeletonTheme baseColor="#a2a2b2">
+        <div>
+          <div className="mt-10 mb-5">
+            <Skeleton height={150} />
+          </div>
+
+          <Skeleton height={30} count={10} />
+        </div>
+      </SkeletonTheme>
     </div>
   ) : (
     <div className="my-8 w-full mx-auto">

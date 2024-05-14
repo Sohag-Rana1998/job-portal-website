@@ -3,6 +3,7 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { MdOutlineNavigateNext } from 'react-icons/md';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { AiOutlineFilePdf } from 'react-icons/ai';
+import { motion } from 'framer-motion';
 const JobProcess = () => {
   const [toggle, setToggle] = useState(false);
   const [toggle1, setToggle1] = useState(false);
@@ -16,7 +17,24 @@ const JobProcess = () => {
         </h1>
       </div>
       <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-5">
-        <div className="w-full h-[450px]  hover:shadow-lg py-7 duration-700 px-14 ">
+        <motion.div
+          initial={{
+            x: -100,
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.2,
+            x: { type: 'spring' },
+            opacity: { duration: 0.5 },
+            ease: 'easeIn',
+            duration: 1,
+          }}
+          className="w-full h-[450px]  hover:shadow-lg py-7 duration-700 px-14 "
+        >
           <div
             onMouseEnter={() => setToggle(true)}
             onMouseLeave={() => setToggle(false)}
@@ -49,7 +67,7 @@ const JobProcess = () => {
               Read More <MdOutlineNavigateNext />
             </button>
           </div>
-        </div>
+        </motion.div>
         <div className="w-full h-[450px] hover:shadow-lg py-7 duration-700 px-14 ">
           <div
             onMouseEnter={() => setToggle1(true)}
@@ -84,7 +102,24 @@ const JobProcess = () => {
             </button>
           </div>
         </div>
-        <div className="w-full h-[450px]  hover:shadow-lg py-7 duration-700 px-14 ">
+        <motion.div
+          initial={{
+            x: 100,
+            opacity: 0,
+          }}
+          whileInView={{
+            x: 0,
+            opacity: 1,
+          }}
+          transition={{
+            delay: 0.2,
+            x: { type: 'spring' },
+            opacity: { duration: 0.5 },
+            ease: 'easeIn',
+            duration: 1,
+          }}
+          className="w-full h-[450px]  hover:shadow-lg py-7 duration-700 px-14 "
+        >
           <div
             onMouseEnter={() => setToggle2(true)}
             onMouseLeave={() => setToggle2(false)}
@@ -117,7 +152,7 @@ const JobProcess = () => {
               Read More <MdOutlineNavigateNext />
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

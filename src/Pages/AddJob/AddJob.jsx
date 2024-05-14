@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 // import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import axios from 'axios';
@@ -9,8 +10,11 @@ import useAuth from '../../Components/Hooks/useAuth/useAuth';
 
 const AddJob = () => {
   const { user } = useAuth();
-  // const navigate = useNavigate();
 
+  const [loader, setLoader] = useState(true);
+  useEffect(() => {
+    setTimeout(setLoader, 500, false);
+  }, []);
   const [startDate, setStartDate] = useState(new Date());
   const [postingDate, setPostingDate] = useState(new Date());
 
@@ -50,14 +54,26 @@ const AddJob = () => {
         jobData
       );
       console.log(data);
-      toast.success('Job Data Updated Successfully!');
+      toast.success('Job Data Successfully Posted!');
       form.reset();
       // navigate('/my-posted-jobs');
     } catch (err) {
       console.log(err);
     }
   };
-  return (
+  return loader ? (
+    <div className="w-[80%] mx-auto min-h-screen ">
+      <SkeletonTheme baseColor="#a2a2b2">
+        <div>
+          <div className="mt-10 mb-5">
+            <Skeleton height={150} />
+          </div>
+
+          <Skeleton height={30} count={10} />
+        </div>
+      </SkeletonTheme>
+    </div>
+  ) : (
     <div className="flex w-full px-5  justify-center items-center min-h-[calc(100vh-306px)] my-12">
       <section className=" p-2 w-full md:p-16 mx-auto bg-orange-50 rounded-md shadow-lg ">
         <h2 className="text-2xl underline mb-5  text-center  font-bold text-gray-700 capitalize ">

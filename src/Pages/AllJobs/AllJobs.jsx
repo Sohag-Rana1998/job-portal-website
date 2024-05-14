@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 import { Helmet } from 'react-helmet-async';
 import { Link, ScrollRestoration } from 'react-router-dom';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import toast from 'react-hot-toast';
@@ -11,7 +13,7 @@ const AllJobs = () => {
   const { user } = useAuth();
   const [jobs, setJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemPerPage] = useState(4);
+  const itemsPerPage = 4;
   const [search, setSearch] = useState('');
   const [count, setCount] = useState(0);
 
@@ -61,8 +63,16 @@ const AllJobs = () => {
   };
 
   return loading ? (
-    <div className="w-full min-h-screen flex justify-center items-center">
-      <span className="loading loading-spinner loading-lg"></span>
+    <div className="w-[80%] mx-auto min-h-screen ">
+      <SkeletonTheme baseColor="#a2a2b2">
+        <div>
+          <div className="mt-10 mb-5">
+            <Skeleton height={150} />
+          </div>
+
+          <Skeleton height={30} count={10} />
+        </div>
+      </SkeletonTheme>
     </div>
   ) : (
     <div className="max-w-7xl container mx-auto px-5 ">

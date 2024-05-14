@@ -4,7 +4,8 @@ import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
 import Swal from 'sweetalert2';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import toast from 'react-hot-toast';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 
@@ -91,8 +92,16 @@ const Register = () => {
   }, []);
 
   return loading ? (
-    <div className="w-full min-h-screen flex justify-center items-center">
-      <span className="loading loading-spinner loading-lg"></span>
+    <div className="w-[80%] mx-auto min-h-screen ">
+      <SkeletonTheme baseColor="#a2a2b2">
+        <div>
+          <div className="mt-10 mb-5">
+            <Skeleton height={150} />
+          </div>
+
+          <Skeleton height={30} count={10} />
+        </div>
+      </SkeletonTheme>
     </div>
   ) : (
     <div className="text-white relative flex flex-col   bg-[#00523f]">

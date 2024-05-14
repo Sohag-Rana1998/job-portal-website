@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import {
   Document,
   Page,
@@ -50,19 +51,12 @@ const ApplicationData = ({ jobData, user }) => {
   console.log(user);
   const {
     jobId,
-    job_banner,
     job_title,
     category,
-    min_salary,
-    max_salary,
-    dateOfPosting,
-    deadline,
     applicationDate,
-    description,
     employer,
     applicantEmail,
     applicantName,
-    applicantResume,
     totalApplicant,
   } = jobData;
   return (
@@ -98,6 +92,11 @@ const ApplicationData = ({ jobData, user }) => {
       </Page>
     </Document>
   );
+};
+
+ApplicationData.propTypes = {
+  jobData: PropTypes.object,
+  user: PropTypes.object,
 };
 
 export default ApplicationData;

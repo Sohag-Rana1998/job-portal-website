@@ -14,6 +14,7 @@ import PrivateRoute from './PrivateRoute';
 import CreatePDF from '../Pages/AppliedJobs/CreatePDF';
 import BlogDetails from '../Pages/BlogDetails/BlogDetails';
 import AllJobsCard from '../Pages/AllJobsCard/AllJobsCard';
+import UserProfile from '../Pages/User Profile/UserProfile';
 
 const router = createBrowserRouter([
   {
@@ -84,6 +85,10 @@ const router = createBrowserRouter([
       {
         path: '/all-jobs-card',
         element: <AllJobsCard></AllJobsCard>,
+      },
+      {
+        path: '/user-profile',
+        element: <UserProfile />,
       },
     ],
   },

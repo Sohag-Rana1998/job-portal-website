@@ -1,3 +1,4 @@
+import { ScrollRestoration } from 'react-router-dom';
 import JobByCategory from '../JobByCategory/JobByCategory';
 import Banner from './Banner';
 import JobProcess from './JobProcess';
@@ -18,6 +19,7 @@ const Home = () => {
           <Testimonials></Testimonials>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

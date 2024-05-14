@@ -2,7 +2,8 @@ import Swal from 'sweetalert2';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ScrollRestoration } from 'react-router-dom';
-
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 import { useEffect, useState } from 'react';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
@@ -132,8 +133,16 @@ const MyJobs = () => {
   };
 
   return loading ? (
-    <div className="w-full min-h-screen flex justify-center items-center">
-      <span className="loading loading-spinner loading-lg"></span>
+    <div className="w-[80%] mx-auto min-h-screen ">
+      <SkeletonTheme baseColor="#a2a2b2">
+        <div>
+          <div className="mt-10 mb-5">
+            <Skeleton height={150} />
+          </div>
+
+          <Skeleton height={30} count={10} />
+        </div>
+      </SkeletonTheme>
     </div>
   ) : (
     <div className="max-w-7xl container mx-auto px-5 ">
