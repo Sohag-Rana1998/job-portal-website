@@ -1,10 +1,10 @@
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Slide = ({ image, text, name, designation }) => {
   return (
     <div className="w-full  p-10 text-black">
       <div className=" w-full h-full">
-        <div className="text-center p-10 rounded-xl box bg-gray-100 h-[350px]  flex-col flex  items-center">
+        <div className="text-center p-10 rounded-xl box bg-gray-100 h-[500px] md:h-[350px]  flex-col flex  items-center">
           <h1 className=" ">{text}</h1>
         </div>
         <div className="flex items-center gap-3">
@@ -20,6 +20,13 @@ const Slide = ({ image, text, name, designation }) => {
       </div>
     </div>
   );
+};
+
+Slide.propTypes = {
+  image: PropTypes.string,
+  text: PropTypes.string,
+  name: PropTypes.string,
+  designation: PropTypes.string,
 };
 
 export default Slide;

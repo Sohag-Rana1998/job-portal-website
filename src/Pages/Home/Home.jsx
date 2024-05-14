@@ -4,6 +4,7 @@ import Banner from './Banner';
 import JobProcess from './JobProcess';
 import Testimonials from './Testimonials';
 import { Helmet } from 'react-helmet-async';
+import Agents from './Agents';
 
 const Home = () => {
   return (
@@ -17,10 +18,15 @@ const Home = () => {
           <JobByCategory />
         </div>
         <div className="mt-16">
-          <JobProcess />
+          <Testimonials></Testimonials>
         </div>
         <div className="mt-16">
-          <Testimonials></Testimonials>
+          <JobProcess />
+        </div>
+        <div>
+          <div className="my-16">
+            <Agents></Agents>
+          </div>
         </div>
       </div>
       <ScrollRestoration />

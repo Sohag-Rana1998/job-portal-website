@@ -29,8 +29,8 @@ const Testimonials = () => {
           about their transformative experiences
         </p>
       </div>
-      <div className="w-full  flex justify-between items-center">
-        <div>
+      <div className="w-full  flex flex-col md:flex-row  justify-between gap-5 items-center">
+        <div className="w-full md:w-[45%]">
           <div className="h-[450px]">
             <img
               className="w-full h-full rounded-xl"
@@ -39,7 +39,7 @@ const Testimonials = () => {
             />
           </div>
         </div>
-        <div className="w-[50%] ">
+        <div className="w-full md:w-[50%]  ">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}

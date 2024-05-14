@@ -106,7 +106,7 @@ const Register = () => {
   ) : (
     <div className="text-white relative flex flex-col   bg-[#00523f]">
       <Helmet>
-        <title>Adventure Travel | Register</title>
+        <title>Job Portal | Register</title>
       </Helmet>
       <div className="w-full  flex justify-between">
         <div className="w-full md:w-[45%] my-14 h-full px-5 mx-auto md:mx-0 flex flex-col justify-center items-center">
