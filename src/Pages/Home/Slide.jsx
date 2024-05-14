@@ -4,8 +4,9 @@ const Slide = ({ image, text, name, designation }) => {
   return (
     <div className="w-full  p-10 text-black">
       <div className=" w-full h-full">
-        <div className="text-center p-10 rounded-xl box bg-gray-100 h-[500px] md:h-[350px]  flex-col flex  items-center">
-          <h1 className=" ">{text}</h1>
+        <div className="text-center p-10 rounded-xl box bg-gray-100 h-[400px] md:h-[350px]  flex-col flex  items-center">
+          <h1 className="hidden md:block ">{text}</h1>
+          <h1 className=" block md:hidden">{text?.slice(0, 150)}</h1>
         </div>
         <div className="flex items-center gap-3">
           <div className="w-20 h-20 ">

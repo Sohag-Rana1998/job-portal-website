@@ -33,18 +33,18 @@ export default function Slider() {
 
   return (
     <>
-      <div className="container mx-auto  flex justify-center items-center">
+      <div className="container mt-8 mx-auto px-20 md:px-0 flex justify-center items-center">
         <Swiper
           effect={'cards'}
           grabCursor={true}
           modules={[EffectCards]}
-          className="mySwiper w-[60%] h-[600px] md:w-[50%] mx-auto md:h-[550px]"
+          className="mySwiper w-[60%] h-[450px] md:w-[50%] mx-auto md:h-[550px]"
         >
           {data &&
             data.map(agent => (
               <SwiperSlide
                 key={agent._id}
-                className={`bg-[#ff4153]  rounded-3xl p-5  shadow-lg `}
+                className={`bg-[#ff4153]  rounded-3xl p-0 md:p-5  shadow-lg `}
               >
                 <Card className=" w-full rounded-2xl  ">
                   <div className="w-full rounded-2xl h-56 ">
@@ -59,10 +59,12 @@ export default function Slider() {
                       {agent?.name}
                       <p className="text-sm">{agent?.designation}</p>
                     </Typography>
-                    <Typography>{agent.description}</Typography>
+                    <div className="hidden md:block">
+                      <Typography>{agent.description}</Typography>
+                    </div>
                   </CardBody>
-                  <CardFooter className="pt-0 flex justify-between">
-                    <div className="text-lg flex gap-3">
+                  <CardFooter className="pt-0 flex flex-col md:flex-row justify-between">
+                    <div className="text-lg md:flex gap-3 hidden">
                       <FaFacebook className="cursor-pointer hover:scale-[120%] duration-500"></FaFacebook>
                       <FaInstagram className="cursor-pointer hover:scale-[120%] duration-500"></FaInstagram>
                       <FaTwitter className="cursor-pointer hover:scale-[120%] duration-500"></FaTwitter>

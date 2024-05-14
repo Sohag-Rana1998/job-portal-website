@@ -133,9 +133,9 @@ const MyJobs = () => {
       </Helmet>
       <div>
         <div>
-          <div className="h-32 mb-5 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
+          <div className="h-52 mb-5 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
             <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-              <div className=" pl-20 mt-10">
+              <div className="pl-2 md:pl-20 mt-3 md:mt-10 text-center md:text-left">
                 <div>
                   <div className="w-full px-0  ">
                     <h4 className="text-4xl font-bold underline mb-5">

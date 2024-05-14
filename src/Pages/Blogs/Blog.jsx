@@ -7,10 +7,14 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import useBlogsData from '../../Components/Hooks/useBlogsData/useBlogsData';
 import { Helmet } from 'react-helmet-async';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
+import toast from 'react-hot-toast';
 const Blog = () => {
   const { user } = useAuth();
   // const [loading, setLoading] = useState(true);
-
+  const handleblog = e => {
+    e.preventDefault();
+    toast.success('Sorry This feature is not available right now.');
+  };
   const { data, isLoading } = useBlogsData();
 
   //   const myBlogsData = async () => {
@@ -48,8 +52,8 @@ const Blog = () => {
           Learn More About Programming
         </h1>
       </div>
-      <div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
+      <div className="flex flex-col md:flex-row justify-between gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full md:w-[70%]">
           {data?.map(blog => (
             <div key={blog._id}>
               <div className="w-full  h-full  rounded-2xl shadow-2xl  overflow-hidden">
@@ -101,65 +105,38 @@ const Blog = () => {
             </div>
           ))}
         </div>
-        <div>
-          <div className="w-full  lg:w-[27%] border rounded-2xl shadow-md p-5  ">
+        <div className="w-full md:w-[25%]">
+          <div className="w-full  border rounded-2xl shadow-md p-5  ">
             <h3 className="text-2xl font-bold mb-4 text-center">
-              Contact With Employer:
+              Post A Blog :
             </h3>
-            <form className="">
+            <form onSubmit={handleblog} className="">
               <div className="mb-5">
                 <label className=" " htmlFor="name">
-                  Your Name
+                  Blog Title
                 </label>
                 <input
                   id="name"
                   name="name"
-                  defaultValue={user?.displayName}
                   type="text"
-                  disabled
                   className="block w-full px-4 py-2 mt-2  bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
               </div>
               <div className="mb-5">
                 <label className=" " htmlFor="name">
-                  Your Email
+                  Photo URL
                 </label>
                 <input
                   id="name"
                   name="name"
-                  disabled
-                  defaultValue={user?.email}
-                  type="email"
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-                />
-              </div>
-              <div className="mb-5">
-                <label className="" htmlFor="name">
-                  Phone
-                </label>
-                <input
-                  id="name"
-                  name="phone"
-                  type="number"
-                  placeholder="Phone Number"
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-                />
-              </div>
-              <div className="mb-5">
-                <label className=" " htmlFor="name">
-                  Subject
-                </label>
-                <input
-                  id="name"
-                  name="subject"
                   type="text"
-                  placeholder="Subject"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
               </div>
+
               <div className="mb-5">
                 <label className=" " htmlFor="name">
-                  Message
+                  Description
                 </label>
                 <textarea
                   id="name"
@@ -171,7 +148,7 @@ const Blog = () => {
                 ></textarea>
               </div>
               <button className="btn rounded-3xl w-full bg-gray-900 text-white hover:bg-[#FF4153]">
-                Send
+                Post
               </button>
             </form>
           </div>

@@ -11,8 +11,8 @@ const Agents = () => {
           page, along side with their <br /> contact details and link to their
           agent profile.
         </p>
+        <Slider></Slider>
       </div>
-      <Slider></Slider>
     </div>
   );
 };

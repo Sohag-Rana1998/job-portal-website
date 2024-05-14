@@ -15,7 +15,7 @@ const AllJobs = () => {
   const itemsPerPage = 4;
   const [search, setSearch] = useState('');
   const [count, setCount] = useState(0);
-
+  const [loader, setLoader] = useState(false);
   const { data, isLoading, refetch } = useAllJobsData(
     currentPage,
     itemsPerPage,
@@ -57,13 +57,15 @@ const AllJobs = () => {
 
   console.log(totalPage);
   const handleSearch = async e => {
+    setLoader(true);
     e.preventDefault();
     const searchText = e.target.search.value;
     setSearch(searchText);
     setTimeout(refetch, 500);
+    setTimeout(setLoader, 500, false);
   };
 
-  return isLoading ? (
+  return isLoading || loader ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>
@@ -82,11 +84,11 @@ const AllJobs = () => {
       </Helmet>
       <div>
         <div>
-          <div className="">
-            <div className="h-32 mb-5 rounded-t-xl md:h-60 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/rstCStvL/banner-job-ads-1.jpg)] bg-opacity-50 relative">
+          <div className="mt-10">
+            <div className="h-48 mb-5 rounded-t-xl md:h-60 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/rstCStvL/banner-job-ads-1.jpg)] bg-opacity-50 relative">
               <div className=" inset-0 absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-                <div className=" pl-20 mt-10">
-                  <h2 className=" md:text-4xl font-bold text-white mb-5">
+                <div className="pl-2 md:pl-20 mt-1 md:mt-10 text-center md:text-left">
+                  <h2 className=" md:text-4xl font-bold text-white mb-2 md:mb-5">
                     Explore All Awesome Jobs
                   </h2>
                   <p className="text-white">
@@ -103,17 +105,22 @@ const AllJobs = () => {
           <div className="divider w-full mb-10 px-0 md:px-32 "></div>
           <div>
             <div className="w-full flex justify-end ">
-              <form onSubmit={handleSearch}>
-                <label htmlFor="search"></label>
-                <input
-                  required
-                  className="input bg-gray-200 w-full md:w-60 border mb-5 mr-3"
-                  id="search"
-                  name="search"
-                  placeholder="Search By Job Title"
-                  type="text"
-                />
-                <button className=" py-[14px] px-4 rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
+              <form
+                onSubmit={handleSearch}
+                className="flex justify-between items-center gap-3"
+              >
+                <div>
+                  <label htmlFor="search"></label>
+                  <input
+                    required
+                    className="input bg-gray-200 w-full  md:w-60 border mb-0 mr-3"
+                    id="search"
+                    name="search"
+                    placeholder="Search By Job Title"
+                    type="text"
+                  />
+                </div>
+                <button className=" py-[14px] px-4  rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
                   Search
                 </button>
               </form>
@@ -171,7 +178,9 @@ const AllJobs = () => {
                     <a
                       onClick={() => {
                         setCurrentPage(currentPage - 1);
+                        setLoader(true);
                         setTimeout(refetch, 500);
+                        setTimeout(setLoader, 500, false);
                       }}
                       className={
                         currentPage == 1
@@ -203,7 +212,9 @@ const AllJobs = () => {
                       <button
                         onClick={() => {
                           setCurrentPage(page);
+                          setLoader(true);
                           setTimeout(refetch, 500);
+                          setTimeout(setLoader, 500, false);
                         }}
                         key={page}
                         className={
@@ -224,7 +235,9 @@ const AllJobs = () => {
                       }
                       onClick={() => {
                         setCurrentPage(currentPage + 1);
+                        setLoader(true);
                         setTimeout(refetch, 500);
+                        setTimeout(setLoader, 500, false);
                       }}
                     >
                       <div className="flex items-center cursor-pointer -mx-1">
@@ -254,7 +267,9 @@ const AllJobs = () => {
                     <button
                       onClick={() => {
                         setSearch('');
+                        setLoader(true);
                         setTimeout(refetch, 500);
+                        setTimeout(setLoader, 500, false);
                       }}
                       className="btn bg-gray-500 text-white text-right"
                     >

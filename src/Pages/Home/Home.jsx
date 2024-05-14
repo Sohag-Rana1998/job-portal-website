@@ -14,21 +14,21 @@ const Home = () => {
       </Helmet>
       <div>
         <Banner></Banner>
-        <div className="mt-10">
-          <JobByCategory />
-        </div>
-        <div className="mt-16">
-          <Testimonials></Testimonials>
-        </div>
-        <div className="mt-16">
-          <JobProcess />
-        </div>
-        <div>
-          <div className="my-16">
-            <Agents></Agents>
-          </div>
-        </div>
       </div>
+      <div className="mt-10">
+        <JobByCategory />
+      </div>
+      <div className="mt-16">
+        <Testimonials></Testimonials>
+      </div>
+      <div className="mt-16">
+        <JobProcess />
+      </div>
+
+      <div className="">
+        <Agents></Agents>
+      </div>
+
       <ScrollRestoration />
     </div>
   );

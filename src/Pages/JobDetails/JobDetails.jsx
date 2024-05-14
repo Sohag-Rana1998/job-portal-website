@@ -132,7 +132,7 @@ const JobDetails = () => {
         <div className="flex flex-col lg:flex-row justify-between items-start gap-5">
           <div className="flex flex-col w-full lg:w-[70%]   justify-between gap-5 items-start">
             <div color="transparent" className="m-0 w-full p-0 rounded-none">
-              <div className="relative overflow-hidden rounded-2xl h-[500px]">
+              <div className="relative overflow-hidden rounded-2xl h-[300px] md:h-[500px]">
                 <img
                   src={job_banner}
                   className="w-full rounded-2xl  h-full hover:scale-[105%] duration-700"
@@ -148,7 +148,7 @@ const JobDetails = () => {
                     <Typography className="text-2xl font-bold">
                       Job Title: {job_title}
                     </Typography>
-                    <Typography className=" font-bold bg-[#FF4153] text-white py-2 px-4 rounded-3xl">
+                    <Typography className=" font-bold bg-[#FF4153] text-white p-1 px-4 rounded-3xl">
                       #{category}
                     </Typography>
                   </div>

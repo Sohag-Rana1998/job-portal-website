@@ -17,22 +17,22 @@ const JobProcess = () => {
         </h1>
       </div>
       <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-5">
-        <motion.div
-          initial={{
-            x: -100,
-            opacity: 0,
-          }}
-          whileInView={{
-            x: 0,
-            opacity: 1,
-          }}
-          transition={{
-            delay: 0.2,
-            x: { type: 'spring' },
-            opacity: { duration: 0.5 },
-            ease: 'easeIn',
-            duration: 1,
-          }}
+        <div
+          // initial={{
+          //   x: -100,
+          //   opacity: 0,
+          // }}
+          // whileInView={{
+          //   x: 0,
+          //   opacity: 1,
+          // }}
+          // transition={{
+          //   delay: 0.2,
+          //   x: { type: 'spring' },
+          //   opacity: { duration: 0.5 },
+          //   ease: 'easeIn',
+          //   duration: 1,
+          // }}
           className="w-full h-[450px]  hover:shadow-lg py-7 duration-700 px-14 "
         >
           <div
@@ -67,7 +67,7 @@ const JobProcess = () => {
               Read More <MdOutlineNavigateNext />
             </button>
           </div>
-        </motion.div>
+        </div>
         <div className="w-full h-[450px] hover:shadow-lg py-7 duration-700 px-14 ">
           <div
             onMouseEnter={() => setToggle1(true)}
@@ -102,22 +102,22 @@ const JobProcess = () => {
             </button>
           </div>
         </div>
-        <motion.div
-          initial={{
-            x: 100,
-            opacity: 0,
-          }}
-          whileInView={{
-            x: 0,
-            opacity: 1,
-          }}
-          transition={{
-            delay: 0.2,
-            x: { type: 'spring' },
-            opacity: { duration: 0.5 },
-            ease: 'easeIn',
-            duration: 1,
-          }}
+        <div
+          // initial={{
+          //   x: 100,
+          //   opacity: 0,
+          // }}
+          // whileInView={{
+          //   x: 0,
+          //   opacity: 1,
+          // }}
+          // transition={{
+          //   delay: 0.2,
+          //   x: { type: 'spring' },
+          //   opacity: { duration: 0.5 },
+          //   ease: 'easeIn',
+          //   duration: 1,
+          // }}
           className="w-full h-[450px]  hover:shadow-lg py-7 duration-700 px-14 "
         >
           <div
@@ -152,7 +152,7 @@ const JobProcess = () => {
               Read More <MdOutlineNavigateNext />
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
