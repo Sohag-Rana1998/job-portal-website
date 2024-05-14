@@ -4,48 +4,49 @@ import { Helmet } from 'react-helmet-async';
 import { Link, ScrollRestoration } from 'react-router-dom';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import toast from 'react-hot-toast';
+import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
 
 const AllJobs = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const [jobs, setJobs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const [search, setSearch] = useState('');
   const [count, setCount] = useState(0);
 
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, refetch } = useAllJobsData(
+    currentPage,
+    itemsPerPage,
+    search
+  );
 
-  useEffect(() => {
-    setLoading(true);
-    const JobsData = async () => {
-      const { data } = await axiosSecure.get(
-        `/all-jobs?page=${currentPage}&size=${itemsPerPage}&search=${search}`
-      );
-      if (data) {
-        console.log(data);
-        setJobs(data);
-        setLoading(false);
-      }
-    };
-    JobsData();
-  }, [currentPage, itemsPerPage, axiosSecure, search]);
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const JobsData = async () => {
+  //     const { data } = await axiosSecure.get(
+  //       `/all-jobs?page=${currentPage}&size=${itemsPerPage}&search=${search}`
+  //     );
+  //     if (data) {
+  //       console.log(data);
+  //       setJobs(data);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   JobsData();
+  // }, [currentPage, itemsPerPage, axiosSecure, search]);
 
   const handleAlert = () => {
     if (!user) return toast.success('You have to log in first to view details');
   };
 
   useEffect(() => {
-    setLoading(true);
     const getCount = async () => {
       const { data } = await axiosSecure.get(`/jobs?search=${search}`);
       console.log(data.count);
       if (data) {
         setCount(data.count);
-        setLoading(false);
       }
     };
     getCount();
@@ -59,10 +60,10 @@ const AllJobs = () => {
     e.preventDefault();
     const searchText = e.target.search.value;
     setSearch(searchText);
-    setLoading(true);
+    setTimeout(refetch, 500);
   };
 
-  return loading ? (
+  return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>
@@ -105,6 +106,7 @@ const AllJobs = () => {
               <form onSubmit={handleSearch}>
                 <label htmlFor="search"></label>
                 <input
+                  required
                   className="input bg-gray-200 w-full md:w-60 border mb-5 mr-3"
                   id="search"
                   name="search"
@@ -117,7 +119,7 @@ const AllJobs = () => {
               </form>
             </div>
           </div>
-          {jobs && jobs.length > 0 ? (
+          {data && data.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="table ">
                 {/* head */}
@@ -134,8 +136,8 @@ const AllJobs = () => {
 
                 <tbody>
                   {/* row 1 */}
-                  {jobs &&
-                    jobs?.map((job, index) => (
+                  {data &&
+                    data?.map((job, index) => (
                       <tr key={index} className="bg-base-200">
                         <th>{index + 1}</th>
 
@@ -163,11 +165,14 @@ const AllJobs = () => {
                     ))}
                 </tbody>
               </table>
-              {jobs && parseInt(count) > 4 ? (
+              {data && parseInt(count) > 4 ? (
                 <div className="flex justify-center items-center my-5 bg-blue-400 rounded-xl p-3">
                   <div className="flex">
                     <a
-                      onClick={() => setCurrentPage(currentPage - 1)}
+                      onClick={() => {
+                        setCurrentPage(currentPage - 1);
+                        setTimeout(refetch, 500);
+                      }}
                       className={
                         currentPage == 1
                           ? ' hidden'
@@ -196,7 +201,10 @@ const AllJobs = () => {
 
                     {pageArray?.map(page => (
                       <button
-                        onClick={() => setCurrentPage(page)}
+                        onClick={() => {
+                          setCurrentPage(page);
+                          setTimeout(refetch, 500);
+                        }}
                         key={page}
                         className={
                           currentPage == page
@@ -214,7 +222,10 @@ const AllJobs = () => {
                           ? 'hidden'
                           : 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
                       }
-                      onClick={() => setCurrentPage(currentPage + 1)}
+                      onClick={() => {
+                        setCurrentPage(currentPage + 1);
+                        setTimeout(refetch, 500);
+                      }}
                     >
                       <div className="flex items-center cursor-pointer -mx-1">
                         <span className="mx-1">Next</span>
@@ -241,7 +252,10 @@ const AllJobs = () => {
                 <div>
                   <div className="w-full flex justify-end my-5">
                     <button
-                      onClick={() => setSearch('')}
+                      onClick={() => {
+                        setSearch('');
+                        setTimeout(refetch, 500);
+                      }}
                       className="btn bg-gray-500 text-white text-right"
                     >
                       Go Back
@@ -281,7 +295,10 @@ const AllJobs = () => {
                 <h3 className="text-center mb-10"> No Data Found</h3>
                 <div className="w-full flex justify-end my-5">
                   <button
-                    onClick={() => setSearch('')}
+                    onClick={() => {
+                      setSearch('');
+                      setTimeout(refetch, 500);
+                    }}
                     className="btn bg-gray-500 text-white text-right"
                   >
                     Go Back

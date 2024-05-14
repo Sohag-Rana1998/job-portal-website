@@ -41,6 +41,7 @@ const AddJob = () => {
       dateOfPosting,
       deadline,
       description,
+      employerEmail: email,
       employer: {
         email,
         name: user?.displayName,

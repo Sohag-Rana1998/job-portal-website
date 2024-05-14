@@ -55,11 +55,11 @@ const JobDetails = () => {
     e.preventDefault();
 
     if (employerEmail == user?.email) {
-      return toast.success('You are not eligible to apply this job');
+      return toast.error('You are not eligible to apply this job');
     }
 
     if (present > lastDate)
-      return toast.success('Sorry! Application deadline is over for this job.');
+      return toast.error('Sorry! Application deadline is over for this job.');
 
     const form = e.target;
     const resume = form.resume_link.value;

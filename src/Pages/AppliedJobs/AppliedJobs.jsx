@@ -3,39 +3,36 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { Link, ScrollRestoration } from 'react-router-dom';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useEffect, useState } from 'react';
-import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
+import { useState } from 'react';
+
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 import { Helmet } from 'react-helmet-async';
+import useAppliedJobsData from '../../Components/Hooks/useAppliedJobsData/useAppliedJobsData';
 
 const AppliedJobs = () => {
-  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const [mylist, setMylist] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('');
 
-  useEffect(() => {
-    setLoading(true);
-    const JobsData = async () => {
-      const { data } = await axiosSecure.get(
-        `/my-application-list?email=${user?.email}&filter=${filter}`
-      );
-      if (data) {
-        console.log(data);
-        setMylist(data);
-        setLoading(false);
-      }
-    };
-    if (user?.email) {
-      JobsData();
-    }
-  }, [filter, user?.email, axiosSecure]);
+  const { data, isLoading, refetch } = useAppliedJobsData(user?.email, filter);
 
-  console.log(filter);
+  //   setLoading(true);
+  //   const JobsData = async () => {
+  //     const { data } = await axiosSecure.get(
+  //       `/my-application-list?email=${user?.email}&filter=${filter}`
+  //     );
+  //     if (data) {
+  //       console.log(data);
+  //       setMylist(data);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   if (user?.email) {
+  //     JobsData();
+  //   }
+  // }, [filter, user?.email, axiosSecure]);
 
-  return loading ? (
+  return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>
@@ -71,7 +68,7 @@ const AppliedJobs = () => {
                         Applicants Email: {user?.email}
                       </h4>
                       <h4 className="text xl font-bold">
-                        Total Job Applied : {mylist?.length}
+                        Total Job Applied : {data?.length}
                       </h4>
                     </div>
                   </div>
@@ -94,19 +91,44 @@ const AppliedJobs = () => {
                   tabIndex={0}
                   className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
                 >
-                  <li onClick={() => setFilter('')}>
+                  <li
+                    onClick={() => {
+                      setFilter('');
+                      setTimeout(refetch, 300);
+                    }}
+                  >
                     <a>All Job</a>
                   </li>
-                  <li onClick={() => setFilter('On Site')}>
+                  <li
+                    onClick={() => {
+                      setFilter('On Site');
+                      setTimeout(refetch, 300);
+                    }}
+                  >
                     <a>On Site Job</a>
                   </li>
-                  <li onClick={() => setFilter('Remote')}>
+                  <li
+                    onClick={() => {
+                      setFilter('Remote');
+                      setTimeout(refetch, 300);
+                    }}
+                  >
                     <a>Remote Job</a>
                   </li>
-                  <li onClick={() => setFilter('Part-Time')}>
+                  <li
+                    onClick={() => {
+                      setFilter('Part-Time');
+                      setTimeout(refetch, 300);
+                    }}
+                  >
                     <a>Part-Time Job</a>
                   </li>
-                  <li onClick={() => setFilter('Hybrid')}>
+                  <li
+                    onClick={() => {
+                      setFilter('Hybrid');
+                      setTimeout(refetch, 300);
+                    }}
+                  >
                     <a>Hybrid Job</a>
                   </li>
                 </ul>
@@ -117,7 +139,7 @@ const AppliedJobs = () => {
           <div className="divider w-full mb-5 px-0 md:px-32 "></div>
 
           <div className="  ">
-            {mylist && mylist?.length > 0 ? (
+            {data && data?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table ">
                   {/* head */}
@@ -134,8 +156,8 @@ const AppliedJobs = () => {
                   </thead>
                   <tbody>
                     {/* row 1 */}
-                    {mylist &&
-                      mylist?.map((job, index) => (
+                    {data &&
+                      data?.map((job, index) => (
                         <tr key={job._id} className="bg-base-200">
                           <th>{index + 1}</th>
                           <td>{job?.job_title}</td>

@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-const ApplicationData = ({ jobData, user }) => {
-  console.log(user);
+const ApplicationData = ({ data, user }) => {
+  console.log(data);
   const {
     jobId,
     job_title,
@@ -58,7 +58,7 @@ const ApplicationData = ({ jobData, user }) => {
     applicantEmail,
     applicantName,
     totalApplicant,
-  } = jobData;
+  } = data;
   return (
     <Document>
       <Page size="A4" style={styles.page}>
@@ -95,7 +95,7 @@ const ApplicationData = ({ jobData, user }) => {
 };
 
 ApplicationData.propTypes = {
-  jobData: PropTypes.object,
+  data: PropTypes.object,
   user: PropTypes.object,
 };
 

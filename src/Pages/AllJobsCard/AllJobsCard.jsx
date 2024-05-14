@@ -4,40 +4,42 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import JobCard from '../JobByCategory/JobCard';
+import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
 
 const AllJobsCard = () => {
   const axiosSecure = useAxiosSecure();
-  const [jobs, setJobs] = useState([]);
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const [search, setSearch] = useState('');
   const [count, setCount] = useState(0);
 
-  const [loading, setLoading] = useState(true);
+  const { data, isLoading, refetch } = useAllJobsData(
+    currentPage,
+    itemsPerPage,
+    search
+  );
+
+  //   setLoading(true);
+  //   const JobsData = async () => {
+  //     const { data } = await axiosSecure.get(
+  //       `/all-jobs?page=${currentPage}&size=${itemsPerPage}&search=${search}`
+  //     );
+  //     if (data) {
+  //       console.log(data);
+  //       setJobs(data);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   JobsData();
+  // }, [currentPage, itemsPerPage, axiosSecure, search]);
 
   useEffect(() => {
-    setLoading(true);
-    const JobsData = async () => {
-      const { data } = await axiosSecure.get(
-        `/all-jobs?page=${currentPage}&size=${itemsPerPage}&search=${search}`
-      );
-      if (data) {
-        console.log(data);
-        setJobs(data);
-        setLoading(false);
-      }
-    };
-    JobsData();
-  }, [currentPage, itemsPerPage, axiosSecure, search]);
-
-  useEffect(() => {
-    setLoading(true);
     const getCount = async () => {
       const { data } = await axiosSecure.get(`/jobs?search=${search}`);
       console.log(data.count);
       if (data) {
         setCount(data.count);
-        setLoading(false);
       }
     };
     getCount();
@@ -51,10 +53,10 @@ const AllJobsCard = () => {
     e.preventDefault();
     const searchText = e.target.search.value;
     setSearch(searchText);
-    setLoading(true);
+    setTimeout(refetch, 500);
   };
 
-  return loading ? (
+  return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>
@@ -102,6 +104,7 @@ const AllJobsCard = () => {
                   name="search"
                   placeholder="Search By Job Title"
                   type="text"
+                  required
                 />
                 <button className=" py-[14px] px-4 rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
                   Search
@@ -110,15 +113,18 @@ const AllJobsCard = () => {
             </div>
           </div>
           <div className="grid grid-cols-1 bg-brown-50 px-10 py-5 rounded-md gap-8  md:grid-cols-2 ">
-            {jobs &&
-              jobs.map(job => <JobCard key={job._id} job={job}></JobCard>)}
+            {data &&
+              data.map(job => <JobCard key={job._id} job={job}></JobCard>)}
           </div>
           <div>
-            {jobs && parseInt(count) > 4 ? (
+            {data && parseInt(count) > 4 ? (
               <div className="flex justify-center items-center my-5 bg-blue-400 rounded-xl p-3">
                 <div className="flex">
                   <a
-                    onClick={() => setCurrentPage(currentPage - 1)}
+                    onClick={() => {
+                      setCurrentPage(currentPage - 1);
+                      setTimeout(refetch, 500);
+                    }}
                     className={
                       currentPage == 1
                         ? ' hidden'
@@ -147,7 +153,10 @@ const AllJobsCard = () => {
 
                   {pageArray?.map(page => (
                     <button
-                      onClick={() => setCurrentPage(page)}
+                      onClick={() => {
+                        setCurrentPage(page);
+                        setTimeout(refetch, 500);
+                      }}
                       key={page}
                       className={
                         currentPage == page
@@ -165,7 +174,10 @@ const AllJobsCard = () => {
                         ? 'hidden'
                         : 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
                     }
-                    onClick={() => setCurrentPage(currentPage + 1)}
+                    onClick={() => {
+                      setCurrentPage(currentPage + 1);
+                      setTimeout(refetch, 500);
+                    }}
                   >
                     <div className="flex items-center cursor-pointer -mx-1">
                       <span className="mx-1">Next</span>
@@ -192,7 +204,10 @@ const AllJobsCard = () => {
               <div>
                 <div className="w-full flex justify-center mt-5">
                   <button
-                    onClick={() => setSearch('')}
+                    onClick={() => {
+                      setSearch('');
+                      setTimeout(refetch, 500);
+                    }}
                     className="btn bg-gray-500 text-white text-right"
                   >
                     See All Jobs

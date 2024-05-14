@@ -4,40 +4,22 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ScrollRestoration } from 'react-router-dom';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 import { Helmet } from 'react-helmet-async';
+import useMyJobsData from '../../Components/Hooks/useMyJobsData/useMyJobsData';
 
 const MyJobs = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const [mylist, setMylist] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [modalData, setModalData] = useState({});
   const [postingDate, setPostingDate] = useState(new Date());
   const [deadlineDate, setDeadlineDate] = useState(new Date());
   const [modalLoading, setModalLoading] = useState(true);
-
-  useEffect(() => {
-    if (user?.email) {
-      myJobsData();
-    }
-  }, [user?.email]);
-
-  const myJobsData = async () => {
-    try {
-      const { data } = await axiosSecure.get(
-        `/my-job-list?email=${user?.email}`
-      );
-      console.log(data);
-      setMylist(data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  const { data, isLoading, refetch } = useMyJobsData(user?.email);
 
   const handleDelete = id => {
     Swal.fire({
@@ -57,7 +39,7 @@ const MyJobs = () => {
             text: 'User data has been deleted.',
             icon: 'success',
           });
-          myJobsData();
+          refetch();
         });
       }
     });
@@ -117,7 +99,7 @@ const MyJobs = () => {
           showConfirmButton: false,
           timer: 1500,
         });
-        await myJobsData();
+        await refetch();
 
         form.reset();
       } else {
@@ -132,7 +114,7 @@ const MyJobs = () => {
     }
   };
 
-  return loading ? (
+  return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>
@@ -168,7 +150,7 @@ const MyJobs = () => {
                         User Email: {user?.email}
                       </h4>
                       <h4 className="text xl font-bold">
-                        Total Job Added: {mylist?.length}
+                        Total Job Added: {data?.length}
                       </h4>
                     </div>
                   </div>
@@ -180,7 +162,7 @@ const MyJobs = () => {
           <div className="divider w-full mb-5 px-0 md:px-32 "></div>
 
           <div className="  ">
-            {mylist && mylist?.length > 0 ? (
+            {data && data?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table ">
                   {/* head */}
@@ -200,8 +182,8 @@ const MyJobs = () => {
                   </thead>
                   <tbody>
                     {/* row 1 */}
-                    {mylist &&
-                      mylist?.map((job, index) => (
+                    {data &&
+                      data?.map((job, index) => (
                         <tr key={job._id} className="bg-base-200">
                           <th>{index + 1}</th>
 

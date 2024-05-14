@@ -1,11 +1,12 @@
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { motion } from 'framer-motion';
-import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
 import JobCard from './JobCard';
 import { Link } from 'react-router-dom';
+import useJobsData from '../../Components/Hooks/useJobsData/useJobsData';
+
 const JobByCategory = () => {
-  const { data } = useAllJobsData();
+  const { data } = useJobsData();
   console.log(data);
   return (
     <Tabs>

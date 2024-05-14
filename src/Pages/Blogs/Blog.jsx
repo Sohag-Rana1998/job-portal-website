@@ -1,30 +1,29 @@
 import { CardBody, CardHeader, Typography } from '@material-tailwind/react';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Link, ScrollRestoration } from 'react-router-dom';
 
-import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useBlogsData from '../../Components/Hooks/useBlogsData/useBlogsData';
 const Blog = () => {
-  const axiosSecure = useAxiosSecure();
+  // const [loading, setLoading] = useState(true);
 
-  const [loading, setLoading] = useState(true);
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    const myBlogsData = async () => {
-      try {
-        const { data } = await axiosSecure.get(`/blogs`);
-        console.log(data);
-        setBlogs(data);
-        setLoading(false);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    myBlogsData();
-  }, [axiosSecure]);
-  console.log(blogs);
-  return loading ? (
+  const { data, isLoading } = useBlogsData();
+
+  //   const myBlogsData = async () => {
+  //     try {
+  //       const { data } = await axiosSecure.get(`/blogs`);
+  //       console.log(data);
+  //       setBlogs(data);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   myBlogsData();
+  // }, [axiosSecure]);
+  // console.log(blogs);
+  return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>
@@ -44,7 +43,7 @@ const Blog = () => {
         </h1>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 ">
-        {blogs?.map(blog => (
+        {data?.map(blog => (
           <div key={blog._id}>
             <div className="w-full  h-full  rounded-2xl shadow-2xl  overflow-hidden">
               <CardHeader
