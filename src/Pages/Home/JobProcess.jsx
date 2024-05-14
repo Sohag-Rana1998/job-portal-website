@@ -11,7 +11,7 @@ const JobProcess = () => {
   return (
     <div className="mb-32">
       <div>
-        <h1 className="text-3xl font-bold text-center text-gray-800 capitalize md:text-5xl ">
+        <h1 className="text-3xl font-bold text-center text-black capitalize md:text-5xl ">
           Our Job <span className="text-[#ff4153]">Process</span>
         </h1>
       </div>

@@ -38,10 +38,10 @@ const styles = StyleSheet.create({
   },
   profile: {
     position: 'absolute',
-    top: 100,
-    right: 20,
-    width: 130,
-    height: 130,
+    top: '100px',
+    right: '20px',
+    width: '130px',
+    height: '130px',
   },
 });
 
@@ -94,7 +94,7 @@ const ApplicationData = ({ jobData, user }) => {
             {`Employer Email `}: {employer?.email}
           </Text>
         </View>
-        <Image style={styles.profile} src={user?.photoURL} />
+        <Image style={styles.profile} src={user?.photoURL || 'Null'} />
       </Page>
     </Document>
   );

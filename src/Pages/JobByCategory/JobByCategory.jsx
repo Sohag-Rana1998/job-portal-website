@@ -10,16 +10,16 @@ const JobByCategory = () => {
   return (
     <Tabs>
       <div className=" container px-6 mt-16 mx-auto rounded-t-md">
-        <h1 className="text-3xl font-bold text-center text-gray-800 capitalize md:text-5xl ">
+        <h1 className="text-3xl font-bold text-center text-black capitalize md:text-5xl ">
           Browse Jobs By <span className="text-[#ff4153]">Categories</span>
         </h1>
 
-        <p className="max-w-2xl mx-auto mt-2 mb-3 text-center text-gray-500 ">
+        <p className="max-w-2xl mx-auto mt-2 mb-3 text-center  text-black">
           Four categories available for the time being. They are On Site Job,
           Remote Job, Part-Time Job and Hybrid Job. Browse them by clicking on
           the tabs below.
         </p>
-        <div className="flex text-black items-center justify-center bg-white rounded-t-3xl">
+        <div className="flex py-5 text-black items-center justify-center bg-white rounded-t-3xl">
           <TabList>
             <Tab>All Jobs</Tab>
             <Tab>On Site</Tab>

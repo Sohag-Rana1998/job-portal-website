@@ -52,11 +52,12 @@ const JobDetails = () => {
   const handleApplyJob = async e => {
     e.preventDefault();
 
-    if (present > lastDate)
-      return toast.success('Sorry! Application deadline is over for this job.');
-    if (employer.email == user?.email) {
+    if (employerEmail == user?.email) {
       return toast.success('You are not eligible to apply this job');
     }
+
+    if (present > lastDate)
+      return toast.success('Sorry! Application deadline is over for this job.');
 
     const form = e.target;
     const resume = form.resume_link.value;
@@ -212,7 +213,7 @@ const JobDetails = () => {
             </h3>
             <form onSubmit={handleMessageSent} className="">
               <div className="mb-5">
-                <label className="text-gray-700 " htmlFor="name">
+                <label className=" " htmlFor="name">
                   Your Name
                 </label>
                 <input
@@ -221,11 +222,11 @@ const JobDetails = () => {
                   defaultValue={user?.displayName}
                   type="text"
                   disabled
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                  className="block w-full px-4 py-2 mt-2  bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
               </div>
               <div className="mb-5">
-                <label className="text-gray-700 " htmlFor="name">
+                <label className=" " htmlFor="name">
                   Your Email
                 </label>
                 <input
@@ -238,7 +239,7 @@ const JobDetails = () => {
                 />
               </div>
               <div className="mb-5">
-                <label className="text-gray-700 " htmlFor="name">
+                <label className="" htmlFor="name">
                   Phone
                 </label>
                 <input
@@ -250,7 +251,7 @@ const JobDetails = () => {
                 />
               </div>
               <div className="mb-5">
-                <label className="text-gray-700 " htmlFor="name">
+                <label className=" " htmlFor="name">
                   Subject
                 </label>
                 <input
@@ -262,7 +263,7 @@ const JobDetails = () => {
                 />
               </div>
               <div className="mb-5">
-                <label className="text-gray-700 " htmlFor="name">
+                <label className=" " htmlFor="name">
                   Message
                 </label>
                 <textarea
@@ -299,7 +300,7 @@ const JobDetails = () => {
                       <form onSubmit={handleApplyJob} className="w-full">
                         <div className="grid grid-cols-1 w-full gap-6 mt-4 md:grid-cols-2">
                           <div>
-                            <label className="text-gray-700 " htmlFor="name">
+                            <label className="" htmlFor="name">
                               Applicant Name
                             </label>
                             <input
@@ -313,10 +314,7 @@ const JobDetails = () => {
                           </div>
 
                           <div>
-                            <label
-                              className="text-gray-700 "
-                              htmlFor="emailAddress"
-                            >
+                            <label className=" " htmlFor="emailAddress">
                               Applicant Email Address
                             </label>
                             <input
@@ -330,10 +328,7 @@ const JobDetails = () => {
                           </div>
                         </div>
                         <div className="flex flex-col gap-2 mt-4">
-                          <label
-                            className="text-gray-700 "
-                            htmlFor="resume_link"
-                          >
+                          <label className=" " htmlFor="resume_link">
                             Applicant Resume URL
                           </label>
                           <input

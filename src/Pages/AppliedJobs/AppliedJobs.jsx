@@ -39,42 +39,39 @@ const AppliedJobs = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className="max-w-7xl container mx-auto px-5 ">
+    <div className="max-w-7xl container mt-5 mx-auto px-5 ">
       <Helmet>
         <title>Job Portal | Applied Jobs List</title>
       </Helmet>
       <div>
         <div>
-          {/* <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
-            <Slide>
-              <h1 className="text-2xl md:text-4xl font-bold text-white">
-                Your Tourist jobs List
-              </h1>
-            </Slide>
-          </div> */}
-
-          <div>
-            <div className="text-center w-full px-0  mx-auto">
-              <h4 className="text-4xl font-bold underline mb-5">
-                Your Job List
-              </h4>
-              <div className=" text-left">
-                <h4 className="text xl font-bold">
-                  {' '}
-                  Applicants Name: {user?.displayName}
-                </h4>
-                <h4 className="text xl font-bold">
-                  {' '}
-                  Applicants Email: {user?.email}
-                </h4>
-                <h4 className="text xl font-bold">
-                  Total Job Applied : {mylist?.length}
-                </h4>
+          <div className="h-32 mb-5 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
+            <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
+              <div className=" pl-20 mt-10">
+                <div>
+                  <div className="w-full px-0  ">
+                    <h4 className="text-4xl font-bold underline mb-5">
+                      Your Applied Job
+                    </h4>
+                    <div className=" text-left">
+                      <h4 className="text xl font-bold">
+                        {' '}
+                        Applicants Name: {user?.displayName}
+                      </h4>
+                      <h4 className="text xl font-bold">
+                        Applicants Email: {user?.email}
+                      </h4>
+                      <h4 className="text xl font-bold">
+                        Total Job Applied : {mylist?.length}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="w-full flex justify-end mb-5">
+          <div className="w-full flex justify-end">
             <div className="mr-4 w-52 md:mr-10">
               <div className="dropdown dropdown-bottom">
                 <div
@@ -108,7 +105,7 @@ const AppliedJobs = () => {
             </div>
           </div>
 
-          <div className="divider w-full mb-10 px-0 md:px-32 "></div>
+          <div className="divider w-full mb-5 px-0 md:px-32 "></div>
 
           <div className="  ">
             {mylist && mylist?.length > 0 ? (
@@ -180,7 +177,7 @@ const AppliedJobs = () => {
                     </tr>
                   </tbody>
                 </table>
-                <div className="text-center mb-10 md:mb-40 text-3xl font-bold">
+                <div className="text-center my-10 md:mb-40 text-3xl font-bold">
                   No Data Found
                 </div>
               </div>

@@ -33,7 +33,7 @@ const AllJobs = () => {
   }, [currentPage, itemsPerPage, axiosSecure, search]);
 
   const handleAlert = () => {
-    toast.success('You have to log in first to view details');
+    if (!user) return toast.success('You have to log in first to view details');
   };
 
   useEffect(() => {
@@ -71,13 +71,23 @@ const AllJobs = () => {
       </Helmet>
       <div>
         <div>
-          {/* <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/qBNMdgtZ/rear-view-of-man-standing-on-mountain-vitor-marigo.jpg)] bg-opacity-50 ">
-            <Slide>
-              <h1 className="text-2xl md:text-4xl font-bold text-white">
-                Your Tourist jobs List
-              </h1>
-            </Slide>
-          </div> */}
+          <div className="">
+            <div className="h-32 mb-5 rounded-t-xl md:h-60 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/rstCStvL/banner-job-ads-1.jpg)] bg-opacity-50 relative">
+              <div className=" inset-0 absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
+                <div className=" pl-20 mt-10">
+                  <h2 className=" md:text-4xl font-bold text-white mb-5">
+                    Explore All Awesome Jobs
+                  </h2>
+                  <p className="text-white">
+                    Unleash your potential on our job portal. Find tailored
+                    opportunities, connect with top employers, <br /> and
+                    elevate your career. Your next big opportunity awaits.
+                    Explore today!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
 
           <div className="divider w-full mb-10 px-0 md:px-32 "></div>
           <div>
@@ -219,12 +229,12 @@ const AllJobs = () => {
                 </div>
               ) : (
                 <div>
-                  <div className="w-full flex justify-center mt-5">
+                  <div className="w-full flex justify-end my-5">
                     <button
                       onClick={() => setSearch('')}
                       className="btn bg-gray-500 text-white text-right"
                     >
-                      See All Jobs
+                      Go Back
                     </button>
                   </div>
                 </div>
@@ -259,12 +269,12 @@ const AllJobs = () => {
               </table>
               <div className=" mt-5 mb-10 md:mb-40 text-3xl font-bold">
                 <h3 className="text-center mb-10"> No Data Found</h3>
-                <div className="w-full flex justify-center">
+                <div className="w-full flex justify-end my-5">
                   <button
                     onClick={() => setSearch('')}
                     className="btn bg-gray-500 text-white text-right"
                   >
-                    See All Jobs
+                    Go Back
                   </button>
                 </div>
               </div>

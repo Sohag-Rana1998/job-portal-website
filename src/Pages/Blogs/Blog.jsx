@@ -53,6 +53,16 @@ const Blog = () => {
                   />
                 </div>
               </CardHeader>
+              <div className="flex justify-between items-center mb-2 px-4">
+                <div>
+                  <h3 className="text-xl font-bold">Author: {blog.author}</h3>
+                </div>
+                <div>
+                  <div className="text-xl font-bold">
+                    Publish Date:{blog.date}
+                  </div>
+                </div>
+              </div>
               <CardBody className="px-3 h-auto  m-0 ">
                 <div className="flex h-full flex-col justify-between">
                   <Typography variant="h5">{blog.question1}</Typography>

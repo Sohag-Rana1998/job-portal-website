@@ -91,6 +91,7 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     loading,
+
     handleUpdateProfile,
   };
 

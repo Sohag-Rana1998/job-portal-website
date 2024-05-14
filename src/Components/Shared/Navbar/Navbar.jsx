@@ -196,7 +196,13 @@ const Navbar = () => {
   return loading ? (
     <div className="w-full"></div>
   ) : (
-    <div className="navbar fixed z-30 text-black container pt-2 mx-auto  bg-[#F1F1F2]">
+    <div
+      className={
+        type
+          ? 'navbar fixed z-30 text-white container pt-2 mx-auto bg-[#1a103d] '
+          : 'navbar fixed z-30 text-black container pt-2 mx-auto  bg-[#F1F1F2]'
+      }
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
