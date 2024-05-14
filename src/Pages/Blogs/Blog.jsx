@@ -5,6 +5,7 @@ import { Link, ScrollRestoration } from 'react-router-dom';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import useBlogsData from '../../Components/Hooks/useBlogsData/useBlogsData';
+import { Helmet } from 'react-helmet-async';
 const Blog = () => {
   // const [loading, setLoading] = useState(true);
 
@@ -37,6 +38,9 @@ const Blog = () => {
     </div>
   ) : (
     <div>
+      <Helmet>
+        <title>Job Portal || Blogs</title>
+      </Helmet>
       <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/k4vWHgYk/bg-13.png)] bg-opacity-50 ">
         <h1 className="text-2xl md:text-4xl font-bold text-white">
           Learn More About Programming

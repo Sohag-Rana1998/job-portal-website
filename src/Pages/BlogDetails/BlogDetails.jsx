@@ -1,28 +1,22 @@
 import { Typography } from '@material-tailwind/react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { ScrollRestoration, useParams } from 'react-router-dom';
-import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
+
+import useBlogDataByID from '../../Components/Hooks/useBlogDataByID/useBlogDataByID';
 
 const BlogDetails = () => {
-  const axiosSecure = useAxiosSecure();
   const { id } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [blog, setBlog] = useState({});
+  // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    axiosSecure.get(`/blog/${id}`).then(data => {
-      setBlog(data.data);
-      setLoading(false);
-    });
-    setLoading(false);
-  }, [id, axiosSecure]);
+  const { data, isLoading } = useBlogDataByID(id);
 
-  const { image, question1, question2, answer1, answer2, date, author } = blog;
-
-  return loading ? (
+  const { image, question1, question2, answer1, answer2, date, author } =
+    data || {};
+  console.log(data);
+  return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>

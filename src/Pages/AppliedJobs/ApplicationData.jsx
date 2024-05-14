@@ -58,7 +58,7 @@ const ApplicationData = ({ data, user }) => {
     applicantEmail,
     applicantName,
     totalApplicant,
-  } = data;
+  } = data || {};
   return (
     <Document>
       <Page size="A4" style={styles.page}>

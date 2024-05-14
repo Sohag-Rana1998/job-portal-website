@@ -2,9 +2,11 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GrLinkNext } from 'react-icons/gr';
 import toast from 'react-hot-toast';
+import useAuth from '../../Components/Hooks/useAuth/useAuth';
 const JobCard = ({ job }) => {
+  const { user } = useAuth();
   const handleAlert = () => {
-    toast.success('You have to log in first to view details');
+    if (!user) toast.success('You have to log in first to view details');
   };
   const {
     _id,

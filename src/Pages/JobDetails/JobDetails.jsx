@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ScrollRestoration, useParams } from 'react-router-dom';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import { Helmet } from 'react-helmet-async';
@@ -8,30 +8,21 @@ import { toast } from 'react-hot-toast';
 import 'react-datepicker/dist/react-datepicker.css';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import useJobDataByID from '../../Components/Hooks/useJobDataByID/useJobDataByID';
 
 const JobDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  const [loading, setLoading] = useState(true);
-  const [jobData, setJobData] = useState({});
+  // const [loading, setLoading] = useState(true);
+
   const [modalLoading, setModalLoading] = useState(true);
   const applicationDate = new Date();
 
-  useEffect(() => {
-    getData();
-  }, []);
-
-  const getData = async () => {
-    try {
-      const { data } = await axiosSecure.get(`job/${id}`);
-      setJobData(data);
-      console.log(data);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { data, isLoading, refetch } = useJobDataByID(id);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   const {
     _id,
@@ -46,7 +37,7 @@ const JobDetails = () => {
     employer,
     employerEmail,
     applicant_count,
-  } = jobData || {};
+  } = data || {};
 
   const present = new Date(applicationDate).toLocaleDateString();
   const lastDate = new Date(deadline).toLocaleDateString();
@@ -95,7 +86,7 @@ const JobDetails = () => {
 
       toast.success('Application Successfully Submitted!');
 
-      getData();
+      refetch();
     } catch (error) {
       console.log(error);
     }
@@ -106,7 +97,7 @@ const JobDetails = () => {
     toast.success('Message sent successfully!');
   };
 
-  return loading ? (
+  return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>

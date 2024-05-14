@@ -7,6 +7,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import toast from 'react-hot-toast';
 import axios from 'axios';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
+import { Helmet } from 'react-helmet-async';
 
 const AddJob = () => {
   const { user } = useAuth();
@@ -76,6 +77,9 @@ const AddJob = () => {
     </div>
   ) : (
     <div className="flex w-full px-5  justify-center items-center min-h-[calc(100vh-306px)] my-12">
+      <Helmet>
+        <title>Job Portal | Add Job</title>
+      </Helmet>
       <section className=" p-2 w-full md:p-16 mx-auto bg-orange-50 rounded-md shadow-lg ">
         <h2 className="text-2xl underline mb-5  text-center  font-bold text-gray-700 capitalize ">
           Post a Job
