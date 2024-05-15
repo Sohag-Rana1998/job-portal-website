@@ -5,7 +5,6 @@ import { Button } from '@material-tailwind/react';
 import { Helmet } from 'react-helmet-async';
 import { useEffect, useState } from 'react';
 import { IoEye, IoEyeOff } from 'react-icons/io5';
-
 import Swal from 'sweetalert2';
 
 import useAuth from '../../Components/Hooks/useAuth/useAuth';

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 
 const Banner = () => {
   const [searchText, setSearchText] = useState('');
@@ -11,9 +12,14 @@ const Banner = () => {
     setSearchText(e.target.value);
   };
 
+  const handleAlert = () => {
+    if (searchText.length === 0)
+      toast.success('Please input some text for search!');
+  };
+
   return (
     <div className="container mx-auto font-raleway h-full mb-5">
-      <div className="w-full border-b-0 md:border-b-[20px] md:border-[#ff4153] md:rounded-bl-[500px] bg-[#EFEFEF] md:bg-[url(https://i.postimg.cc/JzzCKjLj/first-banner.png)] bg-no-repeat bg-cover  bg-center h-auto md:h-[850px] mb-5">
+      <div className="relative w-full text-white md:text-black border-b-0 md:border-b-[20px] md:border-[#ff4153] md:rounded-bl-[500px] bg-[url(https://i.postimg.cc/sDh3JJ7m/443d36d3-1931-4eaf-8851-1e21ef13291f-432355-Article-Image1-1000x750-1.jpg)] md:bg-[url(https://i.postimg.cc/JzzCKjLj/first-banner.png)] bg-no-repeat bg-cover  bg-center h-auto md:h-[850px] mb-5 bg-blur z-0">
         <motion.div
           initial={{
             y: -200,
@@ -30,15 +36,15 @@ const Banner = () => {
             ease: 'easeIn',
             duration: 1,
           }}
-          className="ml-2 md:ml-14 pt-10 md:pt-28 w-full text-center md:text-left md:w-[60%] lg:w-[45%]"
+          className="ml-2 md:ml-14 pt-10 z-30 md:pt-28 w-full text-center md:text-left md:w-[60%] lg:w-[45%]"
         >
-          <div className="text-5xl font-bold text-black mb-3 md:mb-5">
+          <div className="text-5xl font-bold text-white md:text-black mb-3 md:mb-5">
             Find Your Favourite{' '}
           </div>
           <div className="text-4xl font-bold text-[#ff4153] mb-8">
             Job Immediete
           </div>
-          <div className="text-black mb-10">
+          <div className="text-white md:text-black mb-10">
             {` Find the job you've always dreamed of with our comprehensive job
           portal. Explore thousands of vacancies from top companies and start
           building your future.`}
@@ -51,7 +57,7 @@ const Banner = () => {
                     Explore Now
                   </button>
                 </Link> */}
-                <div className="flex flex-col lg:flex-row gap-5 items-center">
+                <div className="flex flex-col lg:flex-row gap-5 items-center ">
                   <div className="relative w-full">
                     <label htmlFor="search"></label>
                     <input
@@ -63,18 +69,42 @@ const Banner = () => {
                       className="py-3 pl-10 w-[95%] text-black border mx-auto md:w-[300px] lg:w-[400px] bg-[#EFEFEF] rounded-3xl"
                       placeholder="Search By Job Title"
                     />
-                    <FaMagnifyingGlass className="absolute left-3 top-4 text-gray-700" />
+                    <FaMagnifyingGlass
+                      className={
+                        searchText.length === 0
+                          ? 'absolute left-5 top-4 text-gray-700'
+                          : 'absolute hidden left-5 top-4 text-gray-700'
+                      }
+                    />
                   </div>
-                  <Link to={`/searchJob/${searchText}`}>
-                    <button className="btn w-[95%] mx-auto  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]">
+
+                  <Link to={`/searchJob/${searchText || 'aaaa'}`}>
+                    <button
+                      className={
+                        searchText.length > 0
+                          ? 'btn  w-full mx-auto mb-3 md:mb-0  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]'
+                          : 'hidden'
+                      }
+                    >
                       Search
                     </button>
                   </Link>
+                  <button
+                    onClick={handleAlert}
+                    className={
+                      searchText.length === 0
+                        ? 'btn  w-full mx-auto mb-3 md:mb-0  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]'
+                        : 'hidden'
+                    }
+                  >
+                    Search
+                  </button>
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
+        <div className="inset-0 block md:hidden bg-black/10 absolute z-0"></div>
         <div className="lg:flex  hidden mt-16 lg:flex-col xl:flex-row justify-center pr-5 xl:pr-40 items-center w-[80%] gap-5">
           <div className="w-full md:w-[180px] h-[70px]">
             <img
@@ -133,7 +163,7 @@ const Banner = () => {
             ease: 'easeIn',
             duration: 1,
           }}
-          className="w-full lg:w-[65%] "
+          className="w-full lg:w-[65%] text-center md:text-left"
         >
           <div className="text-3xl lg:text-5xl xl:text-6xl  font-bold text-black mb-3 md:mb-5">
             Find Million Of Jobs And
@@ -141,7 +171,7 @@ const Banner = () => {
           <div className="text-3xl lg:text-4xl  xl:text-5xl font-bold text-[#ff4153] mb-5">
             Achieve Success
           </div>
-          <div className="text-black mb-10 w-full md:w-[80%]">
+          <div className="text-black mb-10 w-full  md:w-[80%]">
             Discover your dream job effortlessly. Our job portal connects you
             with thousands of opportunities tailored to your skills and
             aspirations. With intuitive search tools and instant applications,

@@ -22,25 +22,11 @@ const AllJobs = () => {
     search
   );
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   const JobsData = async () => {
-  //     const { data } = await axiosSecure.get(
-  //       `/all-jobs?page=${currentPage}&size=${itemsPerPage}&search=${search}`
-  //     );
-  //     if (data) {
-  //       console.log(data);
-  //       setJobs(data);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   JobsData();
-  // }, [currentPage, itemsPerPage, axiosSecure, search]);
-
   const handleAlert = () => {
     if (!user) return toast.success('You have to log in first to view details');
   };
 
+  //Get data count here
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosSecure.get(`/jobs?search=${search}`);
@@ -50,6 +36,8 @@ const AllJobs = () => {
       }
     };
     getCount();
+    setLoader(true);
+    setTimeout(setLoader, 1000, false);
   }, [search, axiosSecure]);
 
   const totalPage = Math.ceil(parseInt(count) / itemsPerPage);
@@ -179,8 +167,8 @@ const AllJobs = () => {
                       onClick={() => {
                         setCurrentPage(currentPage - 1);
                         setLoader(true);
-                        setTimeout(refetch, 500);
-                        setTimeout(setLoader, 500, false);
+                        setTimeout(refetch, 300);
+                        setTimeout(setLoader, 1000, false);
                       }}
                       className={
                         currentPage == 1
@@ -213,8 +201,8 @@ const AllJobs = () => {
                         onClick={() => {
                           setCurrentPage(page);
                           setLoader(true);
-                          setTimeout(refetch, 500);
-                          setTimeout(setLoader, 500, false);
+                          setTimeout(refetch, 300);
+                          setTimeout(setLoader, 1000, false);
                         }}
                         key={page}
                         className={
@@ -236,8 +224,8 @@ const AllJobs = () => {
                       onClick={() => {
                         setCurrentPage(currentPage + 1);
                         setLoader(true);
-                        setTimeout(refetch, 500);
-                        setTimeout(setLoader, 500, false);
+                        setTimeout(refetch, 300);
+                        setTimeout(setLoader, 1000, false);
                       }}
                     >
                       <div className="flex items-center cursor-pointer -mx-1">
@@ -306,13 +294,13 @@ const AllJobs = () => {
                   </tr>
                 </tbody>
               </table>
-              <div className=" mt-5 mb-10 md:mb-40 text-3xl font-bold">
-                <h3 className="text-center mb-10"> No Data Found</h3>
+              <div className=" mt-5 mb-10 md:mb-40  font-bold">
+                <h3 className="text-center mb-10 text-3xl"> No Data Found</h3>
                 <div className="w-full flex justify-end my-5">
                   <button
                     onClick={() => {
                       setSearch('');
-                      setTimeout(refetch, 500);
+                      setTimeout(refetch, 300);
                     }}
                     className="btn bg-gray-500 text-white text-right"
                   >

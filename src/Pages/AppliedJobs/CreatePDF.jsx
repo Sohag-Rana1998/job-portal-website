@@ -4,13 +4,14 @@ import ApplicationData from './ApplicationData';
 import { useParams } from 'react-router-dom';
 // import { useEffect, useState } from 'react';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
-import useAppliedJobDataByID from '../../Components/Hooks/useCommentDataByID/useCommentDataByID';
+
 import { Helmet } from 'react-helmet-async';
+import useAppliedJobDataByID from '../../Components/Hooks/useAppliedJobDataByID/useAppliedJobDataByID';
 
 const CreatePDF = () => {
   const { user } = useAuth();
   const { id } = useParams();
-
+  console.log(id);
   // const [loading, setLoading] = useState(true);
 
   console.log(user);

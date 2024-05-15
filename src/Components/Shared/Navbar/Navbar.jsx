@@ -108,7 +108,7 @@ const Navbar = () => {
           to="/"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-black  border-[#ff4153]'
+              ? 'border-2 font-bold   border-[#ff4153]'
               : isPending
               ? 'pending'
               : ''
@@ -122,7 +122,7 @@ const Navbar = () => {
           to="/all-jobs"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold  text-black  border-[#ff4153]'
+              ? 'border-2 font-bold    border-[#ff4153]'
               : isPending
               ? 'pending'
               : ''
@@ -139,7 +139,7 @@ const Navbar = () => {
               to="/applied-jobs"
               className={({ isActive, isPending }) =>
                 isActive
-                  ? 'border-2 font-bold text-black  border-[#ff4153]'
+                  ? 'border-2 font-bold   border-[#ff4153]'
                   : isPending
                   ? 'pending'
                   : ''
@@ -153,7 +153,7 @@ const Navbar = () => {
               to="/add-jobs"
               className={({ isActive, isPending }) =>
                 isActive
-                  ? 'border-2 font-bold text-black  border-[#ff4153]'
+                  ? 'border-2 font-bold   border-[#ff4153]'
                   : isPending
                   ? 'pending'
                   : ''
@@ -167,7 +167,7 @@ const Navbar = () => {
               to="/my-jobs"
               className={({ isActive, isPending }) =>
                 isActive
-                  ? 'border-2 font-bold text-black  border-[#ff4153]'
+                  ? 'border-2 font-bold   border-[#ff4153]'
                   : isPending
                   ? 'pending'
                   : ''
@@ -185,7 +185,7 @@ const Navbar = () => {
           to="/blogs"
           className={({ isActive, isPending }) =>
             isActive
-              ? 'border-2 font-bold text-black  border-[#ff4153]'
+              ? 'border-2 font-bold   border-[#ff4153]'
               : isPending
               ? 'pending'
               : ''

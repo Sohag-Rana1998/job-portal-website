@@ -19,7 +19,7 @@ const SearchedJob = () => {
 
   useEffect(() => {
     setLoading(true);
-    setTimeout(setLoading, 300, false);
+    setTimeout(setLoading, 500, false);
   }, []);
 
   const { data, isLoading, refetch } = useAllJobsData(
@@ -196,16 +196,26 @@ const SearchedJob = () => {
               </div>
             ) : (
               <div>
-                <div className="w-full flex justify-center mt-5">
-                  <button
-                    onClick={() => {
-                      setSearch('');
-                      setTimeout(refetch, 500);
-                    }}
-                    className="btn bg-gray-500 text-white text-right mb-5"
-                  >
-                    See All Jobs
-                  </button>
+                <div className="w-full flex flex-col justify-center mt-5">
+                  {data && data.length === 0 ? (
+                    <h3 className="text-center text-3xl font-bold my-10">
+                      {' '}
+                      No Job Found
+                    </h3>
+                  ) : (
+                    <></>
+                  )}
+                  <div className="w-full flex  justify-center">
+                    <button
+                      onClick={() => {
+                        setSearch('');
+                        setTimeout(refetch, 500);
+                      }}
+                      className="btn w-[40] bg-blue-500 text-white text-right mb-5"
+                    >
+                      See All Jobs
+                    </button>
+                  </div>
                 </div>
               </div>
             )}

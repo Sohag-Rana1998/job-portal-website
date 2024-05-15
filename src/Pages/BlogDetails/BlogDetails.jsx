@@ -67,8 +67,15 @@ const BlogDetails = () => {
     e.preventDefault();
     const commentId = id;
     const nameOfCommenter = e.target.name.value;
+    const emailOfCommenter = user?.email;
     const commentText = e.target.comment.value;
-    const comment = { name: nameOfCommenter, commentText, commentId };
+
+    const comment = {
+      name: nameOfCommenter,
+      email: emailOfCommenter,
+      commentText,
+      commentId,
+    };
     console.log(comment);
     try {
       const { data } = await axios.post(

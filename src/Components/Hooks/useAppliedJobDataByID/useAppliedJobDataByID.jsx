@@ -1,18 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../useAxiosSecure/useAxiosSecure';
 
-const useJobDataByID = id => {
+const useAppliedJobDataByID = id => {
   const axiosSecure = useAxiosSecure();
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ['job-by-ID'],
+    queryKey: ['applied-job-by-ID'],
     queryFn: async () => {
-      if (id) {
-        const { data } = await axiosSecure.get(`/job/${id}`);
-        return data;
-      }
+      const { data } = await axiosSecure.get(`/applicationData/${id}`);
+      return data;
     },
   });
   return { data, isLoading, refetch };
 };
 
-export default useJobDataByID;
+export default useAppliedJobDataByID;

@@ -8,12 +8,11 @@ import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData
 
 const AllJobsCard = () => {
   const axiosSecure = useAxiosSecure();
-
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const [search, setSearch] = useState('');
   const [count, setCount] = useState(0);
-
+  const [loader, setLoader] = useState(false);
   const { data, isLoading, refetch } = useAllJobsData(
     currentPage,
     itemsPerPage,
@@ -43,6 +42,8 @@ const AllJobsCard = () => {
       }
     };
     getCount();
+    setLoader(true);
+    setTimeout(setLoader, 500, false);
   }, [search, axiosSecure]);
 
   const totalPage = Math.ceil(parseInt(count) / itemsPerPage);
@@ -56,7 +57,7 @@ const AllJobsCard = () => {
     setTimeout(refetch, 500);
   };
 
-  return isLoading ? (
+  return isLoading || loader ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
         <div>
@@ -202,16 +203,26 @@ const AllJobsCard = () => {
               </div>
             ) : (
               <div>
-                <div className="w-full flex justify-center mt-5">
-                  <button
-                    onClick={() => {
-                      setSearch('');
-                      setTimeout(refetch, 500);
-                    }}
-                    className="btn bg-gray-500 text-white text-right"
-                  >
-                    See All Jobs
-                  </button>
+                <div className="w-full flex flex-col justify-center mt-5">
+                  {data && data.length === 0 ? (
+                    <h3 className="text-center text-3xl font-bold my-10">
+                      {' '}
+                      No Job Found
+                    </h3>
+                  ) : (
+                    <></>
+                  )}
+                  <div className="w-full flex  justify-center">
+                    <button
+                      onClick={() => {
+                        setSearch('');
+                        setTimeout(refetch, 500);
+                      }}
+                      className="btn w-[40] bg-blue-500 text-white text-right mb-5"
+                    >
+                      See All Jobs
+                    </button>
+                  </div>
                 </div>
               </div>
             )}
