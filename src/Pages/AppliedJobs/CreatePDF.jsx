@@ -11,12 +11,12 @@ import useAppliedJobDataByID from '../../Components/Hooks/useAppliedJobDataByID/
 const CreatePDF = () => {
   const { user } = useAuth();
   const { id } = useParams();
-  console.log(id);
+
   // const [loading, setLoading] = useState(true);
 
-  console.log(user);
+
   const { data } = useAppliedJobDataByID(id);
-  console.log(data);
+  
   return (
     <div className="max-w-7xl  w-full mx-auto flex justify-center mt-5">
       <Helmet>

@@ -3,12 +3,12 @@ import { BsPeopleFill } from 'react-icons/bs';
 import { MdOutlineNavigateNext } from 'react-icons/md';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { AiOutlineFilePdf } from 'react-icons/ai';
-import { motion } from 'framer-motion';
+
 const JobProcess = () => {
   const [toggle, setToggle] = useState(false);
   const [toggle1, setToggle1] = useState(false);
   const [toggle2, setToggle2] = useState(false);
-  console.log(toggle);
+
   return (
     <div className="mb-32">
       <div>

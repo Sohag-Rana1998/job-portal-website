@@ -30,7 +30,7 @@ const AllJobs = () => {
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosSecure.get(`/jobs?search=${search}`);
-      console.log(data.count);
+
       if (data) {
         setCount(data.count);
       }
@@ -43,7 +43,6 @@ const AllJobs = () => {
   const totalPage = Math.ceil(parseInt(count) / itemsPerPage);
   const pageArray = [...Array(totalPage).keys()].map(element => element + 1);
 
-  console.log(totalPage);
   const handleSearch = async e => {
     setLoader(true);
     e.preventDefault();

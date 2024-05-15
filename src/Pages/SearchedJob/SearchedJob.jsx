@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom';
 
 const SearchedJob = () => {
   const { text } = useParams();
-  console.log(text);
+
   const [loading, setLoading] = useState(false);
   const axiosSecure = useAxiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
@@ -31,7 +31,7 @@ const SearchedJob = () => {
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosSecure.get(`/jobs?search=${search}`);
-      console.log(data.count);
+
       if (data) {
         setCount(data.count);
       }
@@ -42,7 +42,6 @@ const SearchedJob = () => {
   const totalPage = Math.ceil(parseInt(count) / itemsPerPage);
   const pageArray = [...Array(totalPage).keys()].map(element => element + 1);
 
-  console.log(totalPage);
   const handleSearch = async e => {
     e.preventDefault();
     const searchText = e.target.search.value;

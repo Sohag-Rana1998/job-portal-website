@@ -20,7 +20,7 @@ const BlogDetails = () => {
   const { data, isLoading, refetch } = useBlogDataByID(id);
   const { commentsData, refetch1 } = useCommentDataByID(data?._id);
   setTimeout(refetch1, 500);
-  console.log(commentsData);
+
   const navigate = useNavigate();
   const location = useLocation();
   const { user } = useAuth();
@@ -48,7 +48,7 @@ const BlogDetails = () => {
       authorEmail,
       authorImage,
     };
-    console.log(blogData);
+
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/blogs`,
@@ -76,7 +76,7 @@ const BlogDetails = () => {
       commentText,
       commentId,
     };
-    console.log(comment);
+
     try {
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}/comments`,
@@ -93,7 +93,7 @@ const BlogDetails = () => {
 
   const { image, question1, question2, answer1, answer2, date, author } =
     data || {};
-  console.log(data);
+
   return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">

@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
 
 // Create Document Component
 const ApplicationData = ({ data, user }) => {
-  console.log(data);
   const {
     jobId,
     job_title,

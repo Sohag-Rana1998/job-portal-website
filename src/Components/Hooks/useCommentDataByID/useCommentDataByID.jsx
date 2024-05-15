@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import useAxiosSecure from '../useAxiosSecure/useAxiosSecure';
 
 const useCommentDataByID = id => {
-  console.log(id);
   const axiosSecure = useAxiosSecure();
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['comment-by-ID'],

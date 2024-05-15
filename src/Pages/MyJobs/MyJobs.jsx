@@ -68,8 +68,6 @@ const MyJobs = () => {
     const deadline = deadlineDate;
     const description = form.description.value;
 
-    console.log(dateOfPosting, deadline);
-
     const jobData = {
       job_banner,
       job_title,
@@ -87,7 +85,7 @@ const MyJobs = () => {
       },
     };
 
-    console.log(jobData);
+  
 
     try {
       const { data } = await axiosSecure.put(`/update-job/${id}`, jobData);

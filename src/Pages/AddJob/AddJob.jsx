@@ -31,7 +31,6 @@ const AddJob = () => {
     const dateOfPosting = postingDate;
     const deadline = startDate;
     const description = form.description.value;
-    console.log(dateOfPosting, deadline);
 
     const jobData = {
       job_banner,

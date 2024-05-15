@@ -7,7 +7,7 @@ import useJobsData from '../../Components/Hooks/useJobsData/useJobsData';
 
 const JobByCategory = () => {
   const { data } = useJobsData();
-  console.log(data);
+
   return (
     <Tabs>
       <div className=" container px-6 mt-16 mx-auto rounded-t-md">

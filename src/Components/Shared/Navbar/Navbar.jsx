@@ -24,7 +24,7 @@ const Navbar = () => {
 
   const handleToggle = e => {
     setType(!type);
-    console.log(type);
+
     if (e.target.checked) {
       setTheme('synthwave');
     } else {
