@@ -1,8 +1,16 @@
 // import { FaMagnifyingGlass } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FaMagnifyingGlass } from 'react-icons/fa6';
+import { useState } from 'react';
 
 const Banner = () => {
+  const [searchText, setSearchText] = useState('');
+
+  const handleSearch = e => {
+    setSearchText(e.target.value);
+  };
+
   return (
     <div className="container mx-auto font-raleway h-full mb-5">
       <div className="w-full border-b-0 md:border-b-[20px] md:border-[#ff4153] md:rounded-bl-[500px] bg-[#EFEFEF] md:bg-[url(https://i.postimg.cc/JzzCKjLj/first-banner.png)] bg-no-repeat bg-cover  bg-center h-auto md:h-[850px] mb-5">
@@ -38,27 +46,31 @@ const Banner = () => {
           <div>
             <div>
               <div className=" mb-10 ">
-                <Link to={'/all-jobs-card'}>
+                {/* <Link to={'/all-jobs-card'}>
                   <button className="btn  mx-auto  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153] mb-5 md:mb-0">
                     Explore Now
                   </button>
-                </Link>
-                {/* <form className="flex flex-col lg:flex-row gap-5 items-center">
+                </Link> */}
+                <div className="flex flex-col lg:flex-row gap-5 items-center">
                   <div className="relative w-full">
                     <label htmlFor="search"></label>
                     <input
+                      onChange={e => handleSearch(e)}
                       type="text"
                       name="search"
                       id="search"
-                      className="py-3 pl-10 w-[95%] mx-auto md:w-[300px] lg:w-[400px] bg-[#EFEFEF] rounded-3xl"
+                      value={searchText}
+                      className="py-3 pl-10 w-[95%] text-black border mx-auto md:w-[300px] lg:w-[400px] bg-[#EFEFEF] rounded-3xl"
                       placeholder="Search By Job Title"
                     />
                     <FaMagnifyingGlass className="absolute left-3 top-4 text-gray-700" />
                   </div>
-                  <button className="btn w-[95%] mx-auto  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]">
-                    Search
-                  </button>
-                </form> */}
+                  <Link to={`/searchJob/${searchText}`}>
+                    <button className="btn w-[95%] mx-auto  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]">
+                      Search
+                    </button>
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
