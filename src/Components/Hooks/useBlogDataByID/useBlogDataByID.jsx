@@ -6,8 +6,10 @@ const useBlogDataByID = id => {
   const { data, isLoading, refetch } = useQuery({
     queryKey: ['blog-by-ID'],
     queryFn: async () => {
-      const { data } = await axiosSecure.get(`/blog/${id}`);
-      return data;
+      if (id) {
+        const { data } = await axiosSecure.get(`/blog/${id}`);
+        return data;
+      }
     },
   });
   return { data, isLoading, refetch };

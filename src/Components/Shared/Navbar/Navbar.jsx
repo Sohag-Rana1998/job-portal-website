@@ -313,7 +313,7 @@ const Navbar = () => {
                             {user?.displayName || ''}
                           </h2>
                           <Link to={'/user-profile'}>
-                            <button className="btn  hover:bg-blue-500 mb-2 bg-gray-500    text-white">
+                            <button className="btn  hover:bg-blue-500 mb-2 bg-gray-500 text-white">
                               User Profile
                             </button>
                           </Link>

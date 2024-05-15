@@ -1,22 +1,89 @@
-import { Typography } from '@material-tailwind/react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-// import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { ScrollRestoration, useParams } from 'react-router-dom';
+import {
+  ScrollRestoration,
+  useLocation,
+  useNavigate,
+  useParams,
+} from 'react-router-dom';
 
+import 'react-datepicker/dist/react-datepicker.css';
 import useBlogDataByID from '../../Components/Hooks/useBlogDataByID/useBlogDataByID';
 import toast from 'react-hot-toast';
+import axios from 'axios';
+import useAuth from '../../Components/Hooks/useAuth/useAuth';
+import useCommentDataByID from '../../Components/Hooks/useCommentDataByID/useCommentDataByID';
 
 const BlogDetails = () => {
   const { id } = useParams();
-  // const [loading, setLoading] = useState(true);
+  const { data, isLoading, refetch } = useBlogDataByID(id);
+  const { commentsData, refetch1 } = useCommentDataByID(data?._id);
+  setTimeout(refetch1, 500);
+  console.log(commentsData);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { user } = useAuth();
+  const startDate = new Date().toLocaleDateString();
 
-  const { data, isLoading } = useBlogDataByID(id);
-  const handleblog = e => {
+  const handleBlog = async e => {
     e.preventDefault();
-    toast.success('Sorry This feature is not available right now.');
+    if (!user) return navigate('/login', { state: location.pathname });
+
+    const form = e.target;
+    const question1 = form.title.value;
+    const image = form.photo.value;
+    const answer1 = form.description.value;
+    const date = startDate;
+    const author = user?.displayName;
+    const authorEmail = user?.email;
+    const authorImage = user?.photoURL;
+
+    const blogData = {
+      image,
+      question1,
+      answer1,
+      date,
+      author,
+      authorEmail,
+      authorImage,
+    };
+    console.log(blogData);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/blogs`,
+        blogData
+      );
+      console.log(data);
+      toast.success('Your Blog Successfully Posted!');
+      form.reset();
+      refetch();
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  const handleComment = async e => {
+    e.preventDefault();
+    const commentId = id;
+    const nameOfCommenter = e.target.name.value;
+    const commentText = e.target.comment.value;
+    const comment = { name: nameOfCommenter, commentText, commentId };
+    console.log(comment);
+    try {
+      const { data } = await axios.post(
+        `${import.meta.env.VITE_API_URL}/comments`,
+        comment
+      );
+      console.log(data);
+      toast.success('Your Comment Successfully Submitted!');
+      e.target.reset();
+      refetch1();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const { image, question1, question2, answer1, answer2, date, author } =
     data || {};
   console.log(data);
@@ -65,32 +132,30 @@ const BlogDetails = () => {
                 <div>
                   <div className="flex justify-between items-center mb-2">
                     <div>
-                      <h3 className="text-xl font-bold">Author: {author}</h3>
+                      <img
+                        src={
+                          data?.authorImage ||
+                          'https://i.ibb.co/zmbRY07/images.png'
+                        }
+                        alt=""
+                        className="w-12 h-12 rounded-full"
+                      />
+                      <h3 className="font-bold">Author: {author}</h3>
                     </div>
                     <div>
-                      <div className="text-xl font-bold">
-                        Publish Date:{date}
+                      <div className="font-bold">
+                        Publish Date: {new Date(date).toLocaleDateString()}
                       </div>
                     </div>
                   </div>
 
                   <div className="mb-5">
-                    <Typography className="text-2xl font-bold">
-                      Question No.1: {question1}
-                    </Typography>
-                    <Typography variant="lead" className="text-lg mt-2">
-                      <span className="font-bold">Answer: </span>
-                      {answer1}
-                    </Typography>
+                    <div className="text-2xl font-bold">{question1}</div>
+                    <div className="text-lg mt-2">{answer1 || ''}</div>
                   </div>
                   <div className="mb-5">
-                    <Typography className="text-2xl font-bold">
-                      Question No.1: {question2}
-                    </Typography>
-                    <Typography variant="lead" className="text-lg mt-2">
-                      <span className="font-bold">Answer: </span>
-                      {answer2}
-                    </Typography>
+                    <div className="text-2xl font-bold">{question2}</div>
+                    <div className="text-lg mt-2">{answer2 || ''}</div>
                   </div>
                 </div>
               </div>
@@ -98,45 +163,48 @@ const BlogDetails = () => {
           </div>
         </div>
 
-        <div className="w-full md:w-[25%]">
+        <div className="w-full md:w-[25%] hidden md:block">
           <div className="w-full  border rounded-2xl shadow-md p-5  ">
             <h3 className="text-2xl font-bold mb-4 text-center">
               Post A Blog :
             </h3>
-            <form onSubmit={handleblog} className="">
+            <form onSubmit={handleBlog} className="">
               <div className="mb-5">
                 <label className=" " htmlFor="name">
                   Blog Title
                 </label>
                 <input
                   id="name"
-                  name="name"
+                  name="title"
                   type="text"
+                  required
                   className="block w-full px-4 py-2 mt-2  bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
               </div>
               <div className="mb-5">
-                <label className=" " htmlFor="name">
+                <label className=" " htmlFor="photo">
                   Photo URL
                 </label>
                 <input
-                  id="name"
-                  name="name"
+                  id="photo"
+                  name="photo"
                   type="text"
+                  required
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
               </div>
 
               <div className="mb-5">
-                <label className=" " htmlFor="name">
+                <label className=" " htmlFor="description">
                   Description
                 </label>
                 <textarea
-                  id="name"
-                  name="message"
+                  id="description"
+                  name="description"
                   type="text"
                   rows="5"
-                  placeholder="Message"
+                  required
+                  placeholder="description"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 ></textarea>
               </div>
@@ -145,6 +213,63 @@ const BlogDetails = () => {
               </button>
             </form>
           </div>
+        </div>
+      </div>
+
+      <div className="w-full md:w-[70%]">
+        {commentsData && commentsData?.length > 0 ? (
+          <div className="border shadow-md p-5">
+            <h1 className="text-xl font-bold underline mb-5"> Comments:</h1>
+            {commentsData.map(comment => (
+              <div key={comment._id} className="mb-4 bg-gray-100 px-5 py-2">
+                <div>
+                  <h3 className="text-xl font-bold">{comment.name}</h3>
+                  <p>{comment.commentText}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+      <div className="w-full md:w-[70%] ">
+        <h3 className="text-2xl font-bold ">Leave a Comment:</h3>
+        <div>
+          <form onSubmit={handleComment} className="">
+            <div className="mb-5">
+              <label className=" " htmlFor="name">
+                Name
+              </label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                defaultValue={user?.displayName}
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+              />
+            </div>
+
+            <div className="mb-5">
+              <label className="font-bold" htmlFor="comment">
+                Comment
+              </label>
+              <textarea
+                id="comment"
+                name="comment"
+                type="text"
+                rows="5"
+                required
+                placeholder="comment"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+              ></textarea>
+            </div>
+            <div className="w-full flex justify-end">
+              <button className="btn rounded-3xl w-full md:w-40 bg-gray-900 text-white hover:bg-[#FF4153]">
+                Submit Comment
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <ScrollRestoration />

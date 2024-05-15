@@ -12,7 +12,7 @@ import useAuth from '../../Components/Hooks/useAuth/useAuth';
 
 const Login = () => {
   const [type, setType] = useState(false);
-  const { signInWithEmail, signInWithGoogle } = useAuth();
+  const { signInWithEmail, handleUpdateProfile, signInWithGoogle } = useAuth();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -49,8 +49,11 @@ const Login = () => {
   };
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then(() => {
-        // console.log(result.user);
+      .then(result => {
+        const user = result.user;
+        const photo = user?.photoURL;
+        const name = user?.displayName;
+        handleUpdateProfile(name, photo);
 
         navigate(location?.state || '/');
         Swal.fire({

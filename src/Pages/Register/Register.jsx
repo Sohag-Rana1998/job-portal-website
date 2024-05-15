@@ -66,8 +66,12 @@ const Register = () => {
   // console.log(navigate);
   const handleGoogleLogin = () => {
     signInWithGoogle()
-      .then(() => {
+      .then(result => {
         // console.log(result.user);
+        const user = result.user;
+        const photo = user?.photoURL;
+        const name = user?.displayName;
+        handleUpdateProfile(name, photo);
         navigate('/');
         Swal.fire({
           icon: 'success',
