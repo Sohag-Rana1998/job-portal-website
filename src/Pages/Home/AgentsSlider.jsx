@@ -26,10 +26,10 @@ import 'swiper/css/effect-cards';
 import { EffectCards } from 'swiper/modules';
 import useAgentsData from '../../Components/Hooks/useAgentsData/useAgentsData';
 
-export default function Slider() {
+export default function AgentsSlider() {
   const { data } = useAgentsData();
   console.log(data);
-  // const colors = ['#006769', '#7469B6', '#03AED2', '#32012F', '#C40C0C'];
+  
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function Slider() {
           effect={'cards'}
           grabCursor={true}
           modules={[EffectCards]}
-          className="mySwiper w-[60%] h-[450px] md:w-[50%] mx-auto md:h-[550px]"
+          className="mySwiper w-[60%] h-[450px] md:[70%] lg:w-[50%] mx-auto md:h-[550px]"
         >
           {data &&
             data.map(agent => (

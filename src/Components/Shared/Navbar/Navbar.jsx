@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import Swal from 'sweetalert2';
-import useAuth from '../../Hooks/useAuth/useAuth';
+import useAuth from '../../../../../../../../job-portal-asign-11/client/src/Components/Hooks/useAuth/useAuth';
 
 const Navbar = () => {
   const localTheme = localStorage.getItem('theme');
@@ -201,8 +201,8 @@ const Navbar = () => {
     <div
       className={
         type
-          ? 'navbar fixed z-30 text-white container pt-2 mx-auto bg-[#1a103d] '
-          : 'navbar fixed z-30 text-black container pt-2 mx-auto  bg-[#F1F1F2]'
+          ? 'navbar fixed z-50 text-white container pt-2 mx-auto bg-[#1a103d] '
+          : 'navbar fixed z-50 text-black container pt-2 mx-auto  bg-[#F1F1F2]'
       }
     >
       <div className="navbar-start">

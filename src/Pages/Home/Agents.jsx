@@ -1,4 +1,4 @@
-import Slider from './Slider';
+import AgentsSlider from './AgentsSlider';
 
 const Agents = () => {
   return (
@@ -11,7 +11,7 @@ const Agents = () => {
           page, along side with their <br /> contact details and link to their
           agent profile.
         </p>
-        <Slider></Slider>
+        <AgentsSlider />
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ const JobProcess = () => {
           Our Job <span className="text-[#ff4153]">Process</span>
         </h1>
       </div>
-      <div className="grid w-full grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid w-full grid-cols-1 lg:grid-cols-3 gap-5">
         <div
           // initial={{
           //   x: -100,
@@ -33,7 +33,7 @@ const JobProcess = () => {
           //   ease: 'easeIn',
           //   duration: 1,
           // }}
-          className="w-full h-[450px]  hover:shadow-lg py-7 duration-700 px-14 "
+          className="w-full h-[450px]  hover:shadow-lg py-5 px-8 lg:py-7 duration-700 lg:px-14 "
         >
           <div
             onMouseEnter={() => setToggle(true)}

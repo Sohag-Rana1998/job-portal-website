@@ -85,8 +85,6 @@ const MyJobs = () => {
       },
     };
 
-  
-
     try {
       const { data } = await axiosSecure.put(`/update-job/${id}`, jobData);
       console.log(data);
@@ -125,7 +123,7 @@ const MyJobs = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="max-w-7xl container mx-auto px-5 ">
+    <div className="max-w-7xl container mx-auto px-5 mt-7 md:mt-10">
       <Helmet>
         <title>Job Portal | My Jobs List</title>
       </Helmet>

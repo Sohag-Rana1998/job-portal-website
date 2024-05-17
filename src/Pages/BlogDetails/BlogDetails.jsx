@@ -91,8 +91,16 @@ const BlogDetails = () => {
     }
   };
 
-  const { image, question1, question2, answer1, answer2, date, author } =
-    data || {};
+  const {
+    image,
+    question1,
+    question2,
+    answer1,
+    answer2,
+    date,
+    author,
+    authorImage,
+  } = data || {};
 
   return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
@@ -141,8 +149,7 @@ const BlogDetails = () => {
                     <div>
                       <img
                         src={
-                          data?.authorImage ||
-                          'https://i.ibb.co/zmbRY07/images.png'
+                          authorImage || 'https://i.ibb.co/zmbRY07/images.png'
                         }
                         alt=""
                         className="w-12 h-12 rounded-full"
@@ -240,7 +247,7 @@ const BlogDetails = () => {
           <></>
         )}
       </div>
-      <div className="w-full md:w-[70%] ">
+      <div className="w-full md:w-[70%] border rounded-md mt-5 p-5 shadow-md">
         <h3 className="text-2xl font-bold ">Leave a Comment:</h3>
         <div>
           <form onSubmit={handleComment} className="">

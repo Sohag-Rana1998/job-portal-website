@@ -144,34 +144,33 @@ const JobDetails = () => {
             <div className="flex w-full flex-col  justify-between h-auto  ">
               <div>
                 <div>
-                  <div className="flex justify-between items-center">
+                  <div className="flex flex-col md:flex-row items-start justify-between md:items-center">
                     <Typography className="text-2xl font-bold">
                       Job Title: {job_title}
                     </Typography>
-                    <Typography className=" font-bold bg-[#FF4153] text-white p-1 px-4 rounded-3xl">
+
+                    <Typography className="bg-[#FF4153] text-white px-3 py-1 rounded-3xl">
                       #{category}
                     </Typography>
                   </div>
-                  <Typography
-                    variant="lead"
-                    className="font-normal md:font-semibold flex  gap-2 "
-                  >
-                    <span className="font-bold">
+                  <div>
+                    <h3 className="font-bold   text-blue-500 ">
+                      Salary Range: ${min_salary}-{max_salary}
+                    </h3>
+                  </div>
+                  <Typography variant="lead" className="text-sm ">
+                    <span className="">
                       Total Applicants :{applicant_count}
                     </span>
                   </Typography>
                   <div className="flex  w-full my-4 justify-between items-start md:items-center flex-col gap-3 md:flex-row">
-                    <div className="text-xl w-60 md:w-auto  font-bold text-white bg-gray-500  py-2 px-4 rounded-3xl">
-                      <span className="font-bold ">
-                        Posting Date:{' '}
-                        {new Date(dateOfPosting).toLocaleDateString()}
-                      </span>
+                    <div className="text-sm  w-auto  font-bold text-white bg-gray-500  py-1 px-2 rounded-3xl">
+                      Posting Date:{' '}
+                      {new Date(dateOfPosting).toLocaleDateString()}
                     </div>
-                    <div className="text-xl w-60 md:w-auto font-bold text-white bg-gray-500 py-2 px-4 rounded-3xl">
-                      <span className="font-bold ">
-                        Deadline:
-                        {new Date(deadline).toLocaleDateString()}
-                      </span>
+                    <div className="w-auto text-sm font-bold text-white bg-gray-500 py-1  px-2 rounded-3xl">
+                      Deadline:
+                      {new Date(deadline).toLocaleDateString()}
                     </div>
                   </div>
 
@@ -187,24 +186,18 @@ const JobDetails = () => {
                   <h4>Employer Email: {employerEmail}</h4>
                 </div>
               </div>
-              <div className="flex flex-col  md:flex-row justify-between items-center">
-                <div>
-                  <h3 className="font-bold  bg-gray-500 text-white py-2 px-4 rounded-3xl">
-                    Salary Range: ${min_salary}-{max_salary}
-                  </h3>
-                </div>
-                <div className="flex flex-col md:flex-row justify-end  r mt-3">
-                  <label
-                    onClick={() => {
-                      setModalLoading(false);
-                      setTimeout(setModalLoading, 500, true);
-                    }}
-                    htmlFor="my_modal_6"
-                    className="btn bg-blue-500 w-full md:w-40 rounded-3xl hover:bg-gray-500 text-white"
-                  >
-                    Apply Now
-                  </label>
-                </div>
+
+              <div className="flex flex-col md:flex-row justify-end  r mt-3">
+                <label
+                  onClick={() => {
+                    setModalLoading(false);
+                    setTimeout(setModalLoading, 500, true);
+                  }}
+                  htmlFor="my_modal_6"
+                  className="btn bg-blue-500 w-full md:w-40 rounded-3xl hover:bg-gray-500 text-white"
+                >
+                  Apply Now
+                </label>
               </div>
             </div>
           </div>

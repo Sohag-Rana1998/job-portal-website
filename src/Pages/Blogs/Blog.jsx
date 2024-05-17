@@ -59,19 +59,6 @@ const Blog = () => {
     }
   };
 
-  //   const myBlogsData = async () => {
-  //     try {
-  //       const { data } = await axiosSecure.get(`/blogs`);
-  //       console.log(data);
-  //       setBlogs(data);
-  //       setLoading(false);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   myBlogsData();
-  // }, [axiosSecure]);
-  // console.log(blogs);
   return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
@@ -85,17 +72,17 @@ const Blog = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div>
+    <div className="my-8">
       <Helmet>
         <title>Job Portal || Blogs</title>
       </Helmet>
-      <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/k4vWHgYk/bg-13.png)] bg-opacity-50 ">
+      <div className="h-32 mb-10  md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/k4vWHgYk/bg-13.png)] bg-opacity-50 ">
         <h1 className="text-2xl md:text-4xl font-bold text-white">
           Learn More About Programming
         </h1>
       </div>
       <div className="flex flex-col md:flex-row justify-between gap-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full md:w-[70%]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full md:w-[60%] lg:w-[70%]">
           {data?.map(blog => (
             <div key={blog._id}>
               <div className="w-full  h-full  rounded-2xl shadow-2xl  overflow-hidden">
@@ -157,7 +144,7 @@ const Blog = () => {
             </div>
           ))}
         </div>
-        <div className="w-full md:w-[25%]">
+        <div className="w-full md:w-[35%] lg:w-[25%]">
           <div className="w-full  border rounded-2xl shadow-md p-5  ">
             <h3 className="text-2xl font-bold mb-4 text-center">
               Post A Blog :

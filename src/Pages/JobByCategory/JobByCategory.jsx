@@ -57,15 +57,15 @@ const JobByCategory = () => {
         <div className="flex py-5 text-black items-center justify-center bg-white rounded-t-3xl">
           <TabList>
             <Tab>All Jobs</Tab>
+            <Tab> Remote</Tab>
             <Tab>On Site</Tab>
-            <Tab>Remote</Tab>
             <Tab>Part-Time</Tab>
             <Tab>Hybrid</Tab>
           </TabList>
         </div>
         <TabPanel>
           <div>
-            <div className="grid grid-cols-1 gap-10 mt-8 md:grid-cols-2 ">
+            <div className="grid grid-cols-1 gap-10 mt-8 lg:grid-cols-2 ">
               {data &&
                 data
                   .slice(0, 6)
@@ -82,16 +82,7 @@ const JobByCategory = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-10 mt-8  md:grid-cols-2 ">
-            {data &&
-              data
-                .filter(j => j.category === 'On Site')
-                .map(job => <JobCard key={job._id} job={job} />)}
-          </div>
-        </TabPanel>
-
-        <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8  md:grid-cols-2 ">
+          <div className="grid grid-cols-1 gap-10 mt-8  lg:grid-cols-2 ">
             {data &&
               data
                 .filter(j => j.category === 'Remote')
@@ -100,7 +91,16 @@ const JobByCategory = () => {
         </TabPanel>
 
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-8 mt-8  lg:grid-cols-2 ">
+            {data &&
+              data
+                .filter(j => j.category === 'On Site')
+                .map(job => <JobCard key={job._id} job={job} />)}
+          </div>
+        </TabPanel>
+
+        <TabPanel>
+          <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2">
             {data &&
               data
                 .filter(j => j.category === 'Part-Time')
@@ -108,7 +108,7 @@ const JobByCategory = () => {
           </div>
         </TabPanel>
         <TabPanel>
-          <div className="grid grid-cols-1 gap-8 mt-8  md:grid-cols-2 ">
+          <div className="grid grid-cols-1 gap-8 mt-8  lg:grid-cols-2 ">
             {data &&
               data
                 .filter(j => j.category === 'Hybrid')

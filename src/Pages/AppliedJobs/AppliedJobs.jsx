@@ -4,7 +4,7 @@ import { Link, ScrollRestoration } from 'react-router-dom';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useState } from 'react';
-
+import { IoMdDownload } from 'react-icons/io';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
 import { Helmet } from 'react-helmet-async';
 import useAppliedJobsData from '../../Components/Hooks/useAppliedJobsData/useAppliedJobsData';
@@ -51,32 +51,6 @@ const AppliedJobs = () => {
       </Helmet>
       <div>
         <div>
-          <div className="h-32 mb-5 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
-            <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-              <div className=" pl-20 mt-10">
-                <div>
-                  <div className="w-full px-0  ">
-                    <h4 className="text-4xl font-bold underline mb-5">
-                      Your Applied Job
-                    </h4>
-                    <div className=" text-left">
-                      <h4 className="text xl font-bold">
-                        {' '}
-                        Applicants Name: {user?.displayName}
-                      </h4>
-                      <h4 className="text xl font-bold">
-                        Applicants Email: {user?.email}
-                      </h4>
-                      <h4 className="text xl font-bold">
-                        Total Job Applied : {data?.length}
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <div className="w-full flex justify-end">
             <div className="mr-4 w-52 md:mr-10">
               <div className="dropdown dropdown-bottom">
@@ -138,7 +112,7 @@ const AppliedJobs = () => {
 
           <div className="divider w-full mb-5 px-0 md:px-32 "></div>
 
-          <div className="  ">
+          <div className=" mb-10 ">
             {data && data?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table ">
@@ -172,7 +146,7 @@ const AppliedJobs = () => {
                           <td>
                             <Link to={`/applicationData/${job._id}`}>
                               <button className="btn">
-                                Download Job Summery
+                                Download Applicants Copy <IoMdDownload />
                               </button>
                             </Link>
                           </td>

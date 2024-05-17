@@ -1,8 +1,6 @@
 # Job Portal
 
-## WEBSITE LINK: https://job-portal-website-b20fb.firebaseapp.com/
-
-### Assignment_ID: assignment_category_0003
+## WEBSITE LINK: https://job-portal-by-sohag.netlify.app/
 
 ### Features and Characteristics Of My Website:
 

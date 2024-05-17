@@ -18,8 +18,9 @@ const Banner = () => {
   };
 
   return (
-    <div className="container mx-auto font-raleway h-full mb-5">
-      <div className="relative w-full text-white md:text-black border-b-0 md:border-b-[20px] md:border-[#ff4153] md:rounded-bl-[500px] bg-[url(https://i.postimg.cc/sDh3JJ7m/443d36d3-1931-4eaf-8851-1e21ef13291f-432355-Article-Image1-1000x750-1.jpg)] md:bg-[url(https://i.postimg.cc/JzzCKjLj/first-banner.png)] bg-no-repeat bg-cover  bg-center h-auto md:h-[850px] mb-5 bg-blur z-0">
+    <div className="container  mx-auto font-raleway h-full mb-5">
+      <div className="w-full mt-5 px-5 md:px-0  md:mt-0 relative text-white md:text-black border-b-0 md:border-b-[20px] md:border-[#ff4153] md:rounded-bl-[500px] bg-[url(https://i.postimg.cc/sDh3JJ7m/443d36d3-1931-4eaf-8851-1e21ef13291f-432355-Article-Image1-1000x750-1.jpg)] md:bg-[url(https://i.postimg.cc/JzzCKjLj/first-banner.png)] bg-no-repeat bg-cover  bg-center h-auto md:h-[850px] mb-5  ">
+        <div className=" inset-0 block md:hidden absolute rounded-t-xl bg-black/30 "></div>
         <motion.div
           initial={{
             y: -200,
@@ -36,7 +37,7 @@ const Banner = () => {
             ease: 'easeIn',
             duration: 1,
           }}
-          className="ml-2 md:ml-14 pt-10 z-30 md:pt-28 w-full text-center md:text-left md:w-[60%] lg:w-[45%]"
+          className="ml-0 md:ml-14 relative pt-10 z-30 md:pt-28 w-full text-center md:text-left md:w-[60%] lg:w-[45%]"
         >
           <div className="text-5xl font-bold text-white md:text-black mb-3 md:mb-5">
             Find Your Favourite{' '}
@@ -72,39 +73,42 @@ const Banner = () => {
                     <FaMagnifyingGlass
                       className={
                         searchText.length === 0
-                          ? 'absolute left-5 top-4 text-gray-700'
-                          : 'absolute hidden left-5 top-4 text-gray-700'
+                          ? 'absolute left-5 md:left-3  top-4 text-gray-400'
+                          : 'absolute hidden left-5 md:left-3 top-4 text-gray-500'
                       }
                     />
                   </div>
+                  <button
+                    onClick={handleAlert}
+                    className={
+                      searchText.length === 0
+                        ? 'btn relative  w-[95%] mx-auto mb-3 md:mb-0  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]'
+                        : 'hidden'
+                    }
+                  >
+                    Search
+                  </button>
 
-                  <Link to={`/searchJob/${searchText || 'aaaa'}`}>
+                  <Link
+                    to={`/searchJob/${searchText || 'aaaa'}`}
+                    className="w-full"
+                  >
                     <button
                       className={
                         searchText.length > 0
-                          ? 'btn  w-full mx-auto mb-3 md:mb-0  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]'
+                          ? 'btn  w-[95%] relative mx-auto mb-3 md:mb-0  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]'
                           : 'hidden'
                       }
                     >
                       Search
                     </button>
                   </Link>
-                  <button
-                    onClick={handleAlert}
-                    className={
-                      searchText.length === 0
-                        ? 'btn  w-full mx-auto mb-3 md:mb-0  md:w-32 py-[10px] px-4 rounded-3xl bg-gray-900 font-bold text-white  hover:bg-[#ff4153]'
-                        : 'hidden'
-                    }
-                  >
-                    Search
-                  </button>
                 </div>
               </div>
             </div>
           </div>
         </motion.div>
-        <div className="inset-0 block md:hidden bg-black/10 absolute z-0"></div>
+
         <div className="lg:flex  hidden mt-16 lg:flex-col xl:flex-row justify-center pr-5 xl:pr-40 items-center w-[80%] gap-5">
           <div className="w-full md:w-[180px] h-[70px]">
             <img
@@ -122,6 +126,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
+
       <div className="mt-20 md:mt-40 flex flex-col md:flex-row justify-between items-center gap-10">
         <motion.div
           initial={{

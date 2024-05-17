@@ -5,6 +5,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import JobCard from '../JobByCategory/JobCard';
 import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
+import { ScrollRestoration } from 'react-router-dom';
 
 const AllJobsCard = () => {
   const axiosSecure = useAxiosSecure();
@@ -36,19 +37,18 @@ const AllJobsCard = () => {
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosSecure.get(`/jobs?search=${search}`);
-     
+
       if (data) {
         setCount(data.count);
       }
     };
     getCount();
     setLoader(true);
-    setTimeout(setLoader, 500, false);
+    setTimeout(setLoader, 1000, false);
   }, [search, axiosSecure]);
 
   const totalPage = Math.ceil(parseInt(count) / itemsPerPage);
   const pageArray = [...Array(totalPage).keys()].map(element => element + 1);
-
 
   const handleSearch = async e => {
     e.preventDefault();
@@ -74,29 +74,25 @@ const AllJobsCard = () => {
       <Helmet>
         <title>Job Portal | All Jobs </title>
       </Helmet>
-      <div>
+      <div className="mt-10">
         <div>
-          <div className="">
-            <div className="h-32 mb-5 rounded-t-xl md:h-60 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/rstCStvL/banner-job-ads-1.jpg)] bg-opacity-50 relative">
-              <div className=" inset-0 absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-                <div className=" pl-20 mt-10">
-                  <h2 className=" md:text-4xl font-bold text-white mb-5">
-                    Explore All Awesome Jobs
-                  </h2>
-                  <p className="text-white">
-                    Unleash your potential on our job portal. Find tailored
-                    opportunities, connect with top employers, <br /> and
-                    elevate your career. Your next big opportunity awaits.
-                    Explore today!
-                  </p>
-                </div>
+          <div className=" mb-5 rounded-t-xl h-60 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/rstCStvL/banner-job-ads-1.jpg)] bg-opacity-50 relative">
+            <div className=" inset-0 absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
+              <div className="pl-0 p-5  md:pl-20 mt-1 md:mt-10 text-center md:text-left">
+                <h2 className=" text-2xl md:text-4xl font-bold text-white mb-2 md:mb-5">
+                  Explore All Awesome Jobs
+                </h2>
+                <p className="text-white">
+                  Unleash your potential on our job portal. Find tailored
+                  opportunities, connect with top employers, <br /> and elevate
+                  your career. Your next big opportunity awaits. Explore today!
+                </p>
               </div>
-              <div></div>
             </div>
           </div>
 
           <div>
-            <div className="w-full flex justify-end ">
+            <div className=" w-[80%] mx-auto md:w-full block md:flex mb-5  md:justify-end ">
               <form onSubmit={handleSearch}>
                 <label htmlFor="search"></label>
                 <input
@@ -107,7 +103,7 @@ const AllJobsCard = () => {
                   type="text"
                   required
                 />
-                <button className=" py-[14px] px-4 rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
+                <button className="btn w-full md:w-40 py-[14px] px-4 rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
                   Search
                 </button>
               </form>
@@ -124,7 +120,9 @@ const AllJobsCard = () => {
                   <a
                     onClick={() => {
                       setCurrentPage(currentPage - 1);
-                      setTimeout(refetch, 500);
+                      setTimeout(refetch, 300);
+                      setLoader(true);
+                      setTimeout(setLoader, 1000, false);
                     }}
                     className={
                       currentPage == 1
@@ -148,7 +146,7 @@ const AllJobsCard = () => {
                         />
                       </svg>
 
-                      <span className="mx-1">previous</span>
+                      <span className="mx-1">Previous Page</span>
                     </div>
                   </a>
 
@@ -156,13 +154,15 @@ const AllJobsCard = () => {
                     <button
                       onClick={() => {
                         setCurrentPage(page);
-                        setTimeout(refetch, 500);
+                        setTimeout(refetch, 300);
+                        setLoader(true);
+                        setTimeout(setLoader, 1000, false);
                       }}
                       key={page}
                       className={
                         currentPage == page
-                          ? 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-blue-500 rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
-                          : 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                          ? 'px-4 py-2 hidden md:block mx-1 text-gray-700 transition-colors duration-300 transform bg-blue-500 rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                          : 'px-4 py-2 hidden md:block mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
                       }
                     >
                       {page}
@@ -173,15 +173,17 @@ const AllJobsCard = () => {
                     className={
                       currentPage == pageArray.length
                         ? 'hidden'
-                        : 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                        : 'px-4 py-2 mx-1  text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
                     }
                     onClick={() => {
                       setCurrentPage(currentPage + 1);
-                      setTimeout(refetch, 500);
+                      setTimeout(refetch, 300);
+                      setLoader(true);
+                      setTimeout(setLoader, 1000, false);
                     }}
                   >
                     <div className="flex items-center cursor-pointer -mx-1">
-                      <span className="mx-1">Next</span>
+                      <span className="mx-1">Next Page</span>
 
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -216,7 +218,9 @@ const AllJobsCard = () => {
                     <button
                       onClick={() => {
                         setSearch('');
-                        setTimeout(refetch, 500);
+                        setTimeout(refetch, 300);
+                        setLoader(true);
+                        setTimeout(setLoader, 1000, false);
                       }}
                       className="btn w-[40] bg-blue-500 text-white text-right mb-5"
                     >
@@ -229,6 +233,7 @@ const AllJobsCard = () => {
           </div>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

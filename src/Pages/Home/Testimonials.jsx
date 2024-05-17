@@ -8,7 +8,7 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import Slide from './Slide';
+import SlideOfTestimonials from './SlideOfTestimonials';
 
 const Testimonials = () => {
   const img1 = 'https://i.postimg.cc/wT4ckLzs/Testimonial-Image5.png';
@@ -29,7 +29,7 @@ const Testimonials = () => {
           about their transformative experiences
         </p>
       </div>
-      <div className="w-full  flex flex-col md:flex-row  justify-between gap-5 items-center">
+      <div className="w-full  flex flex-col lg:flex-row  justify-between gap-5 items-center">
         <div className="w-full md:w-[45%]">
           <div className="h-[450px]">
             <img
@@ -39,7 +39,7 @@ const Testimonials = () => {
             />
           </div>
         </div>
-        <div className="w-full md:w-[50%]  ">
+        <div className="w-full lg:w-[50%]  ">
           <Swiper
             spaceBetween={30}
             centeredSlides={true}
@@ -52,7 +52,7 @@ const Testimonials = () => {
             className="mySwiper"
           >
             <SwiperSlide>
-              <Slide
+              <SlideOfTestimonials
                 image={img1}
                 text="This platform is fantastic! It's incredibly user-friendly, and I was pleasantly surprised to find my dream job within just a few weeks of signing up. The job listings are updated regularly, which made the process smooth and efficient. I highly recommend it to anyone searching for their next career move."
                 name="John Doe"
@@ -60,7 +60,7 @@ const Testimonials = () => {
               />
             </SwiperSlide>
             <SwiperSlide>
-              <Slide
+              <SlideOfTestimonials
                 image={img2}
                 text="Overall, my experience with this job
               portal was positive. While there are plenty of job listings
@@ -73,7 +73,7 @@ const Testimonials = () => {
               />
             </SwiperSlide>
             <SwiperSlide>
-              <Slide
+              <SlideOfTestimonials
                 image={img3}
                 text="My experience with this website was decent, but there is room for improvement. The search functionality feels a bit clunky, and it can be challenging to filter through the numerous listings effectively. Adding more refined search options would greatly enhance the user experience"
                 name="Sarah Rahman"
@@ -81,7 +81,7 @@ const Testimonials = () => {
               />
             </SwiperSlide>
             <SwiperSlide>
-              <Slide
+              <SlideOfTestimonials
                 image={img4}
                 text="I can't speak highly enough of this portal! It played a significant role in helping me secure my current job. The email notifications for new listings were invaluable, and the application process was straightforward. I appreciate the user-friendly interface and the platform's effectiveness in connecting job seekers with relevant opportunities."
                 name="Emily Chen"
@@ -89,7 +89,7 @@ const Testimonials = () => {
               />
             </SwiperSlide>
             <SwiperSlide>
-              <Slide
+              <SlideOfTestimonials
                 image={img5}
                 text="I had an exceptional experience with this job portal! The support team was incredibly helpful and responsive throughout my job search journey. The platform helped me find a job that aligns perfectly with my skills and interests. I highly recommend it to anyone looking for their next career opportunity."
                 name=" Sarah Thompson"

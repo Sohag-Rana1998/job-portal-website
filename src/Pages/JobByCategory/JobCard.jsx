@@ -23,7 +23,7 @@ const JobCard = ({ job }) => {
   } = job || {};
 
   return (
-    <div className="flex items-start flex-col rounded-t-xl lg:flex-row hover:scale-[1.03] duration-500 shadow-lg">
+    <div className="flex items-start flex-col rounded-t-xl xl:flex-row hover:scale-[1.03] duration-500 shadow-lg">
       <div className="w-full h-52 lg:h-64">
         <img src={job_banner} alt="" className="w-full h-full" />
       </div>

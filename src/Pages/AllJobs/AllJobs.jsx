@@ -48,8 +48,8 @@ const AllJobs = () => {
     e.preventDefault();
     const searchText = e.target.search.value;
     setSearch(searchText);
-    setTimeout(refetch, 500);
-    setTimeout(setLoader, 500, false);
+    setTimeout(refetch, 300);
+    setTimeout(setLoader, 1000, false);
   };
 
   return isLoading || loader ? (
@@ -72,10 +72,10 @@ const AllJobs = () => {
       <div>
         <div>
           <div className="mt-10">
-            <div className="h-48 mb-5 rounded-t-xl md:h-60 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/rstCStvL/banner-job-ads-1.jpg)] bg-opacity-50 relative">
+            <div className="mb-5 rounded-t-xl h-60 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/rstCStvL/banner-job-ads-1.jpg)] bg-opacity-50 relative">
               <div className=" inset-0 absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-                <div className="pl-2 md:pl-20 mt-1 md:mt-10 text-center md:text-left">
-                  <h2 className=" md:text-4xl font-bold text-white mb-2 md:mb-5">
+                <div className="pl-0 p-5  md:pl-20 mt-1 md:mt-10 text-center md:text-left">
+                  <h2 className=" text-2xl md:text-4xl font-bold text-white mb-2 md:mb-5">
                     Explore All Awesome Jobs
                   </h2>
                   <p className="text-white">
@@ -91,26 +91,23 @@ const AllJobs = () => {
 
           <div className="divider w-full mb-10 px-0 md:px-32 "></div>
           <div>
-            <div className="w-full flex justify-end ">
-              <form
-                onSubmit={handleSearch}
-                className="flex justify-between items-center gap-3"
-              >
-                <div>
+            <div>
+              <div className=" w-[80%] mx-auto md:w-full block md:flex mb-5  md:justify-end ">
+                <form onSubmit={handleSearch}>
                   <label htmlFor="search"></label>
                   <input
-                    required
-                    className="input bg-gray-200 w-full  md:w-60 border mb-0 mr-3"
+                    className="input bg-gray-200 w-full md:w-60 border mb-5 mr-3"
                     id="search"
                     name="search"
                     placeholder="Search By Job Title"
                     type="text"
+                    required
                   />
-                </div>
-                <button className=" py-[14px] px-4  rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
-                  Search
-                </button>
-              </form>
+                  <button className="btn w-full md:w-40 py-[14px] px-4 rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
+                    Search
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
           {data && data.length > 0 ? (
@@ -159,112 +156,6 @@ const AllJobs = () => {
                     ))}
                 </tbody>
               </table>
-              {data && parseInt(count) > 4 ? (
-                <div className="flex justify-center items-center my-5 bg-blue-400 rounded-xl p-3">
-                  <div className="flex">
-                    <a
-                      onClick={() => {
-                        setCurrentPage(currentPage - 1);
-                        setLoader(true);
-                        setTimeout(refetch, 300);
-                        setTimeout(setLoader, 1000, false);
-                      }}
-                      className={
-                        currentPage == 1
-                          ? ' hidden'
-                          : 'px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md  dark:bg-gray-80 cursor-pointer dark:text-gray-600'
-                      }
-                    >
-                      <div className="flex items-center -mx-1">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-6 h-6 mx-1 rtl:-scale-x-100"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M7 16l-4-4m0 0l4-4m-4 4h18"
-                          />
-                        </svg>
-
-                        <span className="mx-1">previous</span>
-                      </div>
-                    </a>
-
-                    {pageArray?.map(page => (
-                      <button
-                        onClick={() => {
-                          setCurrentPage(page);
-                          setLoader(true);
-                          setTimeout(refetch, 300);
-                          setTimeout(setLoader, 1000, false);
-                        }}
-                        key={page}
-                        className={
-                          currentPage == page
-                            ? 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-blue-500 rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
-                            : 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
-                        }
-                      >
-                        {page}
-                      </button>
-                    ))}
-
-                    <a
-                      className={
-                        currentPage == pageArray.length
-                          ? 'hidden'
-                          : 'px-4 py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
-                      }
-                      onClick={() => {
-                        setCurrentPage(currentPage + 1);
-                        setLoader(true);
-                        setTimeout(refetch, 300);
-                        setTimeout(setLoader, 1000, false);
-                      }}
-                    >
-                      <div className="flex items-center cursor-pointer -mx-1">
-                        <span className="mx-1">Next</span>
-
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="w-6 h-6 mx-1 rtl:-scale-x-100"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                          />
-                        </svg>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <div className="w-full flex justify-end my-5">
-                    <button
-                      onClick={() => {
-                        setSearch('');
-                        setLoader(true);
-                        setTimeout(refetch, 500);
-                        setTimeout(setLoader, 500, false);
-                      }}
-                      className="btn bg-gray-500 text-white text-right"
-                    >
-                      Go Back
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
           ) : (
             <div className="overflow-x-auto">
@@ -310,6 +201,114 @@ const AllJobs = () => {
             </div>
           )}
         </div>
+      </div>
+      <div>
+        {data && parseInt(count) > 4 ? (
+          <div className="flex justify-center items-center my-5 bg-blue-400 rounded-xl p-3">
+            <div className="flex">
+              <a
+                onClick={() => {
+                  setCurrentPage(currentPage - 1);
+                  setTimeout(refetch, 300);
+                  setLoader(true);
+                  setTimeout(setLoader, 1000, false);
+                }}
+                className={
+                  currentPage == 1
+                    ? ' hidden'
+                    : 'px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md  dark:bg-gray-80 cursor-pointer dark:text-gray-600'
+                }
+              >
+                <div className="flex items-center -mx-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-1 rtl:-scale-x-100"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                    />
+                  </svg>
+
+                  <span className="mx-1">Previous Page</span>
+                </div>
+              </a>
+
+              {pageArray?.map(page => (
+                <button
+                  onClick={() => {
+                    setCurrentPage(page);
+                    setLoader(true);
+                    setTimeout(refetch, 300);
+                    setTimeout(setLoader, 1000, false);
+                  }}
+                  key={page}
+                  className={
+                    currentPage == page
+                      ? 'px-4 py-2 hidden md:block mx-1 text-gray-700 transition-colors duration-300 transform bg-blue-500 rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                      : 'px-4 hidden md:block py-2 mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                  }
+                >
+                  {page}
+                </button>
+              ))}
+
+              <a
+                className={
+                  currentPage == pageArray.length
+                    ? 'hidden'
+                    : 'px-4 py-2 mx-1  text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                }
+                onClick={() => {
+                  setCurrentPage(currentPage + 1);
+                  setTimeout(refetch, 300);
+                  setLoader(true);
+                  setTimeout(setLoader, 1000, false);
+                }}
+              >
+                <div className="flex items-center cursor-pointer -mx-1">
+                  <span className="mx-1">Next Page</span>
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-1 rtl:-scale-x-100"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </div>
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="w-full flex justify-end my-5">
+              <button
+                onClick={() => {
+                  setSearch('');
+                  setLoader(true);
+                  setTimeout(refetch, 500);
+                  setTimeout(setLoader, 500, false);
+                }}
+                className="btn bg-gray-500 text-white text-right"
+              >
+                Go Back
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <ScrollRestoration />
     </div>

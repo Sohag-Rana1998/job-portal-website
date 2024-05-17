@@ -75,141 +75,165 @@ const AddJob = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="flex w-full px-5  justify-center items-center min-h-[calc(100vh-306px)] my-12">
-      <Helmet>
-        <title>Job Portal | Add Job</title>
-      </Helmet>
-      <section className=" p-2 w-full md:p-16 mx-auto bg-orange-50 rounded-md shadow-lg ">
-        <h2 className="text-2xl underline mb-5  text-center  font-bold text-gray-700 capitalize ">
-          Post a Job
-        </h2>
-
-        <form onSubmit={handleFormSubmit}>
-          <div className="grid grid-cols-1 w-full gap-6 mt-4 md:grid-cols-2 ">
-            <div>
-              <label className="text-gray-700 " htmlFor="job_banner">
-                Picture URL of the Job Banner
-              </label>
-              <input
-                id="job_banner"
-                name="job_banner"
-                type="text"
-                required
-                placeholder="Job Banner Photo URL"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              />
-            </div>
-            <div>
-              <label className="text-gray-700 " htmlFor="job_title">
-                Job Title
-              </label>
-              <input
-                id="job_title"
-                name="job_title"
-                type="text"
-                required
-                placeholder="Job title"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-700 " htmlFor="emailAddress">
-                User Email
-              </label>
-              <input
-                id="emailAddress"
-                type="email"
-                required
-                name="email"
-                disabled
-                defaultValue={user?.email}
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              />
-            </div>
-            <div className="flex flex-col gap-2 ">
-              <label className="text-gray-700 " htmlFor="category">
-                Category
-              </label>
-              <select
-                name="category"
-                id="category"
-                className="border p-2 rounded-md"
-              >
-                <option value="On Site">On Site</option>
-                <option value="Remote">Remote</option>
-                <option value="Part-Time">Part-Time</option>
-                <option value="Hybrid">Hybrid</option>
-              </select>
-            </div>
-            <div>
-              <label className="text-gray-700 " htmlFor="min_salary">
-                Minimum Salary
-              </label>
-              <input
-                id="min_salary"
-                name="min_salary"
-                type="number"
-                required
-                placeholder="Minimum Salary"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              />
-            </div>
-
-            <div>
-              <label className="text-gray-700 " htmlFor="max_salary">
-                Maximum Salary
-              </label>
-              <input
-                id="max_salary"
-                placeholder="Maximum Salary"
-                name="max_salary"
-                type="number"
-                required
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              />
-            </div>
-            <div className="flex flex-col gap-2 ">
-              <label className="text-gray-700">Posting Date</label>
-
-              {/* Date Picker Input Field */}
-              <DatePicker
-                className="border p-2 rounded-md w-full"
-                selected={postingDate}
-                onChange={date => setPostingDate(date)}
-              />
-            </div>
-            <div className="flex flex-col gap-2 ">
-              <label className="text-gray-700">Deadline</label>
-
-              {/* Date Picker Input Field */}
-              <DatePicker
-                className="border p-2 rounded-md w-full"
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-              />
+    <div>
+      <div>
+        <div className="h-60 mb-5 mt-10 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/0jK1Vxp5/blog-2.png)] bg-center bg-no-repeat bg-cover  relative">
+          <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
+            <div className="pl-4 md:pl-20 mt-5 md:mt-10 flex flex-col justify-center md:justify-start items-center md:items-start">
+              <div>
+                <div className="w-full px-0  ">
+                  <h4 className=" text-center md:text-left text-2xl md:text-4xl font-bold underline mb-5">
+                    Post A Job
+                  </h4>
+                  <div className=" text-left">
+                    <h4 className="text xl font-bold">
+                      {' '}
+                      User Name: {user?.displayName}
+                    </h4>
+                    <h4 className="text xl font-bold">
+                      User Email: {user?.email}
+                    </h4>
+                    <h4 className="text xl font-bold"></h4>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col gap-2 mt-4">
-            <label className="text-gray-700 " htmlFor="description">
-              Description
-            </label>
-            <textarea
-              required
-              placeholder="Description about job"
-              rows="5"
-              className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-              name="description"
-              id="description"
-            ></textarea>
-          </div>
-          <div className="flex justify-end mt-6">
-            <button className="btn text-white w-full bg-blue-500 hover:bg-blue-gray-500 ">
-              Add Job
-            </button>
-          </div>
-        </form>
-      </section>
+        </div>
+      </div>
+      <div className="flex w-full px-5  justify-center items-center min-h-[calc(100vh-306px)] my-12">
+        <Helmet>
+          <title>Job Portal | Add Job</title>
+        </Helmet>
+
+        <section className=" p-2 w-full md:p-16 mx-auto bg-orange-50 rounded-md shadow-lg ">
+          <form onSubmit={handleFormSubmit}>
+            <div className="grid grid-cols-1 w-full gap-6 mt-4 md:grid-cols-2 ">
+              <div>
+                <label className="text-gray-700 " htmlFor="job_banner">
+                  Picture URL of the Job Banner
+                </label>
+                <input
+                  id="job_banner"
+                  name="job_banner"
+                  type="text"
+                  required
+                  placeholder="Job Banner Photo URL"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                />
+              </div>
+              <div>
+                <label className="text-gray-700 " htmlFor="job_title">
+                  Job Title
+                </label>
+                <input
+                  id="job_title"
+                  name="job_title"
+                  type="text"
+                  required
+                  placeholder="Job title"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                />
+              </div>
+
+              <div>
+                <label className="text-gray-700 " htmlFor="emailAddress">
+                  User Email
+                </label>
+                <input
+                  id="emailAddress"
+                  type="email"
+                  required
+                  name="email"
+                  disabled
+                  defaultValue={user?.email}
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                />
+              </div>
+              <div className="flex flex-col gap-2 ">
+                <label className="text-gray-700 " htmlFor="category">
+                  Category
+                </label>
+                <select
+                  name="category"
+                  id="category"
+                  className="border p-2 rounded-md"
+                >
+                  <option value="On Site">On Site</option>
+                  <option value="Remote">Remote</option>
+                  <option value="Part-Time">Part-Time</option>
+                  <option value="Hybrid">Hybrid</option>
+                </select>
+              </div>
+              <div>
+                <label className="text-gray-700 " htmlFor="min_salary">
+                  Minimum Salary
+                </label>
+                <input
+                  id="min_salary"
+                  name="min_salary"
+                  type="number"
+                  required
+                  placeholder="Minimum Salary"
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                />
+              </div>
+
+              <div>
+                <label className="text-gray-700 " htmlFor="max_salary">
+                  Maximum Salary
+                </label>
+                <input
+                  id="max_salary"
+                  placeholder="Maximum Salary"
+                  name="max_salary"
+                  type="number"
+                  required
+                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                />
+              </div>
+              <div className="flex flex-col gap-2 ">
+                <label className="text-gray-700">Posting Date</label>
+
+                {/* Date Picker Input Field */}
+                <DatePicker
+                  className="border p-2 rounded-md w-full"
+                  selected={postingDate}
+                  onChange={date => setPostingDate(date)}
+                />
+              </div>
+              <div className="flex flex-col gap-2 ">
+                <label className="text-gray-700">Deadline</label>
+
+                {/* Date Picker Input Field */}
+                <DatePicker
+                  className="border p-2 rounded-md w-full"
+                  selected={startDate}
+                  onChange={date => setStartDate(date)}
+                />
+              </div>
+            </div>
+            <div className="flex flex-col gap-2 mt-4">
+              <label className="text-gray-700 " htmlFor="description">
+                Description
+              </label>
+              <textarea
+                required
+                placeholder="Description about job"
+                rows="5"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
+                name="description"
+                id="description"
+              ></textarea>
+            </div>
+            <div className="flex justify-end mt-6">
+              <button className="btn text-white w-full bg-blue-500 hover:bg-blue-gray-500 ">
+                Add Job
+              </button>
+            </div>
+          </form>
+        </section>
+      </div>
     </div>
   );
 };
