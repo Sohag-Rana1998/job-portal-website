@@ -25,7 +25,7 @@ const Root = () => {
     </div>
   ) : (
     <div className="max-w-[1400px] w-full mx-auto">
-      <div className="container mx-auto ">
+      <div className="container mx-auto px-2 md:px-0">
         <Navbar />
         <div className="pt-16 ">
           <Outlet />

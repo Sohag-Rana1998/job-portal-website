@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 
 import Swal from 'sweetalert2';
-import useAuth from '../../../../../../../../job-portal-asign-11/client/src/Components/Hooks/useAuth/useAuth';
+import useAuth from '../../Hooks/useAuth/useAuth';
 
 const Navbar = () => {
   const localTheme = localStorage.getItem('theme');
