@@ -92,6 +92,50 @@ const JobDetails = () => {
     }
   };
 
+  const handleSavedJob = async () => {
+    if (employerEmail == user?.email) {
+      return toast.error('You are not eligible to apply this job');
+    }
+
+    // if (present > lastDate)
+    //   return toast.error('Sorry! Application deadline is over for this job.');
+
+    const email = user?.email;
+    const name = user?.displayName;
+    const jobId = _id;
+
+    const applicantData = {
+      jobId,
+      job_banner,
+      job_title,
+      category,
+      min_salary,
+      max_salary,
+      dateOfPosting,
+      deadline,
+      applicationDate,
+      description,
+      employer,
+      email,
+      name,
+      applicant_count,
+    };
+
+    try {
+      const { data } = await axiosSecure.post(`/saved-jobs`, applicantData);
+      console.log(data);
+      if (data?.message) {
+        return toast.error(data.message);
+      }
+
+      toast.success('Jobs Successfully Saved!');
+
+      refetch();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const handleMessageSent = e => {
     e.preventDefault();
     toast.success('Message sent successfully!');
@@ -187,7 +231,13 @@ const JobDetails = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col md:flex-row justify-end  r mt-3">
+              <div className="flex flex-col md:flex-row justify-between r mt-3">
+                <button
+                  onClick={handleSavedJob}
+                  className="btn rounded-3xl  bg-blue-400"
+                >
+                  Saved Job
+                </button>
                 <label
                   onClick={() => {
                     setModalLoading(false);

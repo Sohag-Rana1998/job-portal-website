@@ -16,22 +16,6 @@ const AppliedJobs = () => {
 
   const { data, isLoading, refetch } = useAppliedJobsData(user?.email, filter);
 
-  //   setLoading(true);
-  //   const JobsData = async () => {
-  //     const { data } = await axiosSecure.get(
-  //       `/my-application-list?email=${user?.email}&filter=${filter}`
-  //     );
-  //     if (data) {
-  //       console.log(data);
-  //       setMylist(data);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   if (user?.email) {
-  //     JobsData();
-  //   }
-  // }, [filter, user?.email, axiosSecure]);
-
   return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
@@ -51,6 +35,31 @@ const AppliedJobs = () => {
       </Helmet>
       <div>
         <div>
+          <div className="h-52 mb-5 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
+            <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
+              <div className="pl-2 md:pl-20 mt-3 md:mt-10 text-center md:text-left">
+                <div>
+                  <div className="w-full px-0  ">
+                    <h4 className="text-4xl font-bold underline mb-5">
+                      Your Applied Jobs
+                    </h4>
+                    <div className=" text-left">
+                      <h4 className="text xl font-bold">
+                        {' '}
+                        User Name: {user?.displayName}
+                      </h4>
+                      <h4 className="text xl font-bold">
+                        User Email: {user?.email}
+                      </h4>
+                      <h4 className="text xl font-bold">
+                        Total Applied: {data?.length}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <div className="w-full flex justify-end">
             <div className="mr-4 w-52 md:mr-10">
               <div className="dropdown dropdown-bottom">
@@ -119,7 +128,7 @@ const AppliedJobs = () => {
                   {/* head */}
 
                   <thead>
-                    <tr>
+                    <tr className="bg-[#7ad3da]">
                       <th>No:</th>
                       <th>Job Title</th>
                       <th>Category</th>

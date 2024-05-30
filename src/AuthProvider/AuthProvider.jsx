@@ -12,13 +12,13 @@ import {
   updateProfile,
 } from 'firebase/auth';
 
-import axios from 'axios';
-
 import app from '../../public/Firebase/firebase.config';
+import useAxiosPublic from '../Components/Hooks/useAxiosPublic/useAxiosPublic';
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const auth = getAuth(app);
@@ -29,15 +29,29 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       const userEmail = { email: currentUser?.email } || user?.email;
       setUser(currentUser);
+      const userInfo = {
+        name: currentUser?.displayName,
+        email: currentUser?.email,
+        role: 'user',
+      };
       if (currentUser) {
-        axios
-          .post(`${import.meta.env.VITE_API_URL}/jwt`, userEmail, {
+        axiosPublic
+          .post(`/jwt`, userEmail, {
             withCredentials: true,
           })
-          .then(res => console.log(res.data));
+          .then(res => {
+            console.log(res.data);
+            axiosPublic
+              .post(`/users`, userInfo, {
+                withCredentials: true,
+              })
+              .then(res => {
+                console.log(res.data);
+              });
+          });
       } else {
-        axios
-          .post(`${import.meta.env.VITE_API_URL}/logout`, userEmail, {
+        axiosPublic
+          .post(`/logout`, userEmail, {
             withCredentials: true,
           })
           .then(res => console.log(res.data));
@@ -48,9 +62,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unSubscribe();
     };
-  }, [auth, user]);
-
-  
+  }, [auth, axiosPublic, user]);
 
   const handleUpdateProfile = (name, photo) => {
     updateProfile(auth.currentUser, {

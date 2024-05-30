@@ -4,8 +4,10 @@ import { Link, NavLink } from 'react-router-dom';
 
 import Swal from 'sweetalert2';
 import useAuth from '../../Hooks/useAuth/useAuth';
+import useAdmin from '../../Hooks/useAdmin/useAdmin';
 
 const Navbar = () => {
+  const { isAdmin } = useAdmin();
   const localTheme = localStorage.getItem('theme');
   const { user, logOut } = useAuth();
   const [theme, setTheme] = useState(localTheme);
@@ -131,55 +133,38 @@ const Navbar = () => {
           All Jobs
         </NavLink>
       </li>
-      {user ? (
-        <>
-          {' '}
-          <li>
-            <NavLink
-              to="/applied-jobs"
-              className={({ isActive, isPending }) =>
-                isActive
-                  ? 'border-2 font-bold   border-[#ff4153]'
-                  : isPending
-                  ? 'pending'
-                  : ''
-              }
-            >
-              Applied Jobs
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/add-jobs"
-              className={({ isActive, isPending }) =>
-                isActive
-                  ? 'border-2 font-bold   border-[#ff4153]'
-                  : isPending
-                  ? 'pending'
-                  : ''
-              }
-            >
-              Add A Job
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/my-jobs"
-              className={({ isActive, isPending }) =>
-                isActive
-                  ? 'border-2 font-bold   border-[#ff4153]'
-                  : isPending
-                  ? 'pending'
-                  : ''
-              }
-            >
-              My Jobs
-            </NavLink>
-          </li>
-        </>
+      {isAdmin?.role === 'admin' ? (
+        <li>
+          <NavLink
+            to="/dashboard/admin-home"
+            className={({ isActive, isPending }) =>
+              isActive
+                ? 'border-2 font-bold    border-[#ff4153]'
+                : isPending
+                ? 'pending'
+                : ''
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
       ) : (
-        <></>
+        <li>
+          <NavLink
+            to="/dashboard/user-home"
+            className={({ isActive, isPending }) =>
+              isActive
+                ? 'border-2 font-bold    border-[#ff4153]'
+                : isPending
+                ? 'pending'
+                : ''
+            }
+          >
+            Dashboard
+          </NavLink>
+        </li>
       )}
+
       <li>
         <NavLink
           to="/blogs"

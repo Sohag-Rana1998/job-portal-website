@@ -16,6 +16,12 @@ import BlogDetails from '../Pages/BlogDetails/BlogDetails';
 import AllJobsCard from '../Pages/AllJobsCard/AllJobsCard';
 import UserProfile from '../Pages/User Profile/UserProfile';
 import SearchedJob from '../Pages/SearchedJob/SearchedJob';
+import Dashboard from '../Root/Dashboard';
+import AdminHome from '../Pages/DashBoard/AdminHome/AdminHome';
+import ManageUsers from '../Pages/DashBoard/ManageUsers/ManageUsers';
+import UserHome from '../Pages/DashBoard/UserHome/UserHome';
+import UserSavedJobs from '../Pages/DashBoard/UserSavedJobs/UserSavedJobs';
+import AddReview from '../Pages/DashBoard/AddReview/AddReview';
 
 const router = createBrowserRouter([
   {
@@ -102,6 +108,51 @@ const router = createBrowserRouter([
       {
         path: '/searchJob/:text',
         element: <SearchedJob></SearchedJob>,
+      },
+      {
+        path: '/dashboard',
+        element: (
+          <PrivateRoute>
+            {' '}
+            <Dashboard />
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: 'admin-home',
+            element: <AdminHome />,
+          },
+          {
+            path: 'add-job',
+            element: <AddJob />,
+          },
+          {
+            path: 'manage-jobs',
+            element: <MyJobs />,
+          },
+          {
+            path: 'manage-users',
+            element: <ManageUsers />,
+          },
+
+          // user routes
+          {
+            path: 'user-home',
+            element: <UserHome />,
+          },
+          {
+            path: 'saved-jobs',
+            element: <UserSavedJobs />,
+          },
+          {
+            path: 'applied-jobs',
+            element: <AppliedJobs />,
+          },
+          {
+            path: 'add-review',
+            element: <AddReview />,
+          },
+        ],
       },
     ],
   },

@@ -29,9 +29,9 @@ const Login = () => {
 
         Swal.fire({
           icon: 'success',
-          title: 'Log In successful',
-          showConfirmButton: false,
-          timer: 1500,
+          title:
+            'Log In successful!  You have to allow cookie and site data to visit secure page like Applied Jobs and My Jobs page',
+          showConfirmButton: true,
         });
 
         navigate(location?.state || '/');
@@ -57,9 +57,9 @@ const Login = () => {
         navigate(location?.state || '/');
         Swal.fire({
           icon: 'success',
-          title: 'Log In successful',
-          showConfirmButton: false,
-          timer: 1500,
+          title:
+            'Log In successful!  You have to allow cookie and site data to visit secure page like Applied Jobs and My Jobs page',
+          showConfirmButton: true,
         });
       })
       .catch(error => {
