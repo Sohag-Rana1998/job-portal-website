@@ -8,8 +8,11 @@ import { IoEye, IoEyeOff } from 'react-icons/io5';
 import Swal from 'sweetalert2';
 
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
+import toast from 'react-hot-toast';
+import useAxiosPublic from '../../Components/Hooks/useAxiosPublic/useAxiosPublic';
 
 const Login = () => {
+  const axiosPublic = useAxiosPublic();
   const [type, setType] = useState(false);
   const { signInWithEmail, handleUpdateProfile, signInWithGoogle } = useAuth();
 
@@ -27,12 +30,9 @@ const Login = () => {
       .then(() => {
         // console.log(result.user);
 
-        Swal.fire({
-          icon: 'success',
-          title:
-            'Log In successful!  You have to allow cookie and site data to visit secure page like Applied Jobs and My Jobs page',
-          showConfirmButton: true,
-        });
+        toast.success(
+          'Log In successful!  You have to allow cookie and site data to visit secure page like Applied Jobs and My Jobs page'
+        );
 
         navigate(location?.state || '/');
       })
@@ -52,15 +52,26 @@ const Login = () => {
         const user = result.user;
         const photo = user?.photoURL;
         const name = user?.displayName;
+        const email = user?.email;
         handleUpdateProfile(name, photo);
+        const userInfo = {
+          name,
+          email,
+          photo,
+          role: 'user',
+        };
+        axiosPublic
+          .post(`/users`, userInfo, {
+            withCredentials: true,
+          })
+          .then(res => {
+            console.log(res.data);
+          });
+        toast.success(
+          'Log In successful!  You have to allow cookie and site data to visit secure page like Applied Jobs and My Jobs page'
+        );
 
         navigate(location?.state || '/');
-        Swal.fire({
-          icon: 'success',
-          title:
-            'Log In successful!  You have to allow cookie and site data to visit secure page like Applied Jobs and My Jobs page',
-          showConfirmButton: true,
-        });
       })
       .catch(error => {
         console.error(error);
@@ -128,7 +139,7 @@ const Login = () => {
                     id="email"
                     required
                     placeholder="Email"
-                    className="w-full mb-3  py-2 border-b-2  border-white bg-[#00523f] "
+                    className="w-full mb-3 px-2 py-2 border-b-2  border-white bg-[#00523f] "
                   />
                 </div>
                 <div>
@@ -143,7 +154,7 @@ const Login = () => {
                       name="password"
                       id="password"
                       placeholder="password"
-                      className="w-full  py-2 border-b-2  border-white bg-[#00523f] "
+                      className="w-full  py-2 px-2 border-b-2  border-white bg-[#00523f] "
                       required
                     />
                     <span

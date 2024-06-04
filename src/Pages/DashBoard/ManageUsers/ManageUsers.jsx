@@ -9,7 +9,7 @@ import useUsersData from '../../../Components/Hooks/useUsersData/useUsersData';
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const { users, refetch } = useUsersData();
-
+  console.log(users);
   const handleMakeAdmin = id => {
     Swal.fire({
       title: 'Are you sure?',
@@ -88,9 +88,9 @@ const ManageUsers = () => {
                 <th className="p-5 ">No</th>
 
                 <th>User Name</th>
-                <th> User Email</th>
-                <th> Role</th>
-                <th> Action</th>
+                <th>User Email</th>
+                <th>Role</th>
+                <th>Action</th>
               </tr>
             </thead>
 
@@ -101,8 +101,8 @@ const ManageUsers = () => {
                   <tr key={user._id}>
                     <th>{index + 1}</th>
 
-                    <td>{user.name}</td>
-                    <td>{user.email}</td>
+                    <td>{user?.name}</td>
+                    <td>{user?.email}</td>
                     <td className="">
                       {user.role === 'admin' ? (
                         'Admin'

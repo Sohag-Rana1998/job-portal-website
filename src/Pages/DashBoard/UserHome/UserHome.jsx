@@ -49,8 +49,8 @@ const UserHome = () => {
           </div>
         </div>
         <div className="w-full h-[150px] bg-gradient-to-r from-[#FE4880] to-[#FECDE9] rounded-xl flex items-center justify-center gap-3 ">
-          <FaPhone className="text-white text-3xl" />
-          <div className="text-white text-2xl inter font-extrabold">
+          <FaStar className="text-white text-3xl" />
+          <div className="text-white flex flex-col items-center text-2xl inter font-extrabold">
             <h3>2</h3>
             <h3>Review Add</h3>
           </div>
@@ -88,7 +88,7 @@ const UserHome = () => {
           </div>
           <div className="font-bold text-2xl flex items-center gap-2 mb-1 text-[#FFBB28]">
             <FaCalendar />
-            <p>Applied: 01</p>
+            <p>Applied Jobs: 01</p>
           </div>
         </div>
       </div>

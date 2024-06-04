@@ -7,6 +7,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
 import toast from 'react-hot-toast';
 import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
+import { GrLinkNext } from 'react-icons/gr';
 
 const AllJobs = () => {
   const axiosSecure = useAxiosSecure();
@@ -146,9 +147,9 @@ const AllJobs = () => {
                             {' '}
                             <button
                               onClick={handleAlert}
-                              className="btn text-white bg-blue-gray-600"
+                              className="btn bg-blue-500 w-full md:w-40 rounded-3xl hover:bg-gray-500 text-white"
                             >
-                              View Details
+                              View Details <GrLinkNext />
                             </button>
                           </Link>
                         </td>

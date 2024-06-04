@@ -1,7 +1,7 @@
 # Job Portal
 
 ## WEBSITE LINK: https://job-portal-by-sohag.netlify.app/
-
+### For Admin Login: Email: admin1@gmail.com  Password: Admin1
 ### Features and Characteristics Of My Website:
 
 My website is job hunting website.My website will be very helpful for those who

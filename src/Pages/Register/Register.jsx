@@ -8,8 +8,10 @@ import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import toast from 'react-hot-toast';
 import useAuth from '../../Components/Hooks/useAuth/useAuth';
+import useAxiosPublic from '../../Components/Hooks/useAxiosPublic/useAxiosPublic';
 
 const Register = () => {
+  const axiosPublic = useAxiosPublic();
   const [type, setType] = useState(false);
   const {
     createUserByEmailAndPassword,
@@ -41,6 +43,19 @@ const Register = () => {
     createUserByEmailAndPassword(email, password)
       .then(() => {
         handleUpdateProfile(name, photo);
+        const userInfo = {
+          name,
+          email,
+          photo,
+          role: 'user',
+        };
+        axiosPublic
+          .post(`/users`, userInfo, {
+            withCredentials: true,
+          })
+          .then(res => {
+            console.log(res.data);
+          });
 
         navigate('/');
 
@@ -71,7 +86,23 @@ const Register = () => {
         const user = result.user;
         const photo = user?.photoURL;
         const name = user?.displayName;
+        const email = user?.email;
+
         handleUpdateProfile(name, photo);
+        const userInfo = {
+          name,
+          email,
+          photo,
+          role: 'user',
+        };
+        axiosPublic
+          .post(`/users`, userInfo, {
+            withCredentials: true,
+          })
+          .then(res => {
+            console.log(res.data);
+          });
+
         navigate('/');
         Swal.fire({
           icon: 'success',
@@ -140,7 +171,7 @@ const Register = () => {
                     id="name"
                     required
                     placeholder="Your Name"
-                    className="w-full mb-3  py-2 border-b-2  border-white bg-[#00523f] "
+                    className="w-full mb-3 px-2 py-2 border-b-2  border-white bg-[#00523f] "
                   />
                 </div>
                 <div>
@@ -156,7 +187,7 @@ const Register = () => {
                     id="photo"
                     required
                     placeholder="Your Photo URL"
-                    className="w-full mb-3  py-2 border-b-2  border-white bg-[#00523f]  "
+                    className="w-full mb-3 px-2 py-2 border-b-2  border-white bg-[#00523f]  "
                   />
                 </div>
                 <div>
@@ -172,7 +203,7 @@ const Register = () => {
                     required
                     id="email"
                     placeholder="Email address"
-                    className="w-full mb-3  py-2 border-b-2  border-white bg-[#00523f] "
+                    className="w-full mb-3 px-2 py-2 border-b-2  border-white bg-[#00523f] "
                   />{' '}
                 </div>
                 <div>
@@ -188,7 +219,7 @@ const Register = () => {
                       id="password"
                       required
                       placeholder="password"
-                      className="w-full mb-3  py-2 border-b-2  border-white bg-[#00523f] "
+                      className="w-full mb-3 px-2 py-2 border-b-2  border-white bg-[#00523f] "
                     />
                     <span
                       className="absolute right-5 top-2 "

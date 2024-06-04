@@ -22,6 +22,7 @@ import ManageUsers from '../Pages/DashBoard/ManageUsers/ManageUsers';
 import UserHome from '../Pages/DashBoard/UserHome/UserHome';
 import UserSavedJobs from '../Pages/DashBoard/UserSavedJobs/UserSavedJobs';
 import AddReview from '../Pages/DashBoard/AddReview/AddReview';
+import AdminRoute from './AdminRoute';
 
 const router = createBrowserRouter([
   {
@@ -113,26 +114,42 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: (
           <PrivateRoute>
-            {' '}
             <Dashboard />
           </PrivateRoute>
         ),
         children: [
+          // admin routes
           {
             path: 'admin-home',
-            element: <AdminHome />,
+            element: (
+              <AdminRoute>
+                <AdminHome />
+              </AdminRoute>
+            ),
           },
           {
             path: 'add-job',
-            element: <AddJob />,
+            element: (
+              <AdminRoute>
+                <AddJob />
+              </AdminRoute>
+            ),
           },
           {
             path: 'manage-jobs',
-            element: <MyJobs />,
+            element: (
+              <AdminRoute>
+                <MyJobs />
+              </AdminRoute>
+            ),
           },
           {
             path: 'manage-users',
-            element: <ManageUsers />,
+            element: (
+              <AdminRoute>
+                <ManageUsers />
+              </AdminRoute>
+            ),
           },
 
           // user routes

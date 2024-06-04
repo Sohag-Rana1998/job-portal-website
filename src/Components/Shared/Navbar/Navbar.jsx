@@ -55,13 +55,6 @@ const Navbar = () => {
   //https://i.postimg.cc/RFxv43cD/dark.png
   const themeButton = (
     <>
-      {/* <a className=" h-12  w-12 bg-black rounded-full">
-        <img
-          className="w-full h-full p-1"
-          src="https://i.postimg.cc/66LCsndF/light.png"
-          alt=""
-        />
-      </a> */}
       <label className="cursor-pointer grid place-items-center">
         <input
           onChange={handleToggle}

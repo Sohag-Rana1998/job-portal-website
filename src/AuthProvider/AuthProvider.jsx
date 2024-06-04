@@ -29,25 +29,15 @@ const AuthProvider = ({ children }) => {
       setLoading(true);
       const userEmail = { email: currentUser?.email } || user?.email;
       setUser(currentUser);
-      const userInfo = {
-        name: currentUser?.displayName,
-        email: currentUser?.email,
-        role: 'user',
-      };
+
       if (currentUser) {
         axiosPublic
           .post(`/jwt`, userEmail, {
             withCredentials: true,
           })
           .then(res => {
+            setLoading(false);
             console.log(res.data);
-            axiosPublic
-              .post(`/users`, userInfo, {
-                withCredentials: true,
-              })
-              .then(res => {
-                console.log(res.data);
-              });
           });
       } else {
         axiosPublic
