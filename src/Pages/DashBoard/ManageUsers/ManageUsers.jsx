@@ -1,32 +1,32 @@
-import { RiDeleteBin5Line } from 'react-icons/ri';
+import { RiDeleteBin5Line } from "react-icons/ri";
 
 // import SectionTitle from '../../../Components/SectionTitle/SectionTitle';
-import Swal from 'sweetalert2';
-import { FaPeopleGroup } from 'react-icons/fa6';
-import useAxiosSecure from '../../../Components/Hooks/useAxiosSecure/useAxiosSecure';
-import useUsersData from '../../../Components/Hooks/useUsersData/useUsersData';
+import Swal from "sweetalert2";
+import { FaPeopleGroup } from "react-icons/fa6";
+import useAxiosSecure from "../../../Components/Hooks/useAxiosSecure/useAxiosSecure";
+import useUsersData from "../../../Components/Hooks/useUsersData/useUsersData";
 
 const ManageUsers = () => {
   const axiosSecure = useAxiosSecure();
   const { users, refetch } = useUsersData();
   console.log(users);
-  const handleMakeAdmin = id => {
+  const handleMakeAdmin = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
-      text: 'You want  to make admin!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "You want  to make admin!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes!',
-    }).then(result => {
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes!",
+    }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/user/admin/${id}`).then(data => {
+        axiosSecure.patch(`/user/admin/${id}`).then((data) => {
           if (data.data.modifiedCount > 0) {
             Swal.fire({
-              title: 'Updated!',
-              text: 'Your Request Has Been Successfully Modified.',
-              icon: 'success',
+              title: "Updated!",
+              text: "Your Request Has Been Successfully Modified.",
+              icon: "success",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -37,24 +37,24 @@ const ManageUsers = () => {
     });
   };
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    }).then(result => {
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/user/${id}`).then(data => {
+        axiosSecure.delete(`/user/${id}`).then((data) => {
           console.log(data.data);
           if (data?.data?.deletedCount > 0) {
             Swal.fire({
-              title: 'Deleted!',
-              text: 'Your file has been deleted.',
-              icon: 'success',
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -66,19 +66,18 @@ const ManageUsers = () => {
   };
 
   return (
-    <div className="w-full px-10 mt-5">
+    <div className="w-full  ">
       <div className="w-full">
-        {/* <SectionTitle
-          heading={'MANAGE ALL USERS'}
-          subheading={'How many??'}
-        ></SectionTitle> */}
-      </div>
-      <div className="w-full text-3xl mt-5 font-bold cinzel flex justify-evenly items-center">
-        <div>All Users: </div>
-        <div>Total Users: {users?.length}</div>
+        <div className=" rounded-t-xl md:h-40  w-full    bg-[url(https://i.postimg.cc/pV7qZCT6/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
+          <div className=" inset-0 text-white flex  items-center h-full absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
+            <h2 className="pl-4 md:pl-20 text-3xl font-bold">
+              Total Users: {users?.length}
+            </h2>
+          </div>
+        </div>
       </div>
 
-      <div className="mt-5">
+      <div>
         <div className="overflow-x-auto">
           <table className="table ">
             {/* head */}
@@ -104,8 +103,8 @@ const ManageUsers = () => {
                     <td>{user?.name}</td>
                     <td>{user?.email}</td>
                     <td className="">
-                      {user.role === 'admin' ? (
-                        'Admin'
+                      {user.role === "admin" ? (
+                        "Admin"
                       ) : (
                         <div
                           onClick={() => handleMakeAdmin(user._id)}

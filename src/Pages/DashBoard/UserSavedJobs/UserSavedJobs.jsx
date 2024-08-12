@@ -1,14 +1,14 @@
-import { IoIosArrowDropdown } from 'react-icons/io';
-import 'react-datepicker/dist/react-datepicker.css';
-import { ScrollRestoration } from 'react-router-dom';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import useAuth from '../../../Components/Hooks/useAuth/useAuth';
-import useSavedJobs from '../../../Components/Hooks/useSavedJobs/useSavedJobs';
-import toast from 'react-hot-toast';
-import useAxiosSecure from '../../../Components/Hooks/useAxiosSecure/useAxiosSecure';
+import { IoIosArrowDropdown } from "react-icons/io";
+import "react-datepicker/dist/react-datepicker.css";
+import { ScrollRestoration } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import useAuth from "../../../Components/Hooks/useAuth/useAuth";
+import useSavedJobs from "../../../Components/Hooks/useSavedJobs/useSavedJobs";
+import toast from "react-hot-toast";
+import useAxiosSecure from "../../../Components/Hooks/useAxiosSecure/useAxiosSecure";
 
 const UserSavedJobs = () => {
   const { user } = useAuth();
@@ -16,7 +16,7 @@ const UserSavedJobs = () => {
   const applicationDate = new Date();
   const axiosSecure = useAxiosSecure();
   const [data, setData] = useState({});
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const { savedJobs, refetch, isLoading } = useSavedJobs(filter);
   console.log(data);
 
@@ -36,15 +36,15 @@ const UserSavedJobs = () => {
   } = data || {};
   const present = new Date(applicationDate).toLocaleDateString();
   const lastDate = new Date(deadline).toLocaleDateString();
-  const handleApplyJob = async e => {
+  const handleApplyJob = async (e) => {
     e.preventDefault();
 
     if (employerEmail == user?.email) {
-      return toast.error('You are not eligible to apply this job');
+      return toast.error("You are not eligible to apply this job");
     }
 
     if (present > lastDate)
-      return toast.error('Sorry! Application deadline is over for this job.');
+      return toast.error("Sorry! Application deadline is over for this job.");
 
     const form = e.target;
     const resume = form.resume_link.value;
@@ -78,7 +78,7 @@ const UserSavedJobs = () => {
         return toast.error(data.message);
       }
 
-      toast.success('Application Successfully Submitted!');
+      toast.success("Application Successfully Submitted!");
 
       refetch();
     } catch (error) {
@@ -105,23 +105,21 @@ const UserSavedJobs = () => {
       </Helmet>
       <div>
         <div>
-          <div className="h-52 mb-5 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
-            <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-              <div className="pl-2 md:pl-20 mt-3 md:mt-10 text-center md:text-left">
+          <div className=" rounded-t-xl h-40   w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
+            <div className=" inset-0 text-white absolute p-2 md:p-5 rounded-t-xl bg-gradient-to-r from-gray-900 ">
+              <div className=" text-center md:text-left">
                 <div>
                   <div className="w-full px-0  ">
-                    <h4 className="text-4xl font-bold underline mb-5">
+                    <h4 className="text-2xl md:text-4xl font-bold underline mb-2">
                       Your Saved Jobs
                     </h4>
                     <div className=" text-left">
-                      <h4 className="text xl font-bold">
-                        {' '}
+                      <h4 className=" font-bold">
+                        {" "}
                         User Name: {user?.displayName}
                       </h4>
-                      <h4 className="text xl font-bold">
-                        User Email: {user?.email}
-                      </h4>
-                      <h4 className="text xl font-bold">
+                      <h4 className="  font-bold">User Email: {user?.email}</h4>
+                      <h4 className="  font-bold">
                         Total Saved: {savedJobs?.length}
                       </h4>
                     </div>
@@ -146,7 +144,7 @@ const UserSavedJobs = () => {
                 >
                   <li
                     onClick={() => {
-                      setFilter('');
+                      setFilter("");
                       setTimeout(refetch, 300);
                     }}
                   >
@@ -154,7 +152,7 @@ const UserSavedJobs = () => {
                   </li>
                   <li
                     onClick={() => {
-                      setFilter('On Site');
+                      setFilter("On Site");
                       setTimeout(refetch, 300);
                     }}
                   >
@@ -162,7 +160,7 @@ const UserSavedJobs = () => {
                   </li>
                   <li
                     onClick={() => {
-                      setFilter('Remote');
+                      setFilter("Remote");
                       setTimeout(refetch, 300);
                     }}
                   >
@@ -170,7 +168,7 @@ const UserSavedJobs = () => {
                   </li>
                   <li
                     onClick={() => {
-                      setFilter('Part-Time');
+                      setFilter("Part-Time");
                       setTimeout(refetch, 300);
                     }}
                   >
@@ -178,7 +176,7 @@ const UserSavedJobs = () => {
                   </li>
                   <li
                     onClick={() => {
-                      setFilter('Hybrid');
+                      setFilter("Hybrid");
                       setTimeout(refetch, 300);
                     }}
                   >

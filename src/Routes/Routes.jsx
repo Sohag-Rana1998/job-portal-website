@@ -12,7 +12,6 @@ import PrivateRoute from "./PrivateRoute";
 import CreatePDF from "../Pages/AppliedJobs/CreatePDF";
 import BlogDetails from "../Pages/BlogDetails/BlogDetails";
 import AllJobsCard from "../Pages/AllJobsCard/AllJobsCard";
-import UserProfile from "../Pages/User Profile/UserProfile";
 import SearchedJob from "../Pages/SearchedJob/SearchedJob";
 import Dashboard from "../Layout/Dashboard";
 import AdminHome from "../Pages/DashBoard/AdminHome/AdminHome";
@@ -97,14 +96,7 @@ const router = createBrowserRouter([
         path: "/all-jobs-card",
         element: <AllJobsCard></AllJobsCard>,
       },
-      {
-        path: "/user-profile",
-        element: (
-          <PrivateRoute>
-            <UserProfile />
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/searchJob/:text",
         element: <SearchedJob></SearchedJob>,

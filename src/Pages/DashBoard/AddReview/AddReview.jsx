@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 
-import { ScrollRestoration } from 'react-router-dom';
-import Swal from 'sweetalert2';
-import useAxiosPublic from '../../../Components/Hooks/useAxiosPublic/useAxiosPublic';
+import { ScrollRestoration } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAxiosPublic from "../../../Components/Hooks/useAxiosPublic/useAxiosPublic";
 
 const AddReview = () => {
   const axiosPublic = useAxiosPublic();
 
-  const handleAddReview = e => {
+  const handleAddReview = (e) => {
     e.preventDefault();
     const form = e.target;
     const img = form.photo.value;
@@ -26,15 +26,15 @@ const AddReview = () => {
     };
     // console.log(addReview);
     axiosPublic
-      .post('/add-testimonials', {
+      .post("/add-testimonials", {
         addReview,
       })
-      .then(res => {
+      .then((res) => {
         console.log(res.data);
         if (res.data?.insertedId) {
           Swal.fire({
-            icon: 'success',
-            title: 'Thank You. Successfully Added Your Review',
+            icon: "success",
+            title: "Thank You. Successfully Added Your Review",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -51,11 +51,11 @@ const AddReview = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className="w-full  my-10">
+    <div className="w-full ">
       <Helmet>
         <title>Adventure Travel | Add Review</title>
       </Helmet>
-      <div className="shadow-lg rounded-lg   p-5 md:p-8 border border-blue-400">
+      <div className="shadow-lg rounded-lg     border border-blue-400">
         {/* Heading */}
         <div className="mt-5 mb-8">
           <p className="text-center text-3xl font-semibold dark:text-white">

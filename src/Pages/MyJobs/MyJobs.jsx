@@ -1,14 +1,14 @@
-import Swal from 'sweetalert2';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { ScrollRestoration } from 'react-router-dom';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import { useState } from 'react';
-import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
-import useAuth from '../../Components/Hooks/useAuth/useAuth';
-import { Helmet } from 'react-helmet-async';
-import useMyJobsData from '../../Components/Hooks/useMyJobsData/useMyJobsData';
+import Swal from "sweetalert2";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { ScrollRestoration } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { useState } from "react";
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure/useAxiosSecure";
+import useAuth from "../../Components/Hooks/useAuth/useAuth";
+import { Helmet } from "react-helmet-async";
+import useMyJobsData from "../../Components/Hooks/useMyJobsData/useMyJobsData";
 
 const MyJobs = () => {
   const axiosSecure = useAxiosSecure();
@@ -21,23 +21,23 @@ const MyJobs = () => {
   const [modalLoading, setModalLoading] = useState(true);
   const { data, isLoading, refetch } = useMyJobsData(user?.email);
 
-  const handleDelete = id => {
+  const handleDelete = (id) => {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
-    }).then(result => {
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.delete(`/delete-job/${id}`).then(() => {
           // console.log(data);
           Swal.fire({
-            title: 'Deleted!',
-            text: 'User data has been deleted.',
-            icon: 'success',
+            title: "Deleted!",
+            text: "User data has been deleted.",
+            icon: "success",
           });
           refetch();
         });
@@ -52,9 +52,9 @@ const MyJobs = () => {
     min_salary,
     max_salary,
     description,
-  } = modalData || '';
+  } = modalData || "";
 
-  const handleUpdatejob = async e => {
+  const handleUpdatejob = async (e) => {
     e.preventDefault();
     const form = e.target;
     const id = modalData._id;
@@ -90,8 +90,8 @@ const MyJobs = () => {
       console.log(data);
       if (data.modifiedCount > 0) {
         Swal.fire({
-          icon: 'success',
-          title: 'Successfully Updated Your Tourist job Data',
+          icon: "success",
+          title: "Successfully Updated Your Tourist job Data",
           showConfirmButton: false,
           timer: 1500,
         });
@@ -101,7 +101,7 @@ const MyJobs = () => {
       } else {
         Swal.fire({
           title:
-            'Not updated. Please Make Some Changes On Your Data And Try Again.',
+            "Not updated. Please Make Some Changes On Your Data And Try Again.",
           showConfirmButton: true,
         });
       }
@@ -123,23 +123,23 @@ const MyJobs = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="w-full mx-auto px-5 ">
+    <div className="w-full mx-auto  ">
       <Helmet>
         <title>Job Portal | My Jobs List</title>
       </Helmet>
       <div>
         <div>
-          <div className="h-52 mb-5 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
+          <div className=" mb-5 rounded-t-xl md:h-40  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/pV7qZCT6/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
             <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-              <div className="pl-2 md:pl-20 mt-3 md:mt-10 text-center md:text-left">
+              <div className="pl-2 md:pl-20 mt-3 md:mt-5 text-center md:text-left">
                 <div>
                   <div className="w-full px-0  ">
-                    <h4 className="text-4xl font-bold underline mb-5">
+                    <h4 className="text-4xl font-bold underline ">
                       Your Job List
                     </h4>
                     <div className=" text-left">
                       <h4 className="text xl font-bold">
-                        {' '}
+                        {" "}
                         User Name: {user?.displayName}
                       </h4>
                       <h4 className="text xl font-bold">
@@ -155,15 +155,13 @@ const MyJobs = () => {
             </div>
           </div>
 
-          <div className="divider w-full mb-5 px-0 md:px-32 "></div>
-
           <div className="  ">
             {data && data?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table ">
                   {/* head */}
 
-                  <thead>
+                  <thead className="bg-base-200">
                     <tr>
                       <th>No:</th>
                       <th>Banner Image</th>
@@ -180,10 +178,10 @@ const MyJobs = () => {
                     {/* row 1 */}
                     {data &&
                       data?.map((job, index) => (
-                        <tr key={job._id} className="bg-base-200">
+                        <tr key={job._id}>
                           <th>{index + 1}</th>
 
-                          <td className="w-32 h-24 md:w-48 md:h-36">
+                          <td className="w-32 h-20 md:h-28 md:w-48 ">
                             <img
                               src={job?.job_banner}
                               className="w-full h-full rounded-lg"
@@ -209,7 +207,7 @@ const MyJobs = () => {
                                 setTimeout(setModalLoading, 500, true);
                               }}
                               htmlFor="my_modal_6"
-                              className="btn bg-blue-gray-200"
+                              className="btn bg-blue-500 hover:bg-gray-700 text-white"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +228,7 @@ const MyJobs = () => {
                           <td>
                             <a
                               onClick={() => handleDelete(job._id)}
-                              className="btn bg-blue-gray-200"
+                              className="btn bg-red-500 hover:bg-gray-700 text-white"
                             >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -422,7 +420,7 @@ const MyJobs = () => {
                             <DatePicker
                               className="border p-2 rounded-md w-full"
                               selected={postingDate}
-                              onChange={date => setPostingDate(date)}
+                              onChange={(date) => setPostingDate(date)}
                             />
                           </div>
                           <div className="flex flex-col gap-2 ">
@@ -432,7 +430,7 @@ const MyJobs = () => {
                             <DatePicker
                               className="border p-2 rounded-md w-full"
                               selected={deadlineDate}
-                              onChange={date => setDeadlineDate(date)}
+                              onChange={(date) => setDeadlineDate(date)}
                             />
                           </div>
                         </div>

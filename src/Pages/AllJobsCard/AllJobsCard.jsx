@@ -120,15 +120,15 @@ const AllJobsCard = () => {
                 <option value={"table"}>Table View</option>
               </select> */}
 
-              <div>
+              {/* <div >
                 <button className="btn w-full md:w-40 py-[14px] px-4 rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
                   Change Layout
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
           {layout === "grid" || layout === "" ? (
-            <div className="grid grid-cols-1 bg-brown-50 px-10 py-5 rounded-md gap-8  md:grid-cols-2 ">
+            <div className="grid grid-cols-1  my-5 rounded-md gap-8  md:grid-cols-2 ">
               {data &&
                 data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
             </div>

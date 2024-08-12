@@ -1,15 +1,18 @@
 import { Avatar } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
-import { FiLogIn } from "react-icons/fi";
+import { Link, useLocation } from "react-router-dom";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { FaUser } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAuth from "../../Hooks/useAuth/useAuth";
 import useAdmin from "../../Hooks/useAdmin/useAdmin";
+import { BsCheckLg } from "react-icons/bs";
 
 const Navbar = () => {
   const location = useLocation();
   const { isAdmin } = useAdmin();
+
+  console.log(isAdmin?.role);
   const localTheme = localStorage.getItem("theme");
   const { user, logOut } = useAuth();
   const [theme, setTheme] = useState(localTheme);
@@ -331,21 +334,17 @@ const Navbar = () => {
                       className="mr-4 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
                     />
                     <ul className="dropDown">
-                      <div className="w-auto bg-[#006740] bg-opacity-50 dropdownMenu duration-500   z-10   rounded-xl p-3   ">
+                      <div className="w-auto bg-white bg-opacity-50 dropdownMenu duration-500   z-10   rounded-xl p-3   ">
                         <div className="flex flex-col  items-end">
-                          <h2 className="w-full hover:bg-blue-500 bg-gray-500 text-white font-bold  p-2 rounded-md mb-2">
+                          <h2 className="w-full bg-[#FF4153] hover:bg-gray-950 r text-white font-bold  p-2 rounded-md mb-2">
                             {user?.displayName || ""}
                           </h2>
-                          <Link to={"/user-profile"}>
-                            <button className="btn  hover:bg-blue-500 mb-2 bg-gray-500 text-white">
-                              User Profile
-                            </button>
-                          </Link>
+
                           <button
                             onClick={handleLogout}
-                            className="btn hover:bg-blue-500 bg-gray-500 text-white"
+                            className="btn bg-[#FF4153] mr-3 text-white flex items-center gap-2 justify-center border-none focus:outline-none w-28 hover:bg-gray-950 "
                           >
-                            Log Out
+                            <FiLogOut /> Log Out
                           </button>
                         </div>
                       </div>
@@ -355,23 +354,23 @@ const Navbar = () => {
               </nav>
             </div>
           ) : (
-            <div className="flex items-center gap-3 group">
+            <div className="flex items-center gap-3">
               {themeButton}
               <Link to={"/login"}>
                 <button className="btn bg-[#FF4153] mr-3 text-white flex items-center gap-2 justify-center border-none focus:outline-none w-28 hover:bg-gray-950 ">
                   {" "}
-                  <FiLogIn className="text-white" /> Log In
+                  <FiLogIn /> Log In
                 </button>
               </Link>
               <Link to={"/register"}>
                 <button
-                  className={`btn  mr-3  border-none w-28 hover:bg-[#FF4153] flex justify-center items-center gap-2 ${
+                  className={`btn  mr-3  border-none w-28   flex justify-center items-center gap-2 ${
                     isScrolled
-                      ? "bg-gray-900 text-white"
-                      : "bg-white text-black"
+                      ? "bg-gray-900 text-white hover:bg-[#FF4153] "
+                      : "bg-white text-black hover:bg-gray-950 hover:text-white"
                   }`}
                 >
-                  <FaUser className="" /> Register
+                  <FaUser /> Register
                 </button>
               </Link>
             </div>

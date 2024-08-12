@@ -29,29 +29,27 @@ const AppliedJobs = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="mt-5 max-w-7xl container mx-auto px-5">
+    <div className=" max-w-7xl container mx-auto ">
       <Helmet>
         <title>Job Portal | Applied Jobs List</title>
       </Helmet>
       <div>
         <div>
-          <div className="h-52 mb-5 rounded-t-xl md:h-60  max-w-7xl container mx-auto  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
+          <div className="h-40  rounded-t-xl  max-w-7xl container mx-auto  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/qBFs9xb5/career-banner.jpg)] bg-center bg-no-repeat bg-cover  relative">
             <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
-              <div className="pl-2 md:pl-20 mt-3 md:mt-10 text-center md:text-left">
+              <div className="p-3 0  text-center md:text-left">
                 <div>
-                  <div className="w-full px-0  ">
-                    <h4 className="text-4xl font-bold underline mb-5">
+                  <div className="w-full px-0 ">
+                    <h4 className="text-2xl md:text-4xl font-bold underline ">
                       Your Applied Jobs
                     </h4>
                     <div className=" text-left">
-                      <h4 className="text xl font-bold">
+                      <h4 className=" font-bold">
                         {" "}
                         User Name: {user?.displayName}
                       </h4>
-                      <h4 className="text xl font-bold">
-                        User Email: {user?.email}
-                      </h4>
-                      <h4 className="text xl font-bold">
+                      <h4 className=" font-bold">User Email: {user?.email}</h4>
+                      <h4 className=" font-bold">
                         Total Applied: {data?.length}
                       </h4>
                     </div>
@@ -118,8 +116,6 @@ const AppliedJobs = () => {
               </div>
             </div>
           </div>
-
-          <div className="divider w-full mb-5 px-0 md:px-32 max-w-7xl container mx-auto"></div>
 
           <div className=" mb-10 max-w-7xl container mx-auto">
             {data && data?.length > 0 ? (

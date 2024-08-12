@@ -3,7 +3,10 @@ import { motion } from "framer-motion";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { useState } from "react";
 import toast from "react-hot-toast";
-
+import { EffectFade, Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-fade";
 const Banner = () => {
   const [searchText, setSearchText] = useState("");
 
@@ -17,8 +20,37 @@ const Banner = () => {
   };
 
   return (
-    <div className=" w-full mx-auto font-raleway h-full mb-5 -mt-24 md:-mt-16">
-      <div className="w-full mt-5 px-5 md:px-0   md:mt-0 relative text-white bg-[url(https://i.postimg.cc/0j6Fdv1q/01-9a03b3fb.jpg)] bg-no-repeat bg-cover  bg-center h-auto md:h-[650px] mb-5">
+    <div className=" w-full mx-auto font-raleway h-full mb-5 -mt-24 md:-mt-16 relative">
+      <Swiper
+        effect={"fade"}
+        fadeEffect={{ crossFade: true }}
+        slidesPerView={1}
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 4000,
+          disableOnInteraction: false,
+        }}
+        modules={[Autoplay, EffectFade]}
+        className="mySwiper w-full h-auto md:h-[650px]"
+      >
+        {/* slide 1 */}
+        <SwiperSlide>
+          <div className="w-full mt-5 px-5 md:px-0   md:mt-0  text-white bg-[url(https://i.postimg.cc/0j6Fdv1q/01-9a03b3fb.jpg)] bg-no-repeat bg-cover h-full bg-center  mb-5"></div>
+        </SwiperSlide>
+        {/* slide 2 */}
+        <SwiperSlide>
+          <div className="w-full mt-5 px-5 md:px-0   md:mt-0  text-white bg-[url(https://i.postimg.cc/HxK17045/2.jpg)] bg-no-repeat bg-cover h-full bg-center  mb-5 relative">
+            <div className="inset-0 absolute z-10 bg-black bg-opacity-70"></div>
+          </div>
+        </SwiperSlide>
+        <SwiperSlide>
+          <div className="w-full mt-5 px-5 md:px-0   md:mt-0  text-white bg-[url(https://i.postimg.cc/Ls0XrnGN/1.jpg)] bg-no-repeat bg-cover h-full bg-center  mb-5 relative">
+            <div className="inset-0 absolute z-10 bg-black bg-opacity-70"></div>
+          </div>
+        </SwiperSlide>
+      </Swiper>
+      <div className="inset-0 absolute z-10">
         <motion.div
           initial={{
             y: -200,
@@ -42,7 +74,7 @@ const Banner = () => {
             <span className=" text-[#ff4153] ">Job Immediete</span>
           </div>
 
-          <div className="text-white  mb-10 text-sm md:text-[16px]">
+          <div className="text-white  mb-10 text-sm md:text-[16px] px-4 md:px-20">
             {` Find the job you've always dreamed of with our comprehensive job
           portal. Explore thousands of vacancies from top companies and start
           building your future.`}
@@ -101,23 +133,6 @@ const Banner = () => {
             </div>
           </div>
         </motion.div>
-
-        <div className="lg:flex   hidden mt-16 lg:flex-col xl:flex-row justify-start items-center w-full  gap-8 pl-24">
-          <div className="w-full md:w-[180px] h-[70px]">
-            <img
-              className="w-full h-full"
-              src="https://i.postimg.cc/3RGm0yfv/Google-logo.png"
-              alt=""
-            />
-          </div>
-          <div className="w-full md:w-[300px] h-[70px]">
-            <img
-              className="w-full h-full"
-              src="https://i.postimg.cc/vBChpFkW/Microsoft-Logo-PNG.png"
-              alt=""
-            />
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -77,7 +77,7 @@ const AddJob = () => {
   ) : (
     <div>
       <div>
-        <div className="h-60 mb-5 mt-0 rounded-t-xl md:h-60  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/0jK1Vxp5/blog-2.png)] bg-center bg-no-repeat bg-cover  relative">
+        <div className="h-60 mb-5 mt-0 rounded-t-xl md:h-40  w-full  flex flex-col items-center justify-center   bg-[url(https://i.postimg.cc/0jK1Vxp5/blog-2.png)] bg-center bg-no-repeat bg-cover  relative">
           <div className=" inset-0 text-white absolute rounded-t-xl bg-gradient-to-r from-gray-900 ">
             <div className="pl-4 md:pl-20 mt-5 md:mt-10 flex flex-col justify-center md:justify-start items-center md:items-start">
               <div>
@@ -101,17 +101,13 @@ const AddJob = () => {
           </div>
         </div>
       </div>
-      <div className="">
-        <h4 className="w-full text-center text-2xl md:text-2xl font-bold underline ">
-          Add Job Details
-        </h4>
-      </div>
+
       <div className="flex w-full   justify-center items-center min-h-[calc(100vh-306px)] my-5">
         <Helmet>
           <title>Job Portal | Add Job</title>
         </Helmet>
 
-        <section className=" p-2 w-full md:p-16 mx-auto bg-orange-50 rounded-md shadow-lg ">
+        <section className=" p-2 w-full  mx-auto bg-orange-50 rounded-md shadow-lg ">
           <form onSubmit={handleFormSubmit}>
             <div className="grid grid-cols-1 w-full gap-6 mt-4 md:grid-cols-2 ">
               <div>
