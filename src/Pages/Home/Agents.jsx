@@ -2,7 +2,7 @@ import AgentsSlider from './AgentsSlider';
 
 const Agents = () => {
   return (
-    <div className="mt-10 container mx-auto text-black">
+    <div className="w-full overflow-hidden mx-auto text-black">
       <div className="text-center  mb-10">
         <p className="font-bold">Meet With Our </p>
         <h1 className="text-5xl font-bold text-[#ff4153]">Best Agents</h1>

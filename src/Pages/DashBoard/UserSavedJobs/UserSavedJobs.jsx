@@ -99,7 +99,7 @@ const UserSavedJobs = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="max-w-7xl container mt-5 mx-auto px-5 ">
+    <div className="w-full mt-5 mx-auto px-5 ">
       <Helmet>
         <title>Job Portal | Saved Jobs List</title>
       </Helmet>

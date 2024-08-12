@@ -1,22 +1,22 @@
-import { FaAd, FaHome, FaSave } from 'react-icons/fa';
+import { FaAd, FaHome, FaSave } from "react-icons/fa";
 import {
   FaAddressCard,
   FaCalendar,
   FaList,
   FaPeopleGroup,
   FaReadme,
-} from 'react-icons/fa6';
-import { Link, NavLink, Outlet } from 'react-router-dom';
-import useAdmin from '../Components/Hooks/useAdmin/useAdmin';
+} from "react-icons/fa6";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Components/Hooks/useAdmin/useAdmin";
 
 const Dashboard = () => {
   const { isAdmin } = useAdmin();
 
   return (
     <div className="flex  items-stretch h-auto  mx-auto">
-      <div className="w-64 bg-[#7ad3da] text-black ">
+      <div className=" hidden md:block md:w-44 lg:w-60 bg-[#7ad3da] text-black ">
         <div className="flex justify-center p-4">
-          <Link to={'/'}>
+          <Link to={"/"}>
             <div className="">
               <h3 className="text-2xl font-extrabold">
                 Job <span className="text-[#ff4153]">Portal</span>
@@ -25,17 +25,17 @@ const Dashboard = () => {
           </Link>
         </div>
         <ul className="menu px-3 mt-0">
-          {isAdmin?.role == 'admin' ? (
+          {isAdmin?.role == "admin" ? (
             <>
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/admin-home'}
+                  to={"/dashboard/admin-home"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold text-white'
+                      ? "border-2 w-full bg-gray-400 font-bold text-white"
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaHome />
@@ -45,13 +45,13 @@ const Dashboard = () => {
 
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/add-job'}
+                  to={"/dashboard/add-job"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold text-white'
+                      ? "border-2 w-full bg-gray-400 font-bold text-white"
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaAddressCard />
@@ -60,13 +60,13 @@ const Dashboard = () => {
               </li>
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/manage-jobs'}
+                  to={"/dashboard/manage-jobs"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold text-white'
+                      ? "border-2 w-full bg-gray-400 font-bold text-white"
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaList />
@@ -76,13 +76,13 @@ const Dashboard = () => {
 
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/manage-users'}
+                  to={"/dashboard/manage-users"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold'
+                      ? "border-2 w-full bg-gray-400 font-bold"
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaPeopleGroup />
@@ -94,13 +94,13 @@ const Dashboard = () => {
             <>
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/user-home'}
+                  to={"/dashboard/user-home"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold '
+                      ? "border-2 w-full bg-gray-400 font-bold "
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaHome />
@@ -109,13 +109,13 @@ const Dashboard = () => {
               </li>
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/saved-jobs'}
+                  to={"/dashboard/saved-jobs"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold '
+                      ? "border-2 w-full bg-gray-400 font-bold "
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaSave />
@@ -124,13 +124,13 @@ const Dashboard = () => {
               </li>
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/applied-jobs'}
+                  to={"/dashboard/applied-jobs"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold '
+                      ? "border-2 w-full bg-gray-400 font-bold "
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaCalendar />
@@ -140,13 +140,13 @@ const Dashboard = () => {
 
               <li className="mb-3">
                 <NavLink
-                  to={'/dashboard/add-review'}
+                  to={"/dashboard/add-review"}
                   className={({ isActive, isPending }) =>
                     isActive
-                      ? 'border-2 w-full bg-gray-400 font-bold '
+                      ? "border-2 w-full bg-gray-400 font-bold "
                       : isPending
-                      ? 'pending'
-                      : ''
+                      ? "pending"
+                      : ""
                   }
                 >
                   <FaAd />
@@ -159,13 +159,13 @@ const Dashboard = () => {
 
           <li className="mb-3">
             <NavLink
-              to={'/'}
+              to={"/"}
               className={({ isActive, isPending }) =>
                 isActive
-                  ? 'border-2 w-full bg-gray-400 font-bold '
+                  ? "border-2 w-full bg-gray-400 font-bold "
                   : isPending
-                  ? 'pending'
-                  : ''
+                  ? "pending"
+                  : ""
               }
             >
               <FaHome />
@@ -174,13 +174,13 @@ const Dashboard = () => {
           </li>
           <li className="mb-3">
             <NavLink
-              to={'/all-jobs-card'}
+              to={"/all-jobs-card"}
               className={({ isActive, isPending }) =>
                 isActive
-                  ? 'border-2 w-full bg-gray-400 font-bold '
+                  ? "border-2 w-full bg-gray-400 font-bold "
                   : isPending
-                  ? 'pending'
-                  : ''
+                  ? "pending"
+                  : ""
               }
             >
               <FaList />
@@ -189,13 +189,13 @@ const Dashboard = () => {
           </li>
           <li className="mb-3">
             <NavLink
-              to={'/blogs'}
+              to={"/blogs"}
               className={({ isActive, isPending }) =>
                 isActive
-                  ? 'border-2 w-full bg-gray-400 font-bold'
+                  ? "border-2 w-full bg-gray-400 font-bold"
                   : isPending
-                  ? 'pending'
-                  : ''
+                  ? "pending"
+                  : ""
               }
             >
               <FaReadme />
@@ -204,7 +204,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <div className="flex-1 py-10 mx-6">
+      <div className="flex-1  w-full md:w-auto mb-10 mx-0 md:mx-6">
         <Outlet />
       </div>
     </div>

@@ -64,7 +64,7 @@ const SearchedJob = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="container mx-auto  mt-5 ">
+    <div className="w-full mx-auto  mt-5 ">
       <Helmet>
         <title>Job Portal | All Jobs </title>
       </Helmet>

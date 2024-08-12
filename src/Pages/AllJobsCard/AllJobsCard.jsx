@@ -1,39 +1,31 @@
-import { useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
-import JobCard from '../JobByCategory/JobCard';
-import useAllJobsData from '../../Components/Hooks/useAllJobsData/useAllJobsData';
-import { ScrollRestoration } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure/useAxiosSecure";
+import JobCard from "../JobByCategory/JobCard";
+import useAllJobsData from "../../Components/Hooks/useAllJobsData/useAllJobsData";
+import { Link, ScrollRestoration } from "react-router-dom";
+import { GrLinkNext } from "react-icons/gr";
+import toast from "react-hot-toast";
+import useAuth from "../../Components/Hooks/useAuth/useAuth";
 
 const AllJobsCard = () => {
+  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [count, setCount] = useState(0);
   const [loader, setLoader] = useState(false);
+  const [layout, setLayout] = useState("");
   const { data, isLoading, refetch } = useAllJobsData(
     currentPage,
     itemsPerPage,
     search
   );
 
-  //   setLoading(true);
-  //   const JobsData = async () => {
-  //     const { data } = await axiosSecure.get(
-  //       `/all-jobs?page=${currentPage}&size=${itemsPerPage}&search=${search}`
-  //     );
-  //     if (data) {
-  //       console.log(data);
-  //       setJobs(data);
-  //       setLoading(false);
-  //     }
-  //   };
-  //   JobsData();
-  // }, [currentPage, itemsPerPage, axiosSecure, search]);
-
+  console.log(layout);
   useEffect(() => {
     const getCount = async () => {
       const { data } = await axiosSecure.get(`/jobs?search=${search}`);
@@ -48,15 +40,26 @@ const AllJobsCard = () => {
   }, [search, axiosSecure]);
 
   const totalPage = Math.ceil(parseInt(count) / itemsPerPage);
-  const pageArray = [...Array(totalPage).keys()].map(element => element + 1);
+  const pageArray = [...Array(totalPage).keys()].map((element) => element + 1);
 
-  const handleSearch = async e => {
+  const handleSearch = async (e) => {
     e.preventDefault();
     const searchText = e.target.search.value;
     setSearch(searchText);
     setTimeout(refetch, 500);
   };
 
+  const handleAlert = () => {
+    if (!user) return toast.success("You have to log in first to view details");
+  };
+
+  const hanleLayout = () => {
+    const value = event.target.value;
+    console.log(value);
+    setLayout(value);
+    setLoader(true);
+    setTimeout(setLoader, 1000, false);
+  };
   return isLoading || loader ? (
     <div className="w-[80%] mx-auto min-h-screen ">
       <SkeletonTheme baseColor="#a2a2b2">
@@ -70,7 +73,7 @@ const AllJobsCard = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="container mx-auto  mt-5 ">
+    <div className="max-w-7xl container  mx-auto  mt-5 ">
       <Helmet>
         <title>Job Portal | All Jobs </title>
       </Helmet>
@@ -92,11 +95,11 @@ const AllJobsCard = () => {
           </div>
 
           <div>
-            <div className=" w-[80%] mx-auto md:w-full block md:flex mb-5  md:justify-end ">
+            <div className=" w-[80%] gap-3 mx-auto md:w-full block md:flex mb-5  md:justify-end items-center">
               <form onSubmit={handleSearch}>
                 <label htmlFor="search"></label>
                 <input
-                  className="input bg-gray-200 w-full md:w-60 border mb-5 mr-3"
+                  className="input bg-gray-200 w-full md:w-60 border  mr-3"
                   id="search"
                   name="search"
                   placeholder="Search By Job Title"
@@ -107,12 +110,127 @@ const AllJobsCard = () => {
                   Search
                 </button>
               </form>
+              {/* <select
+                value={layout}
+                onChange={hanleLayout}
+                className="py-[14px] px-4 rounded-lg w-44 font-bold border-2 border-blue-500"
+              >
+                <option selected>Change Layout</option>
+                <option value={"grid"}>Grid View</option>
+                <option value={"table"}>Table View</option>
+              </select> */}
+
+              <div>
+                <button className="btn w-full md:w-40 py-[14px] px-4 rounded-lg hover:bg-gray-900 font-bold text-white bg-blue-500">
+                  Change Layout
+                </button>
+              </div>
             </div>
           </div>
-          <div className="grid grid-cols-1 bg-brown-50 px-10 py-5 rounded-md gap-8  md:grid-cols-2 ">
-            {data &&
-              data.map(job => <JobCard key={job._id} job={job}></JobCard>)}
-          </div>
+          {layout === "grid" || layout === "" ? (
+            <div className="grid grid-cols-1 bg-brown-50 px-10 py-5 rounded-md gap-8  md:grid-cols-2 ">
+              {data &&
+                data.map((job) => <JobCard key={job._id} job={job}></JobCard>)}
+            </div>
+          ) : (
+            <div>
+              {" "}
+              {data && data.length > 0 ? (
+                <div className="overflow-x-auto">
+                  <table className="table ">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th>No:</th>
+                        <th>Job Title</th>
+                        <th>Job Posting Date</th>
+                        <th>Application Deadline</th>
+                        <th>Salary range</th>
+                        <th className="text-center">Details</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      {/* row 1 */}
+                      {data &&
+                        data?.map((job, index) => (
+                          <tr key={index} className="bg-base-200">
+                            <th>{index + 1}</th>
+
+                            <td>{job?.job_title}</td>
+                            <td>
+                              {new Date(job.dateOfPosting).toLocaleDateString()}
+                            </td>
+                            <td>
+                              {new Date(job.deadline).toLocaleDateString()}
+                            </td>
+                            <td>
+                              ${job.min_salary}-{job.max_salary}
+                            </td>
+
+                            <td className="flex justify-center">
+                              <Link to={`/job-details/${job._id}`} className="">
+                                <button
+                                  onClick={handleAlert}
+                                  className="btn bg-blue-500 w-full  md:w-40 rounded-3xl hover:bg-gray-500 text-white"
+                                >
+                                  View Details <GrLinkNext />
+                                </button>
+                              </Link>
+                            </td>
+                          </tr>
+                        ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <div className="overflow-x-auto">
+                  <table className="table ">
+                    {/* head */}
+                    <thead>
+                      <tr>
+                        <th>No:</th>
+                        <th>Job Title</th>
+                        <th>Job Posting Date</th>
+                        <th>Application Deadline</th>
+                        <th>Salary range</th>
+                        <th>Details</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {/* row 1 */}
+
+                      <tr className="bg-base-200">
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <div className=" mt-5 mb-10 md:mb-40  font-bold">
+                    <h3 className="text-center mb-10 text-3xl">
+                      {" "}
+                      No Data Found
+                    </h3>
+                    <div className="w-full flex justify-end my-5">
+                      <button
+                        onClick={() => {
+                          setSearch("");
+                          setTimeout(refetch, 300);
+                        }}
+                        className="btn bg-gray-500 text-white text-right"
+                      >
+                        Go Back
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
           <div>
             {data && parseInt(count) > 4 ? (
               <div className="flex justify-center items-center my-5 bg-blue-400 rounded-xl p-3">
@@ -126,8 +244,8 @@ const AllJobsCard = () => {
                     }}
                     className={
                       currentPage == 1
-                        ? ' hidden'
-                        : 'px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md  dark:bg-gray-80 cursor-pointer dark:text-gray-600'
+                        ? " hidden"
+                        : "px-4 py-2 mx-1 text-gray-500 capitalize bg-white rounded-md  dark:bg-gray-80 cursor-pointer dark:text-gray-600"
                     }
                   >
                     <div className="flex items-center -mx-1">
@@ -150,7 +268,7 @@ const AllJobsCard = () => {
                     </div>
                   </a>
 
-                  {pageArray?.map(page => (
+                  {pageArray?.map((page) => (
                     <button
                       onClick={() => {
                         setCurrentPage(page);
@@ -161,8 +279,8 @@ const AllJobsCard = () => {
                       key={page}
                       className={
                         currentPage == page
-                          ? 'px-4 py-2 hidden md:block mx-1 text-gray-700 transition-colors duration-300 transform bg-blue-500 rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
-                          : 'px-4 py-2 hidden md:block mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                          ? "px-4 py-2 hidden md:block mx-1 text-gray-700 transition-colors duration-300 transform bg-blue-500 rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200"
+                          : "px-4 py-2 hidden md:block mx-1 text-gray-700 transition-colors duration-300 transform bg-white rounded-md sm:inline dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200"
                       }
                     >
                       {page}
@@ -172,8 +290,8 @@ const AllJobsCard = () => {
                   <a
                     className={
                       currentPage == pageArray.length
-                        ? 'hidden'
-                        : 'px-4 py-2 mx-1  text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200'
+                        ? "hidden"
+                        : "px-4 py-2 mx-1  text-gray-700 transition-colors duration-300 transform bg-white rounded-md dark:bg-gray-800 dark:text-gray-200 hover:bg-blue-500 dark:hover:bg-blue-500 hover:text-white dark:hover:text-gray-200"
                     }
                     onClick={() => {
                       setCurrentPage(currentPage + 1);
@@ -208,7 +326,7 @@ const AllJobsCard = () => {
                 <div className="w-full flex flex-col justify-center mt-5">
                   {data && data.length === 0 ? (
                     <h3 className="text-center text-3xl font-bold my-10">
-                      {' '}
+                      {" "}
                       No Job Found
                     </h3>
                   ) : (
@@ -217,7 +335,7 @@ const AllJobsCard = () => {
                   <div className="w-full flex  justify-center">
                     <button
                       onClick={() => {
-                        setSearch('');
+                        setSearch("");
                         setTimeout(refetch, 300);
                         setLoader(true);
                         setTimeout(setLoader, 1000, false);

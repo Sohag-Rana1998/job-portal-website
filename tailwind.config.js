@@ -39,7 +39,7 @@ module.exports = withMT({
   },
   plugins: [require("daisyui")],
   daisyui: {
-    themes: ["light", "synthwave", "cupcake"],
+    themes: ["light", "synthwave"],
   },
 });
 

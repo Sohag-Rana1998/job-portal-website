@@ -2,7 +2,7 @@ const Footer = () => {
   return (
     <div>
       <footer className="px-4 divide-y bg-gray-900 text-white">
-        <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+        <div className="max-w-7xl container   flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
           <div className="lg:w-1/3">
             <div className="flex justify-center items-center mt-10">
               <div className="self-center w-28 h-8 font-semibold">
@@ -14,8 +14,8 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-2 mx-auto text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
-            <div className="space-y-3">
+          <div className="grid grid-cols-2  text-sm gap-x-3 gap-y-8 max-w-7xl container mx-auto sm:grid-cols-4">
+            <div className="space-y-3 text-center md:text-left">
               <h3 className="tracking-wide uppercase ">Product</h3>
               <ul className="space-y-1">
                 <li>
@@ -32,22 +32,31 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 text-center md:text-left">
               <h3 className="tracking-wide uppercase ">Company</h3>
               <ul className="space-y-1">
                 <li>
                   <a rel="noopener noreferrer">Privacy</a>
                 </li>
                 <li>
+                  <a rel="noopener noreferrer">Guides</a>
+                </li>
+                <li>
+                  <a rel="noopener noreferrer">Public API</a>
+                </li>
+                <li>
                   <a rel="noopener noreferrer">Terms of Service</a>
                 </li>
               </ul>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 text-center md:text-left">
               <h3 className="uppercase ">Developers</h3>
               <ul className="space-y-1">
                 <li>
                   <a rel="noopener noreferrer">Public API</a>
+                </li>
+                <li>
+                  <a rel="noopener noreferrer">Integrations</a>
                 </li>
                 <li>
                   <a rel="noopener noreferrer">Documentation</a>
@@ -57,7 +66,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 text-center md:text-left">
               <div className="uppercase ">Social media</div>
               <div className="flex justify-start space-x-3">
                 <a
@@ -105,7 +114,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="py-6 text-sm text-center ">
+        <div className="py-6 text-sm text-center max-w-7xl container mx-auto">
           © 2024 Job Portal. All rights reserved.
         </div>
       </footer>

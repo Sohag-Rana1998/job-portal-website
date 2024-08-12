@@ -5,6 +5,7 @@ import JobProcess from './JobProcess';
 import Testimonials from './Testimonials';
 import { Helmet } from 'react-helmet-async';
 import Agents from './Agents';
+import BannerBottom from './BannerBottom';
 
 const Home = () => {
   return (
@@ -13,9 +14,12 @@ const Home = () => {
         <title>Job Portal | Home</title>
       </Helmet>
       <div>
-        <Banner></Banner>
+      <Banner></Banner>
       </div>
-      <div className="mt-10">
+      <div className="mt-16">
+      <BannerBottom></BannerBottom>
+      </div>
+      <div className="mt-16">
         <JobByCategory />
       </div>
       <div className="mt-16">
@@ -25,7 +29,7 @@ const Home = () => {
         <JobProcess />
       </div>
 
-      <div className="">
+      <div className="mt-16">
         <Agents></Agents>
       </div>
 

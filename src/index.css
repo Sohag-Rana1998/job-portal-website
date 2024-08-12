@@ -3,11 +3,7 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-@layer components {
-  .gadgetContainer {
-    @apply max-w-[1920px] px-5 md:px-[50px] lg:px-[80px] xl:px-[120px] 2xl:px-[150px] mx-auto
-  }
-}
+
 
 .btn-bg {
   background-color: #0766AD;

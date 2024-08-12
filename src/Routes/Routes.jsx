@@ -1,53 +1,52 @@
-import { createBrowserRouter } from 'react-router-dom';
-import ErrorPage from '../Pages/ErrorPage/ErrorPage';
-import Home from '../Pages/Home/Home';
-import Root from '../Root/Root';
-import Login from '../Pages/Login/Login';
-import Register from '../Pages/Register/Register';
-import AllJobs from '../Pages/AllJobs/AllJobs';
-import AppliedJobs from '../Pages/AppliedJobs/AppliedJobs';
-import AddJob from '../Pages/AddJob/AddJob';
-import MyJobs from '../Pages/MyJobs/MyJobs';
-import Blog from '../Pages/Blogs/Blog';
-import JobDetails from '../Pages/JobDetails/JobDetails';
-import PrivateRoute from './PrivateRoute';
-import CreatePDF from '../Pages/AppliedJobs/CreatePDF';
-import BlogDetails from '../Pages/BlogDetails/BlogDetails';
-import AllJobsCard from '../Pages/AllJobsCard/AllJobsCard';
-import UserProfile from '../Pages/User Profile/UserProfile';
-import SearchedJob from '../Pages/SearchedJob/SearchedJob';
-import Dashboard from '../Root/Dashboard';
-import AdminHome from '../Pages/DashBoard/AdminHome/AdminHome';
-import ManageUsers from '../Pages/DashBoard/ManageUsers/ManageUsers';
-import UserHome from '../Pages/DashBoard/UserHome/UserHome';
-import UserSavedJobs from '../Pages/DashBoard/UserSavedJobs/UserSavedJobs';
-import AddReview from '../Pages/DashBoard/AddReview/AddReview';
-import AdminRoute from './AdminRoute';
+import { createBrowserRouter } from "react-router-dom";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
+import Home from "../Pages/Home/Home";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Register/Register";
+import AppliedJobs from "../Pages/AppliedJobs/AppliedJobs";
+import AddJob from "../Pages/AddJob/AddJob";
+import MyJobs from "../Pages/MyJobs/MyJobs";
+import Blog from "../Pages/Blogs/Blog";
+import JobDetails from "../Pages/JobDetails/JobDetails";
+import PrivateRoute from "./PrivateRoute";
+import CreatePDF from "../Pages/AppliedJobs/CreatePDF";
+import BlogDetails from "../Pages/BlogDetails/BlogDetails";
+import AllJobsCard from "../Pages/AllJobsCard/AllJobsCard";
+import UserProfile from "../Pages/User Profile/UserProfile";
+import SearchedJob from "../Pages/SearchedJob/SearchedJob";
+import Dashboard from "../Layout/Dashboard";
+import AdminHome from "../Pages/DashBoard/AdminHome/AdminHome";
+import ManageUsers from "../Pages/DashBoard/ManageUsers/ManageUsers";
+import UserHome from "../Pages/DashBoard/UserHome/UserHome";
+import UserSavedJobs from "../Pages/DashBoard/UserSavedJobs/UserSavedJobs";
+import AddReview from "../Pages/DashBoard/AddReview/AddReview";
+import AdminRoute from "./AdminRoute";
+import Main from "../Layout/Main";
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Root></Root>,
+    path: "/",
+    element: <Main></Main>,
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
-        path: '/',
+        path: "/",
         element: <Home></Home>,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <Login></Login>,
       },
       {
-        path: '/register',
+        path: "/register",
         element: <Register></Register>,
       },
       {
-        path: '/all-jobs',
-        element: <AllJobs></AllJobs>,
+        path: "/all-jobs",
+        element: <AllJobsCard></AllJobsCard>,
       },
       {
-        path: '/applied-jobs',
+        path: "/applied-jobs",
         element: (
           <PrivateRoute>
             <AppliedJobs></AppliedJobs>
@@ -55,7 +54,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/add-jobs',
+        path: "/add-jobs",
         element: (
           <PrivateRoute>
             <AddJob></AddJob>
@@ -63,7 +62,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/my-jobs',
+        path: "/my-jobs",
         element: (
           <PrivateRoute>
             <MyJobs></MyJobs>
@@ -71,11 +70,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/blogs',
+        path: "/blogs",
         element: <Blog></Blog>,
       },
       {
-        path: '/blog/:id',
+        path: "/blog/:id",
         element: (
           <PrivateRoute>
             <BlogDetails />
@@ -83,7 +82,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/job-details/:id',
+        path: "/job-details/:id",
         element: (
           <PrivateRoute>
             <JobDetails />
@@ -91,15 +90,15 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/applicationData/:id',
+        path: "/applicationData/:id",
         element: <CreatePDF></CreatePDF>,
       },
       {
-        path: '/all-jobs-card',
+        path: "/all-jobs-card",
         element: <AllJobsCard></AllJobsCard>,
       },
       {
-        path: '/user-profile',
+        path: "/user-profile",
         element: (
           <PrivateRoute>
             <UserProfile />
@@ -107,11 +106,11 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: '/searchJob/:text',
+        path: "/searchJob/:text",
         element: <SearchedJob></SearchedJob>,
       },
       {
-        path: '/dashboard',
+        path: "/dashboard",
         element: (
           <PrivateRoute>
             <Dashboard />
@@ -120,7 +119,7 @@ const router = createBrowserRouter([
         children: [
           // admin routes
           {
-            path: 'admin-home',
+            path: "admin-home",
             element: (
               <AdminRoute>
                 <AdminHome />
@@ -128,7 +127,7 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: 'add-job',
+            path: "add-job",
             element: (
               <AdminRoute>
                 <AddJob />
@@ -136,7 +135,7 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: 'manage-jobs',
+            path: "manage-jobs",
             element: (
               <AdminRoute>
                 <MyJobs />
@@ -144,7 +143,7 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: 'manage-users',
+            path: "manage-users",
             element: (
               <AdminRoute>
                 <ManageUsers />
@@ -154,19 +153,19 @@ const router = createBrowserRouter([
 
           // user routes
           {
-            path: 'user-home',
+            path: "user-home",
             element: <UserHome />,
           },
           {
-            path: 'saved-jobs',
+            path: "saved-jobs",
             element: <UserSavedJobs />,
           },
           {
-            path: 'applied-jobs',
+            path: "applied-jobs",
             element: <AppliedJobs />,
           },
           {
-            path: 'add-review',
+            path: "add-review",
             element: <AddReview />,
           },
         ],

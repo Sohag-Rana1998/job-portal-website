@@ -10,7 +10,7 @@ const JobByCategory = () => {
 
   return (
     <Tabs>
-      <div className=" container px-6 mt-16 mx-auto rounded-t-md">
+      <div className=" max-w-7xl container  mx-auto px-6 mt-16  rounded-t-md">
         <motion.div
           initial={{
             y: 100,

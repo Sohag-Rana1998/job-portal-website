@@ -1,11 +1,11 @@
-import { Outlet } from 'react-router-dom';
-import Navbar from '../Components/Shared/Navbar/Navbar';
-import Footer from '../Components/Shared/Footer/Footer';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import useAuth from '../Components/Hooks/useAuth/useAuth';
-import { useEffect, useState } from 'react';
-const Root = () => {
+import { Outlet } from "react-router-dom";
+import Navbar from "../Components/Shared/Navbar/Navbar";
+import Footer from "../Components/Shared/Footer/Footer";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import useAuth from "../Components/Hooks/useAuth/useAuth";
+import { useEffect, useState } from "react";
+const Main = () => {
   const { loading } = useAuth();
   const [loader, setLoader] = useState(true);
   useEffect(() => {
@@ -24,10 +24,10 @@ const Root = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="max-w-[1400px] w-full mx-auto">
-      <div className="container mx-auto px-2 md:px-0">
+    <div className="w-full mx-auto">
+      <div className="w-full mx-auto ">
         <Navbar />
-        <div className="pt-16 ">
+        <div className="pt-16  ">
           <Outlet />
         </div>
         <Footer />
@@ -36,4 +36,4 @@ const Root = () => {
   );
 };
 
-export default Root;
+export default Main;

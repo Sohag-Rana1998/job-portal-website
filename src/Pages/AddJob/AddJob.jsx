@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import { useEffect, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 // import { useNavigate } from 'react-router-dom';
-import toast from 'react-hot-toast';
-import axios from 'axios';
-import useAuth from '../../Components/Hooks/useAuth/useAuth';
-import { Helmet } from 'react-helmet-async';
+import toast from "react-hot-toast";
+import axios from "axios";
+import useAuth from "../../Components/Hooks/useAuth/useAuth";
+import { Helmet } from "react-helmet-async";
 
 const AddJob = () => {
   const { user } = useAuth();
@@ -19,7 +19,7 @@ const AddJob = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [postingDate, setPostingDate] = useState(new Date());
 
-  const handleFormSubmit = async e => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const job_banner = form.job_banner.value;
@@ -55,7 +55,7 @@ const AddJob = () => {
         jobData
       );
       console.log(data);
-      toast.success('Job Data Successfully Posted!');
+      toast.success("Job Data Successfully Posted!");
       form.reset();
       // navigate('/my-posted-jobs');
     } catch (err) {
@@ -87,7 +87,7 @@ const AddJob = () => {
                   </h4>
                   <div className=" text-left">
                     <h4 className="text xl font-bold">
-                      {' '}
+                      {" "}
                       User Name: {user?.displayName}
                     </h4>
                     <h4 className="text xl font-bold">
@@ -103,7 +103,7 @@ const AddJob = () => {
       </div>
       <div className="">
         <h4 className="w-full text-center text-2xl md:text-2xl font-bold underline ">
-          Post A Job
+          Add Job Details
         </h4>
       </div>
       <div className="flex w-full   justify-center items-center min-h-[calc(100vh-306px)] my-5">
@@ -204,7 +204,7 @@ const AddJob = () => {
                 <DatePicker
                   className="border p-2 rounded-md w-full"
                   selected={postingDate}
-                  onChange={date => setPostingDate(date)}
+                  onChange={(date) => setPostingDate(date)}
                 />
               </div>
               <div className="flex flex-col gap-2 ">
@@ -214,7 +214,7 @@ const AddJob = () => {
                 <DatePicker
                   className="border p-2 rounded-md w-full"
                   selected={startDate}
-                  onChange={date => setStartDate(date)}
+                  onChange={(date) => setStartDate(date)}
                 />
               </div>
             </div>

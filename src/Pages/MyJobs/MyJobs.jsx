@@ -123,7 +123,7 @@ const MyJobs = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="max-w-7xl container mx-auto px-5 ">
+    <div className="w-full mx-auto px-5 ">
       <Helmet>
         <title>Job Portal | My Jobs List</title>
       </Helmet>

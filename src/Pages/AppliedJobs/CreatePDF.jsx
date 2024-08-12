@@ -22,7 +22,7 @@ const CreatePDF = () => {
       <Helmet>
         <title>Job Portal | PDF Download</title>
       </Helmet>
-      <div className="container mx-auto">
+      <div className="w-full mx-auto">
         <PDFViewer className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] h-[400px] md:h-[600px] lg:h-[800px] xl:h-[1000px] mx-auto mt-5">
           <ApplicationData data={data} user={user} />
         </PDFViewer>

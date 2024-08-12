@@ -29,11 +29,10 @@ import useAgentsData from '../../Components/Hooks/useAgentsData/useAgentsData';
 export default function AgentsSlider() {
   const { data } = useAgentsData();
   console.log(data);
-  
 
   return (
     <>
-      <div className="container mt-8 mx-auto px-20 md:px-0 flex justify-center items-center">
+      <div className="max-w-7xl container mt-8 mx-auto px-20 md:px-0 flex justify-center items-center">
         <Swiper
           effect={'cards'}
           grabCursor={true}

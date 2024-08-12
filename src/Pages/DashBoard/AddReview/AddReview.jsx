@@ -51,7 +51,7 @@ const AddReview = () => {
       <span className="loading loading-spinner loading-lg"></span>
     </div>
   ) : (
-    <div className="gadgetContainer  my-10">
+    <div className="w-full  my-10">
       <Helmet>
         <title>Adventure Travel | Add Review</title>
       </Helmet>

@@ -10,7 +10,7 @@ const JobProcess = () => {
   const [toggle2, setToggle2] = useState(false);
 
   return (
-    <div className="mb-32">
+    <div className="mb-32 max-w-7xl container  mx-auto">
       <div>
         <h1 className="text-3xl font-bold text-center text-black capitalize md:text-5xl ">
           Our Job <span className="text-[#ff4153]">Process</span>
