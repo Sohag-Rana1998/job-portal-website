@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import { createContext, useEffect, useState } from 'react';
+import PropTypes from "prop-types";
+import { createContext, useEffect, useState } from "react";
 import {
   GithubAuthProvider,
   GoogleAuthProvider,
@@ -10,23 +10,23 @@ import {
   signInWithPopup,
   signOut,
   updateProfile,
-} from 'firebase/auth';
+} from "firebase/auth";
 
-import app from '../../public/Firebase/firebase.config';
-import useAxiosPublic from '../Components/Hooks/useAxiosPublic/useAxiosPublic';
+import app from "../../public/Firebase/firebase.config";
+import useAxiosPublic from "../Components/Hooks/useAxiosPublic/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const auth = getAuth(app);
 
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, currentUser => {
+    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       // console.log(currentUser);
-      setLoading(true);
+
       const userEmail = { email: currentUser?.email } || user?.email;
       setUser(currentUser);
 
@@ -35,16 +35,14 @@ const AuthProvider = ({ children }) => {
           .post(`/jwt`, userEmail, {
             withCredentials: true,
           })
-          .then(res => {
+          .then((res) => {
             setLoading(false);
             console.log(res.data);
           });
       } else {
         axiosPublic
-          .post(`/logout`, userEmail, {
-            withCredentials: true,
-          })
-          .then(res => console.log(res.data));
+          .post(`/logout`, userEmail, {})
+          .then((res) => console.log(res.data));
       }
       setLoading(false);
     });

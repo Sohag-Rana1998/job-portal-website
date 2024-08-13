@@ -1,15 +1,14 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import useAuth from '../Components/Hooks/useAuth/useAuth';
-import useAdmin from '../Components/Hooks/useAdmin/useAdmin';
+import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import useAuth from "../Components/Hooks/useAuth/useAuth";
+import useAdmin from "../Components/Hooks/useAdmin/useAdmin";
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
   const { isAdmin, isLoading } = useAdmin();
-  const location = useLocation();
   const navigate = useNavigate();
 
   const handleNavigate = () => {
-    navigate('/', { state: { from: location.pathname } });
+    navigate("/");
   };
 
   if (loading || isLoading) {
@@ -20,7 +19,7 @@ const AdminRoute = ({ children }) => {
         <progress className="progress w-56 mb-1"></progress>
       </div>
     );
-  } else if (user && isAdmin?.role === 'admin') {
+  } else if (user && isAdmin?.role === "admin") {
     return children;
   } else {
     return handleNavigate();
