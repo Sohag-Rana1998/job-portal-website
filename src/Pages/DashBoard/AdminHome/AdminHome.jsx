@@ -1,10 +1,4 @@
-import {
-  FaCalendar,
-  FaShoppingCart,
-  FaShuttleVan,
-  FaStar,
-  FaWallet,
-} from "react-icons/fa";
+import { FaCalendar, FaShoppingCart, FaStar } from "react-icons/fa";
 
 // import usePaymentHistory from '../../../hooks/usePaymentHistory';
 import { FaPeopleGroup } from "react-icons/fa6";
@@ -26,8 +20,8 @@ const AdminHome = () => {
   // console.log(paymentHistory);
 
   const { users } = useUsersData();
-  const { jobs, isLoading, refetch } = useJobsData();
-  console.log(jobs);
+  const { data } = useJobsData();
+
   // const { payments } = useAllPayments();
   // const { menu } = useMenuData();
   // const { allOrders } = useAllOrders();
@@ -50,7 +44,7 @@ const AdminHome = () => {
         <div className="w-full h-[150px] bg-gradient-to-r from-[#BB34F5] to-[#FCDBFF] rounded-xl flex items-center justify-center p-4 ">
           <div className="text-white text-xl inter font-bold text-center">
             <div>
-              <h3>{jobs?.length}</h3>
+              <h3>{data?.length}</h3>
               <h3> Total Job</h3>
             </div>
           </div>
