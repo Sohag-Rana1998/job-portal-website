@@ -4,19 +4,20 @@ import {
   FaShuttleVan,
   FaStar,
   FaWallet,
-} from 'react-icons/fa';
+} from "react-icons/fa";
 
 // import usePaymentHistory from '../../../hooks/usePaymentHistory';
-import { FaPeopleGroup } from 'react-icons/fa6';
-import { IoLayersSharp } from 'react-icons/io5';
+import { FaPeopleGroup } from "react-icons/fa6";
+import { IoLayersSharp } from "react-icons/io5";
 
 // import useAllPayments from '../../../hooks/useAllPayments';
 // import useMenuData from '../../../hooks/useMenuData';
 // import useAllOrders from '../../../hooks/useAllOrders';
 // import CustomBarChart from '../../../Components/Shared/Recharts/CustomBarChart';
 // import PieCharts from '../../../Components/Shared/Recharts/PieCharts';
-import useUsersData from '../../../Components/Hooks/useUsersData/useUsersData';
-import useAuth from '../../../Components/Hooks/useAuth/useAuth';
+import useUsersData from "../../../Components/Hooks/useUsersData/useUsersData";
+import useAuth from "../../../Components/Hooks/useAuth/useAuth";
+import useJobsData from "../../../Components/Hooks/useJobsData/useJobsData";
 // import useJobsData from '../../../Components/Hooks/useJobsData/useJobsData';
 
 const AdminHome = () => {
@@ -25,7 +26,8 @@ const AdminHome = () => {
   // console.log(paymentHistory);
 
   const { users } = useUsersData();
-
+  const { jobs, isLoading, refetch } = useJobsData();
+  console.log(jobs);
   // const { payments } = useAllPayments();
   // const { menu } = useMenuData();
   // const { allOrders } = useAllOrders();
@@ -45,34 +47,25 @@ const AdminHome = () => {
         </h3>
       </div>
       <div className="w-full flex flex-col md:flex-row justify-between items-center gap-3 mb-5">
-        <div className="w-full h-[150px] bg-gradient-to-r from-[#BB34F5] to-[#FCDBFF] rounded-xl flex items-center justify-center">
-          <div className="text-white gap-3  flex items-center text-2xl inter font-extrabold">
-            <FaWallet className="text-white text-3xl" />
-            <div className="">
-              <h3>5500</h3>
-              <h3> Revenue</h3>
+        <div className="w-full h-[150px] bg-gradient-to-r from-[#BB34F5] to-[#FCDBFF] rounded-xl flex items-center justify-center p-4 ">
+          <div className="text-white text-xl inter font-bold text-center">
+            <div>
+              <h3>{jobs?.length}</h3>
+              <h3> Total Job</h3>
             </div>
           </div>
         </div>
-        <div className="w-full h-[150px] bg-gradient-to-r from-[#D3A256] to-[#FDE8C0] rounded-xl flex items-center justify-center gap-3 ">
-          <FaPeopleGroup className="text-white text-3xl" />
-          <div className="text-white text-2xl inter font-extrabold">
+        <div className="w-full h-[150px] bg-gradient-to-r from-[#D3A256] to-[#FDE8C0] rounded-xl flex items-center justify-center p-4">
+          <div className="text-white text-xl inter font-bold text-center ">
             <h3>{users?.length}</h3>
             <h3>Total Users</h3>
           </div>
         </div>
-        <div className="w-full h-[150px] bg-gradient-to-r from-[#FE4880] to-[#FECDE9] rounded-xl flex items-center justify-center gap-3 ">
-          <IoLayersSharp className="text-white text-3xl" />
-          <div className="text-white text-2xl inter font-extrabold">
-            <h3>16</h3>
-            <h3>Jobs</h3>
-          </div>
-        </div>
-        <div className="w-full h-[150px] bg-gradient-to-r from-[#6AAEFF] to-[#B6F7FF] rounded-xl flex items-center justify-center gap-3 ">
-          <FaShuttleVan className="text-white text-3xl" />
-          <div className="text-white text-2xl inter font-extrabold">
-            <h3>{`'Applicant's'`}</h3>
-            <h3>Orders</h3>
+
+        <div className="w-full h-[150px] bg-gradient-to-r from-[#6AAEFF] to-[#B6F7FF] rounded-xl flex items-center justify-center p-4">
+          <div className="text-white text-xl inter font-bold text-center ">
+            <h3>20</h3>
+            <h3>Total Applicants</h3>
           </div>
         </div>
       </div>

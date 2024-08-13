@@ -26,12 +26,11 @@ const Home = () => {
       <div className="mt-16">
         <JobProcess />
       </div>
-
-      <div className="mt-16">
-        <Agents></Agents>
-      </div>
       <div className="mt-16">
         <Testimonials></Testimonials>
+      </div>
+      <div className="mt-16">
+        <Agents></Agents>
       </div>
       <ScrollRestoration />
     </div>

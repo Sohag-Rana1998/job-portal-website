@@ -55,9 +55,9 @@ const AddReview = () => {
       <Helmet>
         <title>Adventure Travel | Add Review</title>
       </Helmet>
-      <div className="shadow-lg rounded-lg     border border-blue-400">
+      <div className="">
         {/* Heading */}
-        <div className="mt-5 mb-8">
+        <div className="mb-8">
           <p className="text-center text-3xl font-semibold dark:text-white">
             Add Your Review Here
           </p>
@@ -139,7 +139,7 @@ const AddReview = () => {
             rows="5"
           ></textarea>
           <input
-            className="px-4 w-full py-2 mt-4 rounded hover:bg-[#b4516d]  bg-[#7ad3da] duration-200 text-black cursor-pointer font-semibold"
+            className="px-4 w-full py-2 mt-4 rounded hover:bg-blue-gray-900 hover:text-white  bg-[#7ad3da] duration-200 text-black cursor-pointer font-semibold"
             type="submit"
             value="Add Review"
           />

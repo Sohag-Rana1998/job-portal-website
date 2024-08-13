@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { GrLinkNext } from 'react-icons/gr';
-import toast from 'react-hot-toast';
-import useAuth from '../../Components/Hooks/useAuth/useAuth';
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import { GrLinkNext } from "react-icons/gr";
+import toast from "react-hot-toast";
+import useAuth from "../../Components/Hooks/useAuth/useAuth";
 const JobCard = ({ job }) => {
   const { user } = useAuth();
   const handleAlert = () => {
-    if (!user) toast.success('You have to log in first to view details');
+    if (!user) toast.success("You have to log in first to view details");
   };
   const {
     _id,
@@ -23,7 +23,7 @@ const JobCard = ({ job }) => {
   } = job || {};
 
   return (
-    <div className="flex items-start flex-col rounded-t-xl xl:flex-row hover:scale-[1.03] duration-500 shadow-lg">
+    <div className="flex items-start flex-col rounded-t-xl md:flex-row hover:scale-[1.03] duration-500 shadow-lg">
       <div className="w-full h-52 lg:h-64">
         <img src={job_banner} alt="" className="w-full h-full" />
       </div>

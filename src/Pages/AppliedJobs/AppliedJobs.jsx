@@ -11,10 +11,8 @@ import useAppliedJobsData from "../../Components/Hooks/useAppliedJobsData/useApp
 
 const AppliedJobs = () => {
   const { user } = useAuth();
-
   const [filter, setFilter] = useState("");
-
-  const { data, isLoading, refetch } = useAppliedJobsData(user?.email, filter);
+  const { data, isLoading, refetch } = useAppliedJobsData(filter);
 
   return isLoading ? (
     <div className="w-[80%] mx-auto min-h-screen ">

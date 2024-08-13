@@ -1,16 +1,21 @@
 import {
   FaCalendar,
-  FaHome,
-  FaPhone,
+  FaSave,
   FaShoppingCart,
   FaStar,
   FaWallet,
-} from 'react-icons/fa';
-import useAuth from '../../../Components/Hooks/useAuth/useAuth';
+} from "react-icons/fa";
+import { FaCheckDouble } from "react-icons/fa6";
+import useAuth from "../../../Components/Hooks/useAuth/useAuth";
+import useSavedJobs from "../../../Components/Hooks/useSavedJobs/useSavedJobs";
+import useAppliedJobsData from "../../../Components/Hooks/useAppliedJobsData/useAppliedJobsData";
 
 // import usePaymentHistory from '../../../hooks/usePaymentHistory';
 
 const UserHome = () => {
+  const filter = "";
+  const { savedJobs, refetch, isLoading } = useSavedJobs(filter);
+  const { data } = useAppliedJobsData(filter);
   // const { paymentHistory, refetch } = usePaymentHistory();
   // console.log(paymentHistory);
   const { user } = useAuth();
@@ -34,24 +39,24 @@ const UserHome = () => {
       <div className="flex flex-col md:flex-row justify-between items-center gap-3 mb-5">
         <div className="w-full h-[150px] bg-gradient-to-r from-[#BB34F5] to-[#FCDBFF] rounded-xl flex items-center justify-center">
           <div className="text-white gap-3  flex items-center text-2xl inter font-extrabold">
-            <FaWallet className="text-white text-3xl" />
-            <div className="">
-              <h3>{5}</h3>
+            <FaSave className="text-white text-3xl " />
+            <div className="text-center">
+              <h3>{savedJobs?.length}</h3>
               <h3>Saved Jobs</h3>
             </div>
           </div>
         </div>
         <div className="w-full h-[150px] bg-gradient-to-r from-[#D3A256] to-[#FDE8C0] rounded-xl flex items-center justify-center gap-3 ">
-          <FaHome className="text-white text-3xl" />
-          <div className="text-white text-2xl inter font-extrabold">
-            <h3>{3}</h3>
+          <FaCheckDouble className="text-white text-3xl" />
+          <div className="text-white text-center text-2xl inter font-extrabold ">
+            <h3>{data?.length}</h3>
             <h3>Apply Jobs</h3>
           </div>
         </div>
         <div className="w-full h-[150px] bg-gradient-to-r from-[#FE4880] to-[#FECDE9] rounded-xl flex items-center justify-center gap-3 ">
           <FaStar className="text-white text-3xl" />
-          <div className="text-white flex flex-col items-center text-2xl inter font-extrabold">
-            <h3>2</h3>
+          <div className="text-white text-center text-2xl  font-extrabold">
+            <h3>0</h3>
             <h3>Review Add</h3>
           </div>
         </div>
@@ -79,16 +84,16 @@ const UserHome = () => {
             </h3>
           </div>
           <div className="font-bold text-2xl flex items-center gap-2 mb-1 text-[#0088FE]">
-            <FaShoppingCart />
-            <p>Saved Jobs: 3</p>
+            <FaSave />
+            <h3>{savedJobs?.length}</h3>
+          </div>
+          <div className="font-bold text-2xl flex items-center gap-2 mb-1 text-[#FFBB28]">
+            <FaCheckDouble />
+            <h3>{data?.length}</h3>
           </div>
           <div className="font-bold text-2xl flex items-center gap-2 mb-1 text-[#00C4A1]">
             <FaStar />
-            <p>Reviews: 02</p>
-          </div>
-          <div className="font-bold text-2xl flex items-center gap-2 mb-1 text-[#FFBB28]">
-            <FaCalendar />
-            <p>Applied Jobs: 01</p>
+            <p>Reviews: 0</p>
           </div>
         </div>
       </div>

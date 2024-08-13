@@ -32,7 +32,7 @@ const Banner = () => {
           disableOnInteraction: false,
         }}
         modules={[Autoplay, EffectFade]}
-        className="mySwiper w-full h-auto md:h-[650px]"
+        className="mySwiper w-full h-[650px]"
       >
         {/* slide 1 */}
         <SwiperSlide>

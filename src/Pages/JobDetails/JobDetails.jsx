@@ -1,28 +1,25 @@
-import { useState } from 'react';
-import { ScrollRestoration, useParams } from 'react-router-dom';
-import useAxiosSecure from '../../Components/Hooks/useAxiosSecure/useAxiosSecure';
-import { Helmet } from 'react-helmet-async';
-import { Typography } from '@material-tailwind/react';
-import useAuth from '../../Components/Hooks/useAuth/useAuth';
-import { toast } from 'react-hot-toast';
-import 'react-datepicker/dist/react-datepicker.css';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import useJobDataByID from '../../Components/Hooks/useJobDataByID/useJobDataByID';
+import { useState } from "react";
+import { ScrollRestoration, useParams } from "react-router-dom";
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
+import { Typography } from "@material-tailwind/react";
+import useAuth from "../../Components/Hooks/useAuth/useAuth";
+import { toast } from "react-hot-toast";
+import "react-datepicker/dist/react-datepicker.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import useJobDataByID from "../../Components/Hooks/useJobDataByID/useJobDataByID";
+import React, { useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 const JobDetails = () => {
   const { user } = useAuth();
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
-  // const [loading, setLoading] = useState(true);
-
+  const [loading, setLoading] = useState(false);
   const [modalLoading, setModalLoading] = useState(true);
   const applicationDate = new Date();
-
   const { data, isLoading, refetch } = useJobDataByID(id);
-  // useEffect(() => {
-  //   getData();
-  // }, []);
 
   const {
     _id,
@@ -42,15 +39,15 @@ const JobDetails = () => {
   const present = new Date(applicationDate).toLocaleDateString();
   const lastDate = new Date(deadline).toLocaleDateString();
 
-  const handleApplyJob = async e => {
+  const handleApplyJob = async (e) => {
     e.preventDefault();
 
     if (employerEmail == user?.email) {
-      return toast.error('You are not eligible to apply this job');
+      return toast.error("You are not eligible to apply this job");
     }
 
     if (present > lastDate)
-      return toast.error('Sorry! Application deadline is over for this job.');
+      return toast.error("Sorry! Application deadline is over for this job.");
 
     const form = e.target;
     const resume = form.resume_link.value;
@@ -84,7 +81,7 @@ const JobDetails = () => {
         return toast.error(data.message);
       }
 
-      toast.success('Application Successfully Submitted!');
+      toast.success("Application Successfully Submitted!");
 
       refetch();
     } catch (error) {
@@ -94,7 +91,7 @@ const JobDetails = () => {
 
   const handleSavedJob = async () => {
     if (employerEmail == user?.email) {
-      return toast.error('You are not eligible to apply this job');
+      return toast.error("You are not eligible to apply this job");
     }
 
     // if (present > lastDate)
@@ -128,7 +125,7 @@ const JobDetails = () => {
         return toast.error(data.message);
       }
 
-      toast.success('Jobs Successfully Saved!');
+      toast.success("Jobs Successfully Saved!");
 
       refetch();
     } catch (error) {
@@ -136,9 +133,29 @@ const JobDetails = () => {
     }
   };
 
-  const handleMessageSent = e => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
     e.preventDefault();
-    toast.success('Message sent successfully!');
+    setLoading(true);
+    // const email=e.target.user_email.value;
+    // const message=e.target.message.value;
+    // console.log(email)
+    emailjs
+      .sendForm("service_2mpe8uk", "template_sd4va7c", form.current, {
+        publicKey: "-YELe9jYCFqrAV82n",
+      })
+      .then(
+        () => {
+          toast.success("Message sent successfully!");
+          setLoading(false);
+          e.target.reset();
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          setLoading(false);
+        }
+      );
   };
 
   return isLoading ? (
@@ -159,13 +176,13 @@ const JobDetails = () => {
         <title>Job Portal | Details </title>
       </Helmet>
 
-      <div className="h-32 mb-10 bg-black md:h-40  w-full rounded-xl flex justify-between items-center">
+      <div className="h-32 mb-10 bg-black md:h-40  w-full  flex justify-between items-center">
         <h1 className="text-2xl h-full text-white flex items-center  w-full md:text-4xl font-bold   justify-center">
           Job Details
         </h1>
-        <div className="h-full w-full rounded-xl">
+        <div className="h-full w-full l">
           <img
-            className="h-full w-full rounded-xl"
+            className="h-full w-full "
             src="https://i.postimg.cc/Ssq2VxLb/banner.png"
             alt=""
           />
@@ -209,7 +226,7 @@ const JobDetails = () => {
                   </Typography>
                   <div className="flex  w-full my-4 justify-between items-start md:items-center flex-col gap-3 md:flex-row">
                     <div className="text-sm  w-auto  font-bold text-white bg-gray-500  py-1 px-2 rounded-3xl">
-                      Posting Date:{' '}
+                      Posting Date:{" "}
                       {new Date(dateOfPosting).toLocaleDateString()}
                     </div>
                     <div className="w-auto text-sm font-bold text-white bg-gray-500 py-1  px-2 rounded-3xl">
@@ -234,7 +251,7 @@ const JobDetails = () => {
               <div className="flex flex-col md:flex-row justify-between r mt-3">
                 <button
                   onClick={handleSavedJob}
-                  className="btn rounded-3xl  bg-blue-400"
+                  className="btn rounded-3xl  bg-blue-400 text-white hover:bg-gray-900"
                 >
                   Saved Job
                 </button>
@@ -244,7 +261,7 @@ const JobDetails = () => {
                     setTimeout(setModalLoading, 500, true);
                   }}
                   htmlFor="my_modal_6"
-                  className="btn bg-blue-500 w-full md:w-40 rounded-3xl hover:bg-gray-500 text-white"
+                  className="btn bg-blue-500 w-full md:w-40 rounded-3xl hover:bg-gray-900 text-white"
                 >
                   Apply Now
                 </label>
@@ -255,57 +272,32 @@ const JobDetails = () => {
             <h3 className="text-2xl font-bold mb-4 text-center">
               Contact With Employer:
             </h3>
-            <form onSubmit={handleMessageSent} className="">
+            <form ref={form} onSubmit={sendEmail}>
               <div className="mb-5">
-                <label className=" " htmlFor="name">
+                <label className=" " htmlFor="user_name">
                   Your Name
                 </label>
                 <input
                   id="name"
-                  name="name"
+                  name="user_name"
                   defaultValue={user?.displayName}
                   type="text"
-                  disabled
                   className="block w-full px-4 py-2 mt-2  bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
               </div>
               <div className="mb-5">
-                <label className=" " htmlFor="name">
+                <label className=" " htmlFor="user_email">
                   Your Email
                 </label>
                 <input
                   id="name"
-                  name="name"
-                  disabled
+                  name="user_email"
                   defaultValue={user?.email}
                   type="email"
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 />
               </div>
-              <div className="mb-5">
-                <label className="" htmlFor="name">
-                  Phone
-                </label>
-                <input
-                  id="name"
-                  name="phone"
-                  type="number"
-                  placeholder="Phone Number"
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-                />
-              </div>
-              <div className="mb-5">
-                <label className=" " htmlFor="name">
-                  Subject
-                </label>
-                <input
-                  id="name"
-                  name="subject"
-                  type="text"
-                  placeholder="Subject"
-                  className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
-                />
-              </div>
+
               <div className="mb-5">
                 <label className=" " htmlFor="name">
                   Message
@@ -319,8 +311,13 @@ const JobDetails = () => {
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40  focus:outline-none focus:ring"
                 ></textarea>
               </div>
-              <button className="btn rounded-3xl w-full bg-gray-900 text-white hover:bg-[#FF4153]">
-                Send
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="btn rounded-3xl w-full hover:bg-gray-900 text-white bg-[#FF4153]"
+              >
+                {loading ? "Sending..." : "Send Email"}
               </button>
             </form>
           </div>

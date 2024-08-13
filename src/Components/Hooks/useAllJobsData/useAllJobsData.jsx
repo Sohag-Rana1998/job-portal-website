@@ -1,9 +1,13 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const useAllJobsData = (currentPage, itemsPerPage, search) => {
-  const { data, isLoading, refetch } = useQuery({
-    queryKey: ['all-jobs'],
+  const {
+    data : jobs,
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["all-jobs"],
     queryFn: async () => {
       const { data } = await axios.get(
         `${
@@ -13,7 +17,7 @@ const useAllJobsData = (currentPage, itemsPerPage, search) => {
       return data;
     },
   });
-  return { data, isLoading, refetch };
+  return { jobs, isLoading, refetch };
 };
 
 export default useAllJobsData;

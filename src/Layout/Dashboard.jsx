@@ -13,8 +13,8 @@ const Dashboard = () => {
   const { isAdmin } = useAdmin();
 
   return (
-    <div className="flex  items-stretch h-auto  mx-auto">
-      <div className=" hidden md:block md:w-44 lg:w-60 bg-[#7ad3da] text-black ">
+    <div className="flex w-full items-stretch h-auto  mx-auto">
+      <div className=" hidden md:block md:w-52 lg:w-60 bg-[#7ad3da] text-black ">
         <div className="flex justify-center p-4">
           <Link to={"/"}>
             <div className="">
@@ -204,7 +204,7 @@ const Dashboard = () => {
           </li>
         </ul>
       </div>
-      <div className="flex-1  w-full md:w-auto mb-10 mx-0 md:mx-6">
+      <div className="flex-1  w-full mb-10 mx-0 md:mx-6">
         <Outlet />
       </div>
     </div>

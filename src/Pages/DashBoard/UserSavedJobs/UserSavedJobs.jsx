@@ -99,7 +99,7 @@ const UserSavedJobs = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="w-full mt-5 mx-auto px-5 ">
+    <div className="w-full mx-auto  ">
       <Helmet>
         <title>Job Portal | Saved Jobs List</title>
       </Helmet>
@@ -115,7 +115,6 @@ const UserSavedJobs = () => {
                     </h4>
                     <div className=" text-left">
                       <h4 className=" font-bold">
-                        {" "}
                         User Name: {user?.displayName}
                       </h4>
                       <h4 className="  font-bold">User Email: {user?.email}</h4>
@@ -129,7 +128,7 @@ const UserSavedJobs = () => {
             </div>
           </div>
           <div className="w-full flex justify-end">
-            <div className="mr-4 w-52 md:mr-10">
+            <div className=" w-52">
               <div className="dropdown dropdown-bottom">
                 <div
                   tabIndex={0}
@@ -187,9 +186,7 @@ const UserSavedJobs = () => {
             </div>
           </div>
 
-          <div className="divider w-full mb-5 px-0 md:px-32 "></div>
-
-          <div className=" mb-10 ">
+          <div className="mb-5">
             {savedJobs && savedJobs?.length > 0 ? (
               <div className="overflow-x-auto">
                 <table className="table ">

@@ -5,6 +5,7 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import useAuth from "../Components/Hooks/useAuth/useAuth";
 import { useEffect, useState } from "react";
+
 const Main = () => {
   const { loading } = useAuth();
   const [loader, setLoader] = useState(true);

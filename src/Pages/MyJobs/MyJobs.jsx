@@ -19,7 +19,7 @@ const MyJobs = () => {
   const [postingDate, setPostingDate] = useState(new Date());
   const [deadlineDate, setDeadlineDate] = useState(new Date());
   const [modalLoading, setModalLoading] = useState(true);
-  const { data, isLoading, refetch } = useMyJobsData(user?.email);
+  const { data, isLoading, refetch } = useMyJobsData();
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -155,10 +155,10 @@ const MyJobs = () => {
             </div>
           </div>
 
-          <div className="  ">
+          <div className=" w-full overflow-x-scroll">
             {data && data?.length > 0 ? (
-              <div className="overflow-x-auto">
-                <table className="table ">
+              <div className="w-full overflow-x-auto">
+                <table className="table overflow-x-auto">
                   {/* head */}
 
                   <thead className="bg-base-200">

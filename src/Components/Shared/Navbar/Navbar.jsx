@@ -116,9 +116,10 @@ const Navbar = () => {
     </>
   );
 
-  const dashboardRoute = isAdmin
-    ? { path: "/dashboard/admin-home", title: "Dashboard" }
-    : { path: "/dashboard/user-home", title: "Dashboard" };
+  const dashboardRoute =
+    isAdmin?.role === "admin"
+      ? { path: "/dashboard/admin-home", title: "Dashboard" }
+      : { path: "/dashboard/user-home", title: "Dashboard" };
 
   const links = [
     {
@@ -178,9 +179,10 @@ const Navbar = () => {
     },
   ];
 
-  const dashboardLinkForMobile = isAdmin
-    ? [...links, ...adminDashboard]
-    : [...links, ...userDashboard];
+  const dashboardLinkForMobile =
+    isAdmin?.role === "admin"
+      ? [...links, ...adminDashboard]
+      : [...links, ...userDashboard];
 
   const linksForMobile = isDashboard ? dashboardLinkForMobile : links;
 
@@ -199,15 +201,19 @@ const Navbar = () => {
       }  pt-2 mx-auto   `}
     >
       <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+        {/* <div className="dropdown mr-2">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn !bg-opacity-0 border-none  md:hidden"
+          >
             <svg
               onClick={() => setMenuToggle(true)}
               xmlns="http://www.w3.org/2000/svg"
-              className={`h-5 w-5 ${isHomePage ? "text-white" : " text-black"}`}
+              className={`h-5 w-5`}
               fill="none"
               viewBox="0 0 24 24"
-              stroke="currentColor"
+              stroke={`${isScrolled ? "#000" : "#FFF"}`}
             >
               <path
                 strokeLinecap="round"
@@ -217,6 +223,7 @@ const Navbar = () => {
               />
             </svg>
           </div>
+          
           <ul
             tabIndex={0}
             className={`menu menu-sm ${
@@ -279,6 +286,98 @@ const Navbar = () => {
               </div>
             </div>
           </ul>
+        </div> */}
+        <div className="drawer  w-14  md:w-0 mr-2 md:mr-0">
+          <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content  w-14  md:w-0">
+            {/* Page content here */}
+            <label
+              htmlFor="my-drawer"
+              className="btn bg-gray-200 !bg-opacity-40 !border-none flex md:hidden"
+            >
+              <svg
+                onClick={() => setMenuToggle(true)}
+                xmlns="http://www.w3.org/2000/svg"
+                className={`h-5 w-5  `}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="#000"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16"
+                />
+              </svg>
+            </label>
+          </div>
+          <div className="drawer-side">
+            <label
+              htmlFor="my-drawer"
+              aria-label="close sidebar"
+              className="drawer-overlay"
+            ></label>
+            <ul
+              className={`menu bg-base-200 text-base-content min-h-full w-48 p-4`}
+            >
+              {/* Sidebar content here */}
+
+              {linksForMobile?.map((link) => (
+                <li key={link.path} onClick={() => setMenuToggle(false)}>
+                  <Link
+                    to={link?.path}
+                    className={`${
+                      location.pathname == link.path
+                        ? "border-2  font-bold  border-[#ff4153]"
+                        : ""
+                    } `}
+                  >
+                    {link?.title}
+                  </Link>
+                </li>
+              ))}
+              <div className="navbar-end mt-2 ">
+                <div className=" ">
+                  {user ? (
+                    <div className="">
+                      <Avatar
+                        title={user?.displayName || ""}
+                        src={
+                          (user && user?.photoURL) ||
+                          "https://i.ibb.co/zmbRY07/images.png"
+                        }
+                        className="mr-4 mb-2 cursor-pointer bg-no-repeat bg-cover bg-[url(https://i.ibb.co/zmbRY07/images.png)]"
+                      />
+
+                      <button
+                        onClick={handleLogout}
+                        className="btn bg-[#FF4153] mt-2 text-white flex items-center gap-2 justify-center border-none focus:outline-none w-40 hover:bg-gray-950 "
+                      >
+                        <FiLogOut /> Log Out
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <Link to={"/login"}>
+                        <button className="btn bg-[#FF4153]  text-white flex items-center gap-2 justify-center border-none focus:outline-none w-40 hover:bg-gray-950 ">
+                          {" "}
+                          <FiLogIn /> Log In
+                        </button>
+                      </Link>
+                      <Link to={"/register"}>
+                        <button
+                          className={`btn  mt-2  border-none w-40 text-white bg-gray-950 hover:bg-[#FF4153] flex justify-center items-center gap-2`}
+                        >
+                          <FaUser /> Register
+                        </button>
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </ul>
+          </div>
         </div>
         <div className="flex w-full justify-between items-center ">
           <Link to={"/"}>
