@@ -154,10 +154,6 @@ const Navbar = () => {
       path: "/dashboard/manage-users",
       title: "Manage Users",
     },
-    {
-      path: "/dashboard/manage-users",
-      title: "Manage Users",
-    },
   ];
 
   const userDashboard = [
@@ -185,7 +181,7 @@ const Navbar = () => {
       : [...links, ...userDashboard];
 
   const linksForMobile = isDashboard ? dashboardLinkForMobile : links;
-
+  console.log(linksForMobile);
   return (
     <div
       className={` navbar w-full fixed z-50  transition duration-300 ease-in-out ${
@@ -287,13 +283,13 @@ const Navbar = () => {
             </div>
           </ul>
         </div> */}
-        <div className="drawer  w-14  md:w-0 mr-2 md:mr-0">
+        <div className="drawer  w-14  lg:w-0 mr-2 lg:mr-0">
           <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-          <div className="drawer-content  w-14  md:w-0">
+          <div className="drawer-content  w-14  lg:w-0">
             {/* Page content here */}
             <label
               htmlFor="my-drawer"
-              className="btn bg-gray-200 !bg-opacity-40 !border-none flex md:hidden"
+              className="btn bg-gray-200 !bg-opacity-40 !border-none flex lg:hidden"
             >
               <svg
                 onClick={() => setMenuToggle(true)}
@@ -395,7 +391,7 @@ const Navbar = () => {
         <div className="block md:hidden ">{themeButton}</div>
       </div>
 
-      <div className="navbar-center hidden  md:flex">
+      <div className="navbar-center hidden  lg:flex">
         <ul className="menu menu-horizontal flex gap-2 px-1">
           {" "}
           {links?.map((link) => (

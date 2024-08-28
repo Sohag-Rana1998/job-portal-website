@@ -171,7 +171,7 @@ const JobDetails = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="my-8 ">
+    <div className="mb-8 ">
       <Helmet>
         <title>Job Portal | Details </title>
       </Helmet>

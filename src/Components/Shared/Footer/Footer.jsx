@@ -68,7 +68,7 @@ const Footer = () => {
             </div>
             <div className="space-y-3 text-center md:text-left">
               <div className="uppercase ">Social media</div>
-              <div className="flex justify-start space-x-3">
+              <div className="flex justify-center md:justify-start  space-x-3">
                 <a
                   rel="noopener noreferrer"
                   title="Facebook"

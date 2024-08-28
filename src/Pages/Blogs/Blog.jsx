@@ -1,19 +1,19 @@
-import { CardHeader, Typography } from '@material-tailwind/react';
+import { CardHeader, Typography } from "@material-tailwind/react";
 // import { useEffect, useState } from 'react';
 import {
   Link,
   ScrollRestoration,
   useLocation,
   useNavigate,
-} from 'react-router-dom';
-import 'react-datepicker/dist/react-datepicker.css';
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import useBlogsData from '../../Components/Hooks/useBlogsData/useBlogsData';
-import { Helmet } from 'react-helmet-async';
-import useAuth from '../../Components/Hooks/useAuth/useAuth';
-import toast from 'react-hot-toast';
-import axios from 'axios';
+} from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import useBlogsData from "../../Components/Hooks/useBlogsData/useBlogsData";
+import { Helmet } from "react-helmet-async";
+import useAuth from "../../Components/Hooks/useAuth/useAuth";
+import toast from "react-hot-toast";
+import axios from "axios";
 const Blog = () => {
   const { data, isLoading, refetch } = useBlogsData();
   const navigate = useNavigate();
@@ -22,9 +22,9 @@ const Blog = () => {
   const startDate = new Date();
 
   // const [loading, setLoading] = useState(true);
-  const handleBlog = async e => {
+  const handleBlog = async (e) => {
     e.preventDefault();
-    if (!user) return navigate('/login', { state: location.pathname });
+    if (!user) return navigate("/login", { state: location.pathname });
 
     const form = e.target;
     const question1 = form.title.value;
@@ -51,7 +51,7 @@ const Blog = () => {
         blogData
       );
       console.log(data);
-      toast.success('Your Blog Successfully Posted!');
+      toast.success("Your Blog Successfully Posted!");
       form.reset();
       refetch();
     } catch (err) {
@@ -72,18 +72,20 @@ const Blog = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="my-8">
+    <div className="mb-8">
       <Helmet>
         <title>Job Portal || Blogs</title>
       </Helmet>
-      <div className="h-32 mb-10  md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex items-center justify-center bg-[url(https://i.postimg.cc/k4vWHgYk/bg-13.png)] bg-opacity-50 ">
-        <h1 className="text-2xl md:text-4xl font-bold text-white">
-          Learn More About Programming
-        </h1>
+      <div className="h-32 mb-10  md:h-40 bg-no-repeat bg-center bg-cover w-full flex items-center justify-center bg-[url(https://i.postimg.cc/k4vWHgYk/bg-13.png)] bg-opacity-50 ">
+        <div>
+          <h1 className="text-2xl md:text-4xl text-right font-bold text-white mb-3">
+            Blogs
+          </h1>
+        </div>
       </div>
       <div className="flex flex-col md:flex-row justify-between gap-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-full md:w-[60%] lg:w-[70%]">
-          {data?.map(blog => (
+          {data?.map((blog) => (
             <div key={blog._id}>
               <div className="w-full  h-full  rounded-2xl shadow-2xl  overflow-hidden">
                 <CardHeader
@@ -105,13 +107,13 @@ const Blog = () => {
                     <img
                       src={
                         blog?.authorImage ||
-                        'https://i.ibb.co/zmbRY07/images.png'
+                        "https://i.ibb.co/zmbRY07/images.png"
                       }
                       alt=""
                       className="w-10 h-10 rounded-full"
                     />
                     <h3 className="text-sm font-bold">
-                      Author: {blog.author || 'Unknown'}
+                      Author: {blog.author || "Unknown"}
                     </h3>
                   </div>
                   <div>
@@ -123,7 +125,7 @@ const Blog = () => {
                 <div className="px-3 h-auto  m-0 ">
                   <div className="flex h-full flex-col justify-between">
                     <Typography variant="h6">{blog.question1}</Typography>
-                    <Typography variant="h6">{blog.question2 || ''}</Typography>
+                    <Typography variant="h6">{blog.question2 || ""}</Typography>
                     <div>
                       <p>{blog.answer1?.substring(0, 150)}...</p>
                     </div>
@@ -132,7 +134,7 @@ const Blog = () => {
                       <Link to={`/blog/${blog._id}`}>
                         <button className=" mb-2  hover:scale-[110%] duration-500  md:w-auto text-black font-bold">
                           <a className="font-bold text-xl underline ">
-                            {' '}
+                            {" "}
                             Read More
                           </a>
                         </button>

@@ -1,19 +1,19 @@
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-import { Helmet } from 'react-helmet-async';
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+import { Helmet } from "react-helmet-async";
 import {
   ScrollRestoration,
   useLocation,
   useNavigate,
   useParams,
-} from 'react-router-dom';
+} from "react-router-dom";
 
-import 'react-datepicker/dist/react-datepicker.css';
-import useBlogDataByID from '../../Components/Hooks/useBlogDataByID/useBlogDataByID';
-import toast from 'react-hot-toast';
-import axios from 'axios';
-import useAuth from '../../Components/Hooks/useAuth/useAuth';
-import useCommentDataByID from '../../Components/Hooks/useCommentDataByID/useCommentDataByID';
+import "react-datepicker/dist/react-datepicker.css";
+import useBlogDataByID from "../../Components/Hooks/useBlogDataByID/useBlogDataByID";
+import toast from "react-hot-toast";
+import axios from "axios";
+import useAuth from "../../Components/Hooks/useAuth/useAuth";
+import useCommentDataByID from "../../Components/Hooks/useCommentDataByID/useCommentDataByID";
 
 const BlogDetails = () => {
   const { id } = useParams();
@@ -26,9 +26,9 @@ const BlogDetails = () => {
   const { user } = useAuth();
   const startDate = new Date().toLocaleDateString();
 
-  const handleBlog = async e => {
+  const handleBlog = async (e) => {
     e.preventDefault();
-    if (!user) return navigate('/login', { state: location.pathname });
+    if (!user) return navigate("/login", { state: location.pathname });
 
     const form = e.target;
     const question1 = form.title.value;
@@ -55,7 +55,7 @@ const BlogDetails = () => {
         blogData
       );
       console.log(data);
-      toast.success('Your Blog Successfully Posted!');
+      toast.success("Your Blog Successfully Posted!");
       form.reset();
       refetch();
     } catch (err) {
@@ -63,7 +63,7 @@ const BlogDetails = () => {
     }
   };
 
-  const handleComment = async e => {
+  const handleComment = async (e) => {
     e.preventDefault();
     const commentId = id;
     const nameOfCommenter = e.target.name.value;
@@ -83,7 +83,7 @@ const BlogDetails = () => {
         comment
       );
       console.log(data);
-      toast.success('Your Comment Successfully Submitted!');
+      toast.success("Your Comment Successfully Submitted!");
       e.target.reset();
       refetch1();
     } catch (err) {
@@ -115,17 +115,17 @@ const BlogDetails = () => {
       </SkeletonTheme>
     </div>
   ) : (
-    <div className="my-8 w-full mx-auto">
+    <div className="mb-8 w-full mx-auto">
       <Helmet>
         <title>Blog | Details </title>
       </Helmet>
 
-      <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full rounded-xl flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/k4vWHgYk/bg-13.png)] bg-opacity-50 ">
+      <div className="h-32 mb-10 md:h-40 bg-no-repeat bg-center bg-cover w-full  flex flex-col items-center justify-center bg-[url(https://i.postimg.cc/k4vWHgYk/bg-13.png)] bg-opacity-50 ">
         <h1 className="text-2xl md:text-4xl font-bold text-white mb-5">
-          Know Details
+          Details
         </h1>
         <div>
-          <h3 className="font-bold text-white">Home/Blog Details</h3>
+          <h3 className="font-bold text-white">Home/Blogs/Blog Details</h3>
         </div>
       </div>
 
@@ -149,7 +149,7 @@ const BlogDetails = () => {
                     <div>
                       <img
                         src={
-                          authorImage || 'https://i.ibb.co/zmbRY07/images.png'
+                          authorImage || "https://i.ibb.co/zmbRY07/images.png"
                         }
                         alt=""
                         className="w-12 h-12 rounded-full"
@@ -165,11 +165,11 @@ const BlogDetails = () => {
 
                   <div className="mb-5">
                     <div className="text-2xl font-bold">{question1}</div>
-                    <div className="text-lg mt-2">{answer1 || ''}</div>
+                    <div className="text-lg mt-2">{answer1 || ""}</div>
                   </div>
                   <div className="mb-5">
                     <div className="text-2xl font-bold">{question2}</div>
-                    <div className="text-lg mt-2">{answer2 || ''}</div>
+                    <div className="text-lg mt-2">{answer2 || ""}</div>
                   </div>
                 </div>
               </div>
@@ -234,7 +234,7 @@ const BlogDetails = () => {
         {commentsData && commentsData?.length > 0 ? (
           <div className="border shadow-md p-5">
             <h1 className="text-xl font-bold underline mb-5"> Comments:</h1>
-            {commentsData.map(comment => (
+            {commentsData.map((comment) => (
               <div key={comment._id} className="mb-4 bg-gray-100 px-5 py-2">
                 <div>
                   <h3 className="text-xl font-bold">{comment.name}</h3>

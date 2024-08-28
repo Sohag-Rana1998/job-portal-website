@@ -1,9 +1,9 @@
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import { motion } from 'framer-motion';
-import JobCard from './JobCard';
-import { Link } from 'react-router-dom';
-import useJobsData from '../../Components/Hooks/useJobsData/useJobsData';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
+import { motion } from "framer-motion";
+import JobCard from "./JobCard";
+import { Link } from "react-router-dom";
+import useJobsData from "../../Components/Hooks/useJobsData/useJobsData";
 
 const JobByCategory = () => {
   const { data } = useJobsData();
@@ -22,9 +22,9 @@ const JobByCategory = () => {
           }}
           transition={{
             delay: 0.5,
-            y: { type: 'spring' },
+            y: { type: "spring" },
             opacity: { duration: 1 },
-            ease: 'easeIn',
+            ease: "easeIn",
             duration: 1,
           }}
           className="text-3xl font-bold text-center text-black capitalize md:text-5xl "
@@ -43,9 +43,9 @@ const JobByCategory = () => {
           }}
           transition={{
             delay: 0.5,
-            y: { type: 'spring' },
+            y: { type: "spring" },
             opacity: { duration: 1 },
-            ease: 'easeIn',
+            ease: "easeIn",
             duration: 1,
           }}
           className="max-w-2xl mx-auto mt-2 mb-3 text-center  text-black"
@@ -69,10 +69,10 @@ const JobByCategory = () => {
               {data &&
                 data
                   .slice(0, 6)
-                  .map(job => <JobCard key={job._id} job={job} />)}
+                  .map((job) => <JobCard key={job._id} job={job} />)}
             </div>
             <div className="mt-5 flex w-full justify-center">
-              <Link to={'/all-jobs-card'}>
+              <Link to={"/all-jobs-card"}>
                 <button className="btn bg-[#ff4153] hover:bg-gray-800 text-white">
                   Explore All Jobs
                 </button>
@@ -85,8 +85,8 @@ const JobByCategory = () => {
           <div className="grid grid-cols-1 gap-10 mt-8  lg:grid-cols-2 ">
             {data &&
               data
-                .filter(j => j.category === 'Remote')
-                .map(job => <JobCard key={job._id} job={job} />)}
+                .filter((j) => j.category === "Remote")
+                .map((job) => <JobCard key={job._id} job={job} />)}
           </div>
         </TabPanel>
 
@@ -94,8 +94,8 @@ const JobByCategory = () => {
           <div className="grid grid-cols-1 gap-8 mt-8  lg:grid-cols-2 ">
             {data &&
               data
-                .filter(j => j.category === 'On Site')
-                .map(job => <JobCard key={job._id} job={job} />)}
+                .filter((j) => j.category === "On Site")
+                .map((job) => <JobCard key={job._id} job={job} />)}
           </div>
         </TabPanel>
 
@@ -103,16 +103,16 @@ const JobByCategory = () => {
           <div className="grid grid-cols-1 gap-8 mt-8 lg:grid-cols-2">
             {data &&
               data
-                .filter(j => j.category === 'Part-Time')
-                .map(job => <JobCard key={job._id} job={job} />)}
+                .filter((j) => j.category === "Part-Time")
+                .map((job) => <JobCard key={job._id} job={job} />)}
           </div>
         </TabPanel>
         <TabPanel>
           <div className="grid grid-cols-1 gap-8 mt-8  lg:grid-cols-2 ">
             {data &&
               data
-                .filter(j => j.category === 'Hybrid')
-                .map(job => <JobCard key={job._id} job={job} />)}
+                .filter((j) => j.category === "Hybrid")
+                .map((job) => <JobCard key={job._id} job={job} />)}
           </div>
         </TabPanel>
       </div>
